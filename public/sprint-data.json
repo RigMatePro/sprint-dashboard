@@ -152,6 +152,69 @@
             "priority": "low",
             "notes": "ISO 9001/45001 — build practical tools that produce ISO-compliant evidence",
             "type": "strategy"
+        },
+        {
+            "id": "B-20",
+            "name": "GDPR: Delete My Account + data cascade",
+            "priority": "high",
+            "notes": "AUDIT: Art.17 right to erasure. Self-service account deletion + cascade all tenant data.",
+            "type": "code"
+        },
+        {
+            "id": "B-21",
+            "name": "GDPR: Data export (JSON/CSV)",
+            "priority": "high",
+            "notes": "AUDIT: Art.20 data portability. Export all customer, boat, inspection data.",
+            "type": "code"
+        },
+        {
+            "id": "B-22",
+            "name": "Photo storage: audit public vs signed URLs",
+            "priority": "high",
+            "notes": "AUDIT: Check if observation photos use public or signed URLs. Fix to signed if public.",
+            "type": "code"
+        },
+        {
+            "id": "B-23",
+            "name": "Lazy-load Brain schemas (dynamic import)",
+            "priority": "medium",
+            "notes": "AUDIT FINDING #4: ~260KB schemas in bundle. Use Vite dynamic import() to code-split.",
+            "type": "code"
+        },
+        {
+            "id": "B-24",
+            "name": "Refactor App.tsx route definitions",
+            "priority": "medium",
+            "notes": "AUDIT FINDING #2: 577-line monolith. Extract routes + use layout routes.",
+            "type": "code"
+        },
+        {
+            "id": "B-25",
+            "name": "Audit logging for data mutations",
+            "priority": "medium",
+            "notes": "AUDIT: OWASP A09 — no security audit trail. Log data access/modification with actor identity.",
+            "type": "code"
+        },
+        {
+            "id": "B-26",
+            "name": "Database functions for multi-step operations",
+            "priority": "medium",
+            "notes": "AUDIT FINDING #3: createInspectionJob etc. should be atomic plpgsql functions.",
+            "type": "code"
+        },
+        {
+            "id": "B-27",
+            "name": "Move PDF generation server-side",
+            "priority": "medium",
+            "notes": "AUDIT FINDING #12: 54KB PDFService + base64 photos = mobile memory pressure. Edge Function or Vercel serverless.",
+            "type": "code"
+        },
+        {
+            "id": "B-28",
+            "name": "Drop findings table (deprecated)",
+            "priority": "low",
+            "notes": "AUDIT Q8: findings has 0 rows, observations has 37. Anthony confirmed deprecated.",
+            "type": "code"
         }
     ],
     "sprints": {
@@ -173,7 +236,14 @@
                 "S02-09",
                 "S02-10",
                 "S02-05",
-                "S02-06"
+                "S02-06",
+                "S02-12",
+                "S02-13",
+                "S02-14",
+                "S02-15",
+                "S02-16",
+                "S02-17",
+                "S02-18"
             ],
             "tasks": [
                 {
@@ -351,6 +421,101 @@
                     "notes": "Integrate Brain prompt into live inspection flow",
                     "progress": 0,
                     "detail": "Wire the constructed Brain prompt into the actual inspection code:\n\n• InspectionView dictation → use Brain system prompt for transcription context\n• InspectionSummary → use Brain for report generation\n• Test with real dictation recording\n• Compare output quality: before Brain vs after Brain"
+                },
+                {
+                    "id": "S02-12",
+                    "name": "🔴 FIX: RLS policies — drop qual:true, enforce tenant isolation",
+                    "status": "sprint-start",
+                    "priority": "critical",
+                    "type": "code",
+                    "notes": "AUDIT #6: Any auth user can access ALL data. Drop open policies, enforce tenant-scoped.",
+                    "progress": 0,
+                    "detail": "CRITICAL SECURITY: Production RLS has qual:true on customers, boats, tenants, tenant_users, profiles. PostgreSQL OR-logic means broad policies override tenant-scoped ones. 4-6hrs.",
+                    "subtasks": [
+                        {
+                            "name": "Audit all qual:true policies",
+                            "done": false
+                        },
+                        {
+                            "name": "Write DROP + CREATE migration",
+                            "done": false
+                        },
+                        {
+                            "name": "Test on dev database",
+                            "done": false
+                        },
+                        {
+                            "name": "Apply to production",
+                            "done": false
+                        },
+                        {
+                            "name": "Verify with cross-tenant query test",
+                            "done": false
+                        }
+                    ]
+                },
+                {
+                    "id": "S02-13",
+                    "name": "🔴 FIX: Move Gemini API key to Edge Function proxy",
+                    "status": "sprint-start",
+                    "priority": "critical",
+                    "type": "code",
+                    "notes": "AUDIT #7: VITE_GEMINI_API_KEY in 10 client call sites. Create gemini-proxy Edge Function.",
+                    "progress": 0,
+                    "subtasks": [
+                        {
+                            "name": "Create gemini-proxy Edge Function",
+                            "done": false
+                        },
+                        {
+                            "name": "Refactor 5 client files",
+                            "done": false
+                        },
+                        {
+                            "name": "Remove VITE_GEMINI_API_KEY from env",
+                            "done": false
+                        }
+                    ]
+                },
+                {
+                    "id": "S02-14",
+                    "name": "FIX: quotes/invoices tenant_id default",
+                    "status": "sprint-start",
+                    "priority": "critical",
+                    "type": "code",
+                    "notes": "AUDIT #6b: tenant_id defaults to auth.uid() — stores user UUID not tenant UUID. 1hr."
+                },
+                {
+                    "id": "S02-15",
+                    "name": "Generate Supabase types + remove as any",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "AUDIT #5: supabaseClient exports as any — zero type safety across 24 services. 1-2hrs."
+                },
+                {
+                    "id": "S02-16",
+                    "name": "Privacy Policy + Terms + ICO registration",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "type": "ops",
+                    "notes": "AUDIT GDPR: Legal requirement before payment. Termly/iubenda. ICO £40/yr. 2-3hrs."
+                },
+                {
+                    "id": "S02-17",
+                    "name": "GitHub Actions CI — build + type check",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "AUDIT #13: No CI gates. tsc + build on push to dev / PR to main. 30min."
+                },
+                {
+                    "id": "S02-18",
+                    "name": "Smoke tests — RLS + service layer (Vitest)",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "AUDIT #10: Zero tests. 5 smoke tests: client init, tenant, CRUD, atomic ops, RLS. 2hrs."
                 }
             ]
         },
