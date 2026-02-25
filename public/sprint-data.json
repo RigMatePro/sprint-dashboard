@@ -457,23 +457,24 @@
                 {
                     "id": "S02-13",
                     "name": "🔴 FIX: Move Gemini API key to Edge Function proxy",
-                    "status": "added",
+                    "status": "done",
                     "priority": "critical",
                     "type": "code",
-                    "notes": "AUDIT #7: VITE_GEMINI_API_KEY in 10 client call sites. Create gemini-proxy Edge Function.",
-                    "progress": 0,
+                    "notes": "AUDIT #7: Deployed gemini-proxy Edge Function. Removed all client-side API key refs. Feb 26.",
+                    "date": "Feb 26",
+                    "detail": "Deployed single generic gemini-proxy Edge Function (JWT-authenticated). Created shared callGemini() helper. Refactored 5 client files, removed @google/generative-ai and @google/genai SDK imports. Zero VITE_GEMINI_API_KEY references remain in source.",
                     "subtasks": [
                         {
                             "name": "Create gemini-proxy Edge Function",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Refactor 5 client files",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Remove VITE_GEMINI_API_KEY from env",
-                            "done": false
+                            "done": true
                         }
                     ]
                 },
