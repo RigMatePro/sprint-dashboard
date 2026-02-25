@@ -246,18 +246,18 @@
 
         /* ─── Backlog Drawer ─── */
         .backlog-drawer {
-            width: 240px;
-            min-width: 240px;
+            flex: 1;
+            min-width: 0;
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             background: rgba(15, 23, 42, 0.6);
-            transition: width 0.3s ease, min-width 0.3s ease, padding 0.3s ease;
+            transition: flex 0.3s ease, min-width 0.3s ease, padding 0.3s ease;
             overflow: hidden;
         }
 
         .backlog-drawer.collapsed {
-            width: 0;
+            flex: 0;
             min-width: 0;
             padding: 0;
         }
@@ -361,7 +361,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 0;
-            flex: 1;
+            flex: 4;
             overflow: hidden;
             min-height: 0;
         }
