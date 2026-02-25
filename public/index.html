@@ -131,18 +131,16 @@
 
         .meta-block {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 2px;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            padding: 8px 20px 8px 0;
         }
 
         .meta-block.sprint-name {
             flex: 1;
             padding-right: 20px;
             border-right: 1px solid var(--border);
-            flex-direction: row;
-            align-items: baseline;
-            gap: 8px;
         }
 
         .meta-block.sprint-goal {
@@ -150,9 +148,6 @@
             padding-left: 20px;
             padding-right: 20px;
             border-right: 1px solid var(--border);
-            flex-direction: row;
-            align-items: baseline;
-            gap: 8px;
         }
 
         .meta-block.day-counter {
@@ -160,28 +155,28 @@
             padding-left: 16px;
             padding-right: 16px;
             border-right: 1px solid var(--border);
-            text-align: center;
-            flex-direction: row;
-            align-items: baseline;
-            gap: 6px;
         }
 
         .meta-block.task-progress {
             flex: 0.5;
             padding-left: 16px;
-            text-align: center;
-            flex-direction: row;
-            align-items: baseline;
-            gap: 6px;
+            padding-right: 0;
         }
 
         .meta-label {
-            font-size: 9px;
+            position: absolute;
+            top: 4px;
+            right: 20px;
+            font-size: 8px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--text-muted);
             white-space: nowrap;
+        }
+
+        .meta-block.task-progress .meta-label {
+            right: 0;
         }
 
         .meta-value-big {
