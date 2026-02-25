@@ -160,7 +160,7 @@
             "goal": "Deploy v1 of the complete ERP — a rigger can onboard a client, input a boat, run a job through to invoice",
             "start": "2026-02-25",
             "end": "2026-03-01",
-            "locked": false,
+            "locked": true,
             "sprintStart": [
                 "S02-01",
                 "S02-02",
