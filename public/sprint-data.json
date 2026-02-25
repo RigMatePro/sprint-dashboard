@@ -191,6 +191,7 @@
                     "name": "E2E: run complete lifecycle test",
                     "status": "sprint-start",
                     "priority": "critical",
+                    "type": "code",
                     "notes": "Customer → boat → inspection → PDF → job → invoice",
                     "progress": 0,
                     "detail": "Walk through the entire RigMate lifecycle as a rigger would. Create real test data, not dummy placeholders.\n\n1. Create customer (real name, contact)\n2. Add boat (real vessel details)\n3. Start inspection → dictate findings → complete\n4. Generate PDF report\n5. Create job from inspection\n6. Generate quote\n7. Complete job → generate invoice\n\nDocument every friction point, bug, and missing feature encountered.",
@@ -230,6 +231,7 @@
                     "name": "Define ERP v1 scope boundaries",
                     "status": "sprint-start",
                     "priority": "critical",
+                    "type": "strategy",
                     "notes": "Based on E2E findings — what stays, what's deferred",
                     "progress": 0,
                     "detail": "After running the E2E test, decide what's v1-essential vs deferrable:\n\n• Customer + Boat — essential\n• Inspection + Dictation + PDF — essential\n• Job creation — essential\n• Invoice — essential\n• Quoting — essential or do riggers just do the work and invoice?\n• Customer Portal — nice-to-have or essential?\n• Scheduling — nice-to-have or essential?\n\nOutput: a clear v1 feature list that gets deployed Monday."
@@ -239,6 +241,7 @@
                     "name": "Nav: complete routing + mobile menu",
                     "status": "sprint-start",
                     "priority": "high",
+                    "type": "code",
                     "notes": "Finish the 40% remaining — structure and routes",
                     "progress": 0,
                     "detail": "Complete the navigation restructure started in S01. The ERP needs clean, logical routing that a rigger can follow on mobile.\n\n• Finalise route structure\n• Mobile hamburger menu\n• Consistent back/breadcrumb navigation\n• Remove dead routes and orphaned pages"
@@ -248,6 +251,7 @@
                     "name": "Nav: responsive polish + transitions",
                     "status": "sprint-start",
                     "priority": "medium",
+                    "type": "code",
                     "notes": "Mobile UX refinements — the feel of the app",
                     "progress": 0,
                     "detail": "Once routing is solid, polish the mobile experience:\n\n• Page transition animations\n• Loading states between views\n• Touch-friendly spacing\n• Consistent header/footer across all views"
@@ -257,6 +261,7 @@
                     "name": "Brain: build inspection system prompt",
                     "status": "sprint-start",
                     "priority": "high",
+                    "type": "code",
                     "notes": "Construct context-aware prompt from Brain identity + schemas",
                     "progress": 0,
                     "detail": "Build the system prompt that will power inspection dictation. Pull from:\n\n• Brain identity (RigMate persona, tone, expertise)\n• Relevant schemas (standing rigging, swage terminals, tangs)\n• Normalised libraries (materials, corrosion types, manufacturers)\n\nThe prompt should make the AI understand rigging context — know what crevice corrosion is, distinguish Sparcraft from Selden, use correct technical terminology."
@@ -266,6 +271,7 @@
                     "name": "Brain: wire into dictation + report gen",
                     "status": "sprint-start",
                     "priority": "high",
+                    "type": "code",
                     "notes": "Integrate Brain prompt into live inspection flow",
                     "progress": 0,
                     "detail": "Wire the constructed Brain prompt into the actual inspection code:\n\n• InspectionView dictation → use Brain system prompt for transcription context\n• InspectionSummary → use Brain for report generation\n• Test with real dictation recording\n• Compare output quality: before Brain vs after Brain"
@@ -275,6 +281,7 @@
                     "name": "E2E Bug fixes",
                     "status": "sprint-start",
                     "priority": "high",
+                    "type": "code",
                     "notes": "Fix issues surfaced by system test — dependent on S02-01",
                     "progress": 0,
                     "detail": "This task is populated by the findings from S02-01. Cannot be planned in advance — the bugs will reveal themselves during testing.\n\nExpect issues in:\n• Data flow between modules\n• Edge cases in PDF generation\n• Mobile layout breaks\n• Missing validation or error handling"
@@ -284,6 +291,7 @@
                     "name": "Outreach: research + strategy plan",
                     "status": "sprint-start",
                     "priority": "high",
+                    "type": "strategy",
                     "notes": "Facebook business page, ad strategy, funnel architecture",
                     "progress": 0,
                     "detail": "Research and plan the revised acquisition strategy:\n\n• How to set up Facebook business page for RigMate\n• Ad formats: post vs story vs reel — what works for B2B trades?\n• Targeting options: sailing, rigging, marine industry worldwide\n• Budget: what does £5-10/day get in reach?\n• Funnel architecture: ad → landing page → quiz → email\n• What Anthony needs to do vs what can be automated\n\nOutput: a clear implementation plan with timeline."
@@ -293,6 +301,7 @@
                     "name": "Outreach: build landing page + lead capture",
                     "status": "sprint-start",
                     "priority": "high",
+                    "type": "code",
                     "notes": "Simple sign-up page connected to Supabase",
                     "progress": 0,
                     "detail": "Build a clean landing page for the Facebook funnel:\n\n• Simple value prop — one-liner like the Norwegian app Anthony saw\n• Email + business name capture form\n• Connected to Supabase leads table\n• Thank you page with next steps\n• Mobile-optimised (most Facebook traffic is mobile)\n\nDeploy to Vercel under RigMate domain."
@@ -302,6 +311,7 @@
                     "name": "Outreach: deploy quiz + email automation",
                     "status": "sprint-start",
                     "priority": "medium",
+                    "type": "ops",
                     "notes": "Rigger Efficiency Quiz + automated email trigger",
                     "progress": 0,
                     "detail": "Complete the outreach funnel:\n\n• Deploy Rigger Efficiency Scorecard quiz to Vercel\n• Set up automated email: new sign-up → quiz invitation\n• Quiz results stored in Supabase for segmentation\n• Consider: what data do we capture? Business name, location, team size, job volume\n\nGoal: self-qualifying funnel that identifies motivated riggers."
@@ -311,6 +321,7 @@
                     "name": "Prospect Dashboard bug fix",
                     "status": "sprint-start",
                     "priority": "medium",
+                    "type": "code",
                     "notes": "Apps Script write-back — SYNC_SECRET + tab reference",
                     "progress": 0,
                     "detail": "Fix the two known bugs in the prospect dashboard write-back:\n\n1. SYNC_SECRET variable not defined — renamed to SECRET but Apps Script still references old name\n2. getSheetByName tab reference wrong — looking for wrong sheet tab name\n\nVerify: make an edit on dashboard → confirm it persists in Google Sheet."
