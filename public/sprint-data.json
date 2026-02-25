@@ -178,111 +178,142 @@
                 "S02-03",
                 "S02-04",
                 "S02-05",
-                "S02-06"
+                "S02-06",
+                "S02-07",
+                "S02-08",
+                "S02-09",
+                "S02-10",
+                "S02-11"
             ],
             "tasks": [
                 {
                     "id": "S02-01",
-                    "name": "End-to-End System Test + scope v1",
+                    "name": "E2E: run complete lifecycle test",
                     "status": "sprint-start",
                     "priority": "critical",
-                    "notes": "Walk the complete flow, define what's v1-essential vs deferrable",
+                    "notes": "Customer → boat → inspection → PDF → job → invoice",
                     "progress": 0,
-                    "detail": "This is both a test AND a scoping exercise. Walk through the complete lifecycle and at each step ask: does a rigger need this for v1?\n\nTest path:\n1. Create customer + boat\n2. Start inspection → dictate findings → complete\n3. Generate PDF report\n4. Create job from inspection\n5. Generate quote → send to portal\n6. Customer approves via portal\n7. Complete job → generate invoice\n\nScope questions:\n• Is quoting v1-essential or do riggers just do the work and invoice?\n• Is the customer portal v1-essential?\n• Is scheduling v1-essential?",
+                    "detail": "Walk through the entire RigMate lifecycle as a rigger would. Create real test data, not dummy placeholders.\n\n1. Create customer (real name, contact)\n2. Add boat (real vessel details)\n3. Start inspection → dictate findings → complete\n4. Generate PDF report\n5. Create job from inspection\n6. Generate quote\n7. Complete job → generate invoice\n\nDocument every friction point, bug, and missing feature encountered.",
                     "subtasks": [
                         {
                             "name": "Create test customer + boat",
                             "done": false
                         },
                         {
-                            "name": "Run inspection flow",
+                            "name": "Run inspection + dictation",
                             "done": false
                         },
                         {
-                            "name": "Generate PDF",
+                            "name": "Generate PDF report",
                             "done": false
                         },
                         {
-                            "name": "Job → Quote → Portal",
+                            "name": "Create job from inspection",
                             "done": false
                         },
                         {
-                            "name": "Invoice generation",
+                            "name": "Generate quote",
                             "done": false
                         },
                         {
-                            "name": "Define v1 scope based on findings",
+                            "name": "Complete job + invoice",
+                            "done": false
+                        },
+                        {
+                            "name": "Document all issues found",
                             "done": false
                         }
                     ]
                 },
                 {
                     "id": "S02-02",
-                    "name": "Navigation overhaul + mobile polish",
+                    "name": "Define ERP v1 scope boundaries",
                     "status": "sprint-start",
-                    "priority": "high",
-                    "notes": "~60% done from S01 — ERP not shippable without usable nav",
-                    "progress": 60
+                    "priority": "critical",
+                    "notes": "Based on E2E findings — what stays, what's deferred",
+                    "progress": 0,
+                    "detail": "After running the E2E test, decide what's v1-essential vs deferrable:\n\n• Customer + Boat — essential\n• Inspection + Dictation + PDF — essential\n• Job creation — essential\n• Invoice — essential\n• Quoting — essential or do riggers just do the work and invoice?\n• Customer Portal — nice-to-have or essential?\n• Scheduling — nice-to-have or essential?\n\nOutput: a clear v1 feature list that gets deployed Monday."
                 },
                 {
                     "id": "S02-03",
-                    "name": "Brain v1: wire into inspection dictation",
+                    "name": "Nav: complete routing + mobile menu",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "First real consumer of Brain engine — prove it works",
+                    "notes": "Finish the 40% remaining — structure and routes",
                     "progress": 0,
-                    "detail": "Wire the Brain engine into the inspection dictation flow as the first real consumer. The Brain (identity, schemas, libraries) gives the AI rigging context — it should know what a swage terminal is, distinguish crevice corrosion from general corrosion, understand Sparcraft vs Selden tangs.\n\nScope:\n• Wire InspectionView dictation to use Brain system prompt\n• Wire InspectionSummary to use Brain for report generation\n• Validate improved dictation quality with test recording"
+                    "detail": "Complete the navigation restructure started in S01. The ERP needs clean, logical routing that a rigger can follow on mobile.\n\n• Finalise route structure\n• Mobile hamburger menu\n• Consistent back/breadcrumb navigation\n• Remove dead routes and orphaned pages"
                 },
                 {
                     "id": "S02-04",
-                    "name": "E2E Bug fixes",
+                    "name": "Nav: responsive polish + transitions",
                     "status": "sprint-start",
-                    "priority": "high",
-                    "notes": "Fix whatever the system test surfaces",
-                    "progress": 0
+                    "priority": "medium",
+                    "notes": "Mobile UX refinements — the feel of the app",
+                    "progress": 0,
+                    "detail": "Once routing is solid, polish the mobile experience:\n\n• Page transition animations\n• Loading states between views\n• Touch-friendly spacing\n• Consistent header/footer across all views"
                 },
                 {
                     "id": "S02-05",
-                    "name": "Outreach funnel: research + plan + build",
+                    "name": "Brain: build inspection system prompt",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Facebook → landing page → quiz → email nurture — worldwide",
+                    "notes": "Construct context-aware prompt from Brain identity + schemas",
                     "progress": 0,
-                    "detail": "Revised acquisition strategy. Instead of 1-to-1 cold calls to reluctant prospects, cast a wide net for motivated people worldwide.\n\nFunnel:\n1. Facebook post/ad → simple value prop + sign up CTA\n2. Landing page with email + business name capture\n3. Automated email → Rigger Efficiency Quiz\n4. Quiz results → segment by engagement\n5. Top segment → personal invite to ERP v1 (Founding 10/20)\n\nTarget: English-speaking world (UK, US, AU, NZ)\nGoal: Launch on Monday 2nd March\n\nAnthony continues 1-to-1 calls in parallel, working through prospect list.",
-                    "subtasks": [
-                        {
-                            "name": "Research Facebook business page setup",
-                            "done": false
-                        },
-                        {
-                            "name": "Draft ad copy + creative",
-                            "done": false
-                        },
-                        {
-                            "name": "Build sign-up landing page",
-                            "done": false
-                        },
-                        {
-                            "name": "Connect to Supabase lead collection",
-                            "done": false
-                        },
-                        {
-                            "name": "Automated email trigger → quiz",
-                            "done": false
-                        },
-                        {
-                            "name": "Deploy RMP Launch Pages (quiz)",
-                            "done": false
-                        }
-                    ]
+                    "detail": "Build the system prompt that will power inspection dictation. Pull from:\n\n• Brain identity (RigMate persona, tone, expertise)\n• Relevant schemas (standing rigging, swage terminals, tangs)\n• Normalised libraries (materials, corrosion types, manufacturers)\n\nThe prompt should make the AI understand rigging context — know what crevice corrosion is, distinguish Sparcraft from Selden, use correct technical terminology."
                 },
                 {
                     "id": "S02-06",
+                    "name": "Brain: wire into dictation + report gen",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "notes": "Integrate Brain prompt into live inspection flow",
+                    "progress": 0,
+                    "detail": "Wire the constructed Brain prompt into the actual inspection code:\n\n• InspectionView dictation → use Brain system prompt for transcription context\n• InspectionSummary → use Brain for report generation\n• Test with real dictation recording\n• Compare output quality: before Brain vs after Brain"
+                },
+                {
+                    "id": "S02-07",
+                    "name": "E2E Bug fixes",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "notes": "Fix issues surfaced by system test — dependent on S02-01",
+                    "progress": 0,
+                    "detail": "This task is populated by the findings from S02-01. Cannot be planned in advance — the bugs will reveal themselves during testing.\n\nExpect issues in:\n• Data flow between modules\n• Edge cases in PDF generation\n• Mobile layout breaks\n• Missing validation or error handling"
+                },
+                {
+                    "id": "S02-08",
+                    "name": "Outreach: research + strategy plan",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "notes": "Facebook business page, ad strategy, funnel architecture",
+                    "progress": 0,
+                    "detail": "Research and plan the revised acquisition strategy:\n\n• How to set up Facebook business page for RigMate\n• Ad formats: post vs story vs reel — what works for B2B trades?\n• Targeting options: sailing, rigging, marine industry worldwide\n• Budget: what does £5-10/day get in reach?\n• Funnel architecture: ad → landing page → quiz → email\n• What Anthony needs to do vs what can be automated\n\nOutput: a clear implementation plan with timeline."
+                },
+                {
+                    "id": "S02-09",
+                    "name": "Outreach: build landing page + lead capture",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "notes": "Simple sign-up page connected to Supabase",
+                    "progress": 0,
+                    "detail": "Build a clean landing page for the Facebook funnel:\n\n• Simple value prop — one-liner like the Norwegian app Anthony saw\n• Email + business name capture form\n• Connected to Supabase leads table\n• Thank you page with next steps\n• Mobile-optimised (most Facebook traffic is mobile)\n\nDeploy to Vercel under RigMate domain."
+                },
+                {
+                    "id": "S02-10",
+                    "name": "Outreach: deploy quiz + email automation",
+                    "status": "sprint-start",
+                    "priority": "medium",
+                    "notes": "Rigger Efficiency Quiz + automated email trigger",
+                    "progress": 0,
+                    "detail": "Complete the outreach funnel:\n\n• Deploy Rigger Efficiency Scorecard quiz to Vercel\n• Set up automated email: new sign-up → quiz invitation\n• Quiz results stored in Supabase for segmentation\n• Consider: what data do we capture? Business name, location, team size, job volume\n\nGoal: self-qualifying funnel that identifies motivated riggers."
+                },
+                {
+                    "id": "S02-11",
                     "name": "Prospect Dashboard bug fix",
                     "status": "sprint-start",
                     "priority": "medium",
-                    "notes": "Apps Script write-back broken — SYNC_SECRET + tab reference",
-                    "progress": 0
+                    "notes": "Apps Script write-back — SYNC_SECRET + tab reference",
+                    "progress": 0,
+                    "detail": "Fix the two known bugs in the prospect dashboard write-back:\n\n1. SYNC_SECRET variable not defined — renamed to SECRET but Apps Script still references old name\n2. getSheetByName tab reference wrong — looking for wrong sheet tab name\n\nVerify: make an edit on dashboard → confirm it persists in Google Sheet."
                 }
             ]
         },
