@@ -167,21 +167,28 @@
     ],
     "sprints": {
         "sprint-02": {
-            "name": "Sprint 02: Push Week",
-            "goal": "Ship carried tasks, onboard beta users, deploy launch pages",
+            "name": "Sprint 02: Deploy ERP",
+            "goal": "Deploy v1 of the complete ERP — a rigger can onboard a client, input a boat, run a job through to invoice",
             "start": "2026-02-25",
             "end": "2026-03-01",
             "locked": false,
-            "sprintStart": [],
+            "sprintStart": [
+                "S02-01",
+                "S02-02",
+                "S02-03",
+                "S02-04",
+                "S02-05",
+                "S02-06"
+            ],
             "tasks": [
                 {
                     "id": "S02-01",
-                    "name": "End-to-End System Test",
+                    "name": "End-to-End System Test + scope v1",
                     "status": "sprint-start",
-                    "priority": "high",
-                    "notes": "Dummy job through full lifecycle",
+                    "priority": "critical",
+                    "notes": "Walk the complete flow, define what's v1-essential vs deferrable",
                     "progress": 0,
-                    "detail": "Create a test customer, boat, inspection, job, quote, and invoice — walk through the entire flow end-to-end.\n\nTest path:\n1. Create customer + boat\n2. Start inspection → dictate findings → complete\n3. Generate PDF report\n4. Create job from inspection\n5. Generate quote → send to portal\n6. Customer approves via portal\n7. Complete job → generate invoice",
+                    "detail": "This is both a test AND a scoping exercise. Walk through the complete lifecycle and at each step ask: does a rigger need this for v1?\n\nTest path:\n1. Create customer + boat\n2. Start inspection → dictate findings → complete\n3. Generate PDF report\n4. Create job from inspection\n5. Generate quote → send to portal\n6. Customer approves via portal\n7. Complete job → generate invoice\n\nScope questions:\n• Is quoting v1-essential or do riggers just do the work and invoice?\n• Is the customer portal v1-essential?\n• Is scheduling v1-essential?",
                     "subtasks": [
                         {
                             "name": "Create test customer + boat",
@@ -202,6 +209,10 @@
                         {
                             "name": "Invoice generation",
                             "done": false
+                        },
+                        {
+                            "name": "Define v1 scope based on findings",
+                            "done": false
                         }
                     ]
                 },
@@ -209,41 +220,68 @@
                     "id": "S02-02",
                     "name": "Navigation overhaul + mobile polish",
                     "status": "sprint-start",
-                    "priority": "medium",
-                    "notes": "~60% done from S01",
+                    "priority": "high",
+                    "notes": "~60% done from S01 — ERP not shippable without usable nav",
                     "progress": 60
                 },
                 {
                     "id": "S02-03",
-                    "name": "Brain: wire consumers to Brain engine",
+                    "name": "Brain v1: wire into inspection dictation",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Migrate existing pages to use Brain",
+                    "notes": "First real consumer of Brain engine — prove it works",
                     "progress": 0,
-                    "detail": "The Brain engine (identity, schemas, adapters, router) is built but nothing consumes it yet. Need to:\n• Wire InspectionView dictation to use Brain system prompt\n• Wire InspectionSummary to use Brain for report generation\n• Wire FindingForm to use Brain for observation parsing\n• Update DeepKeel dashboard to query Brain schemas"
+                    "detail": "Wire the Brain engine into the inspection dictation flow as the first real consumer. The Brain (identity, schemas, libraries) gives the AI rigging context — it should know what a swage terminal is, distinguish crevice corrosion from general corrosion, understand Sparcraft vs Selden tangs.\n\nScope:\n• Wire InspectionView dictation to use Brain system prompt\n• Wire InspectionSummary to use Brain for report generation\n• Validate improved dictation quality with test recording"
                 },
                 {
                     "id": "S02-04",
-                    "name": "Deploy RMP Launch Pages to Vercel",
+                    "name": "E2E Bug fixes",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Pricing, Founding 50, Quiz — currently local only",
+                    "notes": "Fix whatever the system test surfaces",
                     "progress": 0
                 },
                 {
                     "id": "S02-05",
-                    "name": "Beta user follow-up calls",
+                    "name": "Outreach funnel: research + plan + build",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Alex, Jake, Anto, Dave — check-in",
-                    "detail": "Analytics show very low engagement. Only Anthony active.\n\n• Alex — Has account, not logged in recently\n• Jake — Registered, minimal usage\n• Anto — Registered, no app usage\n• Dave — Onboarding flagged complete on prospect dashboard\n\nGoal: Call each, understand barriers, get them to try one inspection"
+                    "notes": "Facebook → landing page → quiz → email nurture — worldwide",
+                    "progress": 0,
+                    "detail": "Revised acquisition strategy. Instead of 1-to-1 cold calls to reluctant prospects, cast a wide net for motivated people worldwide.\n\nFunnel:\n1. Facebook post/ad → simple value prop + sign up CTA\n2. Landing page with email + business name capture\n3. Automated email → Rigger Efficiency Quiz\n4. Quiz results → segment by engagement\n5. Top segment → personal invite to ERP v1 (Founding 10/20)\n\nTarget: English-speaking world (UK, US, AU, NZ)\nGoal: Launch on Monday 2nd March\n\nAnthony continues 1-to-1 calls in parallel, working through prospect list.",
+                    "subtasks": [
+                        {
+                            "name": "Research Facebook business page setup",
+                            "done": false
+                        },
+                        {
+                            "name": "Draft ad copy + creative",
+                            "done": false
+                        },
+                        {
+                            "name": "Build sign-up landing page",
+                            "done": false
+                        },
+                        {
+                            "name": "Connect to Supabase lead collection",
+                            "done": false
+                        },
+                        {
+                            "name": "Automated email trigger → quiz",
+                            "done": false
+                        },
+                        {
+                            "name": "Deploy RMP Launch Pages (quiz)",
+                            "done": false
+                        }
+                    ]
                 },
                 {
                     "id": "S02-06",
-                    "name": "Field Conditions UX audit",
+                    "name": "Prospect Dashboard bug fix",
                     "status": "sprint-start",
                     "priority": "medium",
-                    "notes": "Contrast, tap targets, glove-friendly",
+                    "notes": "Apps Script write-back broken — SYNC_SECRET + tab reference",
                     "progress": 0
                 }
             ]
