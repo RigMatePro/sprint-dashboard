@@ -166,7 +166,7 @@
         .meta-label {
             position: absolute;
             top: 4px;
-            right: 20px;
+            left: 0;
             font-size: 8px;
             font-weight: 600;
             text-transform: uppercase;
@@ -175,8 +175,16 @@
             white-space: nowrap;
         }
 
+        .meta-block.sprint-goal .meta-label {
+            left: 20px;
+        }
+
+        .meta-block.day-counter .meta-label {
+            left: 16px;
+        }
+
         .meta-block.task-progress .meta-label {
-            right: 0;
+            left: 16px;
         }
 
         .meta-value-big {
