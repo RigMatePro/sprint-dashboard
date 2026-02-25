@@ -132,9 +132,9 @@
         .meta-block {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            position: relative;
-            padding: 8px 20px 8px 0;
+            align-items: baseline;
+            gap: 8px;
+            padding: 12px 20px 12px 0;
         }
 
         .meta-block.sprint-name {
@@ -164,27 +164,12 @@
         }
 
         .meta-label {
-            position: absolute;
-            top: 4px;
-            left: 0;
-            font-size: 8px;
+            font-size: 9px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--text-muted);
             white-space: nowrap;
-        }
-
-        .meta-block.sprint-goal .meta-label {
-            left: 20px;
-        }
-
-        .meta-block.day-counter .meta-label {
-            left: 16px;
-        }
-
-        .meta-block.task-progress .meta-label {
-            left: 16px;
         }
 
         .meta-value-big {
