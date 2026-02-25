@@ -1031,7 +1031,8 @@
             const progressClass = progress < 33 ? 'low' : progress < 66 ? 'mid' : 'high';
 
             return `<div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
-                ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openModal('${task.id}', '${source}')">
+                ondragstart="onDragStart(event)" ondragend="onDragEnd(event)"
+                onmousedown="cardMouseDown(event)" onmouseup="cardMouseUp(event, '${task.id}', '${source}')">
                 <div class="card-top">
                     <span class="card-task-name">${task.name}</span>
                     <span class="card-id">${task.id}</span>
@@ -1101,10 +1102,22 @@
         function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) e.target.classList.remove('open'); }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('open'); });
 
+        // ─── Click vs Drag tracking ───
+        let didDrag = false, mouseDownPos = null;
+        function cardMouseDown(e) { mouseDownPos = { x: e.clientX, y: e.clientY }; didDrag = false; }
+        function cardMouseUp(e, taskId, source) {
+            if (didDrag) return;
+            if (mouseDownPos) {
+                const dx = Math.abs(e.clientX - mouseDownPos.x), dy = Math.abs(e.clientY - mouseDownPos.y);
+                if (dx < 5 && dy < 5) openModal(taskId, source);
+            }
+            mouseDownPos = null;
+        }
+
         // ─── Drag & Drop ───
         let draggedId = null, dragSource = null;
-        function onDragStart(e) { draggedId = e.currentTarget.dataset.id; dragSource = e.currentTarget.dataset.source; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
-        function onDragEnd(e) { e.currentTarget.classList.remove('dragging'); document.querySelectorAll('.board-column,.backlog-drawer').forEach(c => c.classList.remove('drag-over')); }
+        function onDragStart(e) { didDrag = true; draggedId = e.currentTarget.dataset.id; dragSource = e.currentTarget.dataset.source; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+        function onDragEnd(e) { e.currentTarget.classList.remove('dragging'); document.querySelectorAll('.board-column,.backlog-drawer').forEach(c => c.classList.remove('drag-over')); didDrag = false; }
         function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
         function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
         function onBacklogDragOver(e) { e.preventDefault(); document.getElementById('backlogDrawer').classList.add('drag-over'); }
