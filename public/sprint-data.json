@@ -1,0 +1,229 @@
+{
+    "activeSprint": "sprint-02",
+    "sprints": {
+        "sprint-02": {
+            "name": "Sprint 02: Push Week",
+            "goal": "Ship carried tasks, onboard beta users, deploy launch pages",
+            "start": "2026-02-25",
+            "end": "2026-03-01",
+            "tasks": [
+                {
+                    "id": "S02-01",
+                    "name": "End-to-End System Test",
+                    "status": "backlog",
+                    "priority": "high",
+                    "notes": "Carried from S01 — dummy job through full lifecycle",
+                    "carried": true
+                },
+                {
+                    "id": "S02-02",
+                    "name": "Navigation overhaul + mobile polish",
+                    "status": "backlog",
+                    "priority": "medium",
+                    "notes": "Carried from S01 — ~60% done",
+                    "carried": true
+                },
+                {
+                    "id": "S02-03",
+                    "name": "Brain: wire consumers to Brain engine",
+                    "status": "backlog",
+                    "priority": "high",
+                    "notes": "Carried from S01 — migrate existing pages to use Brain"
+                },
+                {
+                    "id": "S02-04",
+                    "name": "Deploy RMP Launch Pages to Vercel",
+                    "status": "backlog",
+                    "priority": "high",
+                    "notes": "Pricing, Founding 50, Quiz — currently local only"
+                },
+                {
+                    "id": "S02-05",
+                    "name": "Beta user follow-up calls",
+                    "status": "backlog",
+                    "priority": "high",
+                    "notes": "Alex, Jake, Anto, Dave — check-in and get them using the app"
+                },
+                {
+                    "id": "S02-06",
+                    "name": "Field Conditions UX audit",
+                    "status": "backlog",
+                    "priority": "medium",
+                    "notes": "Contrast, tap targets, glove-friendly. Priority: inspection flow"
+                }
+            ]
+        },
+        "sprint-01": {
+            "name": "Sprint 01: ERP Build",
+            "goal": "Build RigMate's full business system",
+            "start": "2026-02-14",
+            "end": "2026-02-24",
+            "tasks": [
+                {
+                    "id": "S01-01",
+                    "name": "Shared UI Components",
+                    "status": "done",
+                    "priority": "critical",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-02",
+                    "name": "CRM: Customer list + boat profiles",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-03",
+                    "name": "Job Management",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-04",
+                    "name": "Quoting Module",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-05",
+                    "name": "Running Invoice Module",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-06",
+                    "name": "Customer Portal MVP",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-07",
+                    "name": "Brain: Rig architecture model",
+                    "status": "done",
+                    "priority": "high",
+                    "notes": "~75% — architecture, DeepKeel, libraries, schemas",
+                    "date": "Feb 24"
+                },
+                {
+                    "id": "S01-08",
+                    "name": "Scheduling Module",
+                    "status": "done",
+                    "priority": "medium",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-09",
+                    "name": "AI Voice Receptionist",
+                    "status": "backlog",
+                    "priority": "high",
+                    "notes": "Blocked on Brain — carried to future sprint"
+                },
+                {
+                    "id": "S01-10",
+                    "name": "Business Dashboard",
+                    "status": "done",
+                    "priority": "medium",
+                    "date": "Feb 14"
+                },
+                {
+                    "id": "S01-11",
+                    "name": "Navigation overhaul + polish",
+                    "status": "done",
+                    "priority": "medium",
+                    "notes": "~60% — carried to S02",
+                    "date": "Feb 24"
+                },
+                {
+                    "id": "S01-12",
+                    "name": "End-to-End System Test",
+                    "status": "backlog",
+                    "priority": "high",
+                    "notes": "Never started — carried to S02"
+                }
+            ]
+        },
+        "sprint-00": {
+            "name": "Sprint 00: Beta Launch",
+            "goal": "Get deployment-stable, first beta rigger",
+            "start": "2026-02-09",
+            "end": "2026-02-14",
+            "tasks": [
+                {
+                    "id": "S00-01",
+                    "name": "Fix PDF bugs",
+                    "status": "done",
+                    "priority": "critical",
+                    "date": "Feb 9"
+                },
+                {
+                    "id": "S00-02",
+                    "name": "Deploy to Vercel",
+                    "status": "done",
+                    "priority": "critical",
+                    "date": "Feb 9"
+                },
+                {
+                    "id": "S00-03",
+                    "name": "Dictation timer",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 9"
+                },
+                {
+                    "id": "S00-04",
+                    "name": "E2E mobile test",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 9"
+                },
+                {
+                    "id": "S00-05",
+                    "name": "Dev branch workflow",
+                    "status": "done",
+                    "priority": "medium",
+                    "date": "Feb 10"
+                },
+                {
+                    "id": "S00-06",
+                    "name": "Auth: OTP magic link",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 12"
+                },
+                {
+                    "id": "S00-07",
+                    "name": "Beta tester registration",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 12"
+                },
+                {
+                    "id": "S00-08",
+                    "name": "Prospect research",
+                    "status": "done",
+                    "priority": "medium",
+                    "date": "Feb 12"
+                },
+                {
+                    "id": "S00-09",
+                    "name": "Harden dictation",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 10"
+                },
+                {
+                    "id": "S00-10",
+                    "name": "Harden PDF gen",
+                    "status": "done",
+                    "priority": "high",
+                    "date": "Feb 10"
+                }
+            ]
+        }
+    }
+}

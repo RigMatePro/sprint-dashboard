@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RigMate Pro — Sprint Board</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --accent: #0ea5e9;
+            --accent-light: #38bdf8;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --border-accent: rgba(14, 165, 233, 0.3);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --purple: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── Header ─── */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .header h1 span {
+            color: var(--accent);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .sprint-selector {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .sprint-selector:hover {
+            border-color: var(--border-accent);
+        }
+
+        .last-updated {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ─── Sprint Meta Bar ─── */
+        .sprint-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 14px 32px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .meta-label {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .meta-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .meta-value.accent {
+            color: var(--accent);
+        }
+
+        .progress-bar-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        /* ─── Stats ─── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            padding: 12px 32px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            backdrop-filter: blur(8px);
+            transition: all 0.25s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-value.blue {
+            color: var(--accent);
+        }
+
+        .stat-value.amber {
+            color: var(--warning);
+        }
+
+        .stat-value.green {
+            color: var(--success);
+        }
+
+        .stat-value.red {
+            color: var(--danger);
+        }
+
+        .stat-label {
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-top: 2px;
+        }
+
+        /* ─── Board ─── */
+        .sprint-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            flex: 1;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .board-column {
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            height: 100%;
+            transition: background 0.2s;
+        }
+
+        .board-column:last-child {
+            border-right: none;
+        }
+
+        .column-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-primary);
+        }
+
+        .column-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .column-count {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .column-accent {
+            height: 2px;
+            width: 100%;
+        }
+
+        .col-backlog .column-accent {
+            background: #475569;
+        }
+
+        .col-in-progress .column-accent {
+            background: var(--accent);
+        }
+
+        .col-done .column-accent {
+            background: var(--success);
+        }
+
+        .column-cards {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .column-cards::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .column-cards::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .column-cards::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        /* ─── Task Cards ─── */
+        .task-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: grab;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .task-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .task-card.dragging {
+            opacity: 0.5;
+            transform: rotate(2deg);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .card-task-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .card-id {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(100, 116, 139, 0.12);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            border-radius: 4px;
+            padding: 1px 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-notes {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .priority-badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .priority-critical {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .priority-high {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .priority-medium {
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(14, 165, 233, 0.25);
+        }
+
+        .priority-low {
+            background: rgba(100, 116, 139, 0.15);
+            color: var(--text-secondary);
+            border: 1px solid rgba(100, 116, 139, 0.25);
+        }
+
+        .card-date {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .carried-badge {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--warning);
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 4px;
+            padding: 1px 5px;
+        }
+
+        .board-column.drag-over {
+            background: var(--accent-glow);
+        }
+
+        .board-column.drag-over .column-header {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* ─── Footer ─── */
+        .sprint-history {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.97);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            padding: 8px 32px;
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            z-index: 50;
+        }
+
+        .sprint-history-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 9px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .history-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        .history-dot.partial {
+            background: var(--warning);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18" cy="18" r="17" stroke="#0ea5e9" stroke-width="2" fill="rgba(14,165,233,0.1)" />
+                <path d="M18 6 L18 30 M18 6 L10 18 Q14 14 18 16 M18 6 L26 18 Q22 14 18 16 M8 28 L28 28" stroke="#0ea5e9"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                <path d="M18 8 L26 18 Q22 15 18 16 Z" fill="rgba(14,165,233,0.3)" />
+            </svg>
+            <h1><span>RigMate</span> Pro — Sprint Board</h1>
+        </div>
+        <div class="header-right">
+            <span class="last-updated" id="lastUpdated"></span>
+            <select class="sprint-selector" id="sprintSelector" onchange="switchSprint(this.value)"></select>
+        </div>
+    </header>
+
+    <section class="sprint-meta" id="sprintMeta"></section>
+    <section class="stats-bar" id="statsBar"></section>
+    <main class="sprint-board" id="sprintBoard"></main>
+    <footer class="sprint-history" id="sprintHistory"></footer>
+
+    <script>
+        let SPRINTS = {};
+        let activeSprint = '';
+
+        // ────────────────────────────────────────
+        // Load data from sprint-data.json
+        // ────────────────────────────────────────
+        async function loadData() {
+            try {
+                const res = await fetch('sprint-data.json?t=' + Date.now());
+                const data = await res.json();
+                SPRINTS = data.sprints;
+                activeSprint = data.activeSprint;
+                document.getElementById('lastUpdated').textContent =
+                    'Updated ' + new Date().toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                render();
+            } catch (err) {
+                console.error('Failed to load sprint data:', err);
+            }
+        }
+
+        // ────────────────────────────────────────
+        // Render
+        // ────────────────────────────────────────
+        function render() {
+            const sprint = SPRINTS[activeSprint];
+            if (!sprint) return;
+
+            // Selector
+            const sel = document.getElementById('sprintSelector');
+            sel.innerHTML = Object.entries(SPRINTS).map(([key, s]) =>
+                `<option value="${key}" ${key === activeSprint ? 'selected' : ''}>${s.name}</option>`
+            ).join('');
+
+            // Meta
+            const start = new Date(sprint.start);
+            const end = new Date(sprint.end);
+            const now = new Date();
+            const totalDays = Math.ceil((end - start) / 86400000);
+            const elapsed = Math.max(0, Math.min(Math.ceil((now - start) / 86400000), totalDays));
+            const done = sprint.tasks.filter(t => t.status === 'done').length;
+            const total = sprint.tasks.length;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            document.getElementById('sprintMeta').innerHTML = `
+                <div class="meta-item">
+                    <span class="meta-label">Sprint</span>
+                    <span class="meta-value">${sprint.name}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Goal</span>
+                    <span class="meta-value" style="font-size:12px;font-weight:400;color:var(--text-secondary);max-width:300px">${sprint.goal}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Day</span>
+                    <span class="meta-value accent">${elapsed} / ${totalDays}</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+                    <span class="progress-text">${done}/${total} (${pct}%)</span>
+                </div>
+            `;
+
+            // Stats
+            const backlog = sprint.tasks.filter(t => t.status === 'backlog').length;
+            const inProg = sprint.tasks.filter(t => t.status === 'in-progress').length;
+            const carried = sprint.tasks.filter(t => t.carried).length;
+
+            document.getElementById('statsBar').innerHTML = `
+                <div class="stat-card"><div class="stat-value blue">${total}</div><div class="stat-label">Total Tasks</div></div>
+                <div class="stat-card"><div class="stat-value amber">${inProg}</div><div class="stat-label">In Progress</div></div>
+                <div class="stat-card"><div class="stat-value green">${done}</div><div class="stat-label">Done</div></div>
+                <div class="stat-card"><div class="stat-value red">${carried}</div><div class="stat-label">Carried Forward</div></div>
+            `;
+
+            // Board
+            const columns = [
+                { id: 'backlog', label: 'Backlog', cssClass: 'col-backlog' },
+                { id: 'in-progress', label: 'In Progress', cssClass: 'col-in-progress' },
+                { id: 'done', label: 'Done', cssClass: 'col-done' },
+            ];
+
+            document.getElementById('sprintBoard').innerHTML = columns.map(col => {
+                const tasks = sprint.tasks.filter(t => t.status === col.id);
+                return `
+                    <div class="board-column ${col.cssClass}" data-status="${col.id}"
+                         ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+                        <div class="column-accent"></div>
+                        <div class="column-header">
+                            <span class="column-title">${col.label}</span>
+                            <span class="column-count">${tasks.length}</span>
+                        </div>
+                        <div class="column-cards">
+                            ${tasks.length === 0 ? '<div class="empty-state">No tasks</div>' :
+                        tasks.map(renderCard).join('')}
+                        </div>
+                    </div>`;
+            }).join('');
+
+            // History footer
+            document.getElementById('sprintHistory').innerHTML = `
+                <span class="sprint-history-label">Previous Sprints</span>
+                ${Object.entries(SPRINTS).filter(([k]) => k !== activeSprint).map(([k, s]) => {
+                const d = s.tasks.filter(t => t.status === 'done').length;
+                const tot = s.tasks.length;
+                return `<div class="history-item">
+                        <div class="history-dot ${d === tot ? '' : 'partial'}"></div>
+                        <span>${s.name} — ${d}/${tot}</span>
+                    </div>`;
+            }).join('')}`;
+        }
+
+        function renderCard(task) {
+            return `
+                <div class="task-card" draggable="true" data-id="${task.id}"
+                     ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">
+                    <div class="card-top">
+                        <span class="card-task-name">${task.name}</span>
+                        <span class="card-id">${task.id}</span>
+                    </div>
+                    ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
+                    <div class="card-footer">
+                        <span class="priority-badge priority-${task.priority}">${task.priority}</span>
+                        ${task.carried ? '<span class="carried-badge">Carried</span>' : ''}
+                        ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
+                    </div>
+                </div>`;
+        }
+
+        // ────────────────────────────────────────
+        // Drag & Drop
+        // ────────────────────────────────────────
+        let draggedId = null;
+
+        function onDragStart(e) {
+            draggedId = e.currentTarget.dataset.id;
+            e.currentTarget.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        function onDragEnd(e) {
+            e.currentTarget.classList.remove('dragging');
+            document.querySelectorAll('.board-column').forEach(c => c.classList.remove('drag-over'));
+        }
+        function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+        function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+
+        function onDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const newStatus = e.currentTarget.dataset.status;
+            if (!draggedId || !newStatus) return;
+            const sprint = SPRINTS[activeSprint];
+            const task = sprint.tasks.find(t => t.id === draggedId);
+            if (task) {
+                task.status = newStatus;
+                if (newStatus === 'done' && !task.date)
+                    task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+                render();
+            }
+            draggedId = null;
+        }
+
+        // Touch drag support
+        let touchDragEl = null, touchClone = null;
+        document.addEventListener('touchstart', e => {
+            const card = e.target.closest('.task-card');
+            if (!card) return;
+            touchDragEl = card; draggedId = card.dataset.id;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', e => {
+            if (!touchDragEl) return; e.preventDefault();
+            const t = e.touches[0];
+            if (!touchClone) {
+                touchClone = touchDragEl.cloneNode(true);
+                touchClone.style.cssText = `position:fixed;z-index:9999;pointer-events:none;opacity:0.8;width:${touchDragEl.offsetWidth}px;transform:rotate(2deg)`;
+                document.body.appendChild(touchClone);
+                touchDragEl.style.opacity = '0.3';
+            }
+            touchClone.style.left = (t.clientX - 60) + 'px';
+            touchClone.style.top = (t.clientY - 20) + 'px';
+            document.querySelectorAll('.board-column').forEach(col => {
+                const r = col.getBoundingClientRect();
+                col.classList.toggle('drag-over', t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom);
+            });
+        }, { passive: false });
+
+        document.addEventListener('touchend', e => {
+            if (!touchDragEl) return;
+            if (touchClone) { touchClone.remove(); touchClone = null; }
+            touchDragEl.style.opacity = '';
+            const t = e.changedTouches[0];
+            document.querySelectorAll('.board-column').forEach(col => {
+                col.classList.remove('drag-over');
+                const r = col.getBoundingClientRect();
+                if (t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom) {
+                    const sprint = SPRINTS[activeSprint];
+                    const task = sprint.tasks.find(tk => tk.id === draggedId);
+                    if (task) {
+                        task.status = col.dataset.status;
+                        if (task.status === 'done' && !task.date)
+                            task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+                    }
+                }
+            });
+            touchDragEl = null; draggedId = null; render();
+        });
+
+        function switchSprint(id) { activeSprint = id; render(); }
+
+        // Init
+        loadData();
+    </script>
+</body>
+
+</html>
