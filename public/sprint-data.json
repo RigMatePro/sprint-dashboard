@@ -1,55 +1,81 @@
 {
     "activeSprint": "sprint-02",
+    "backlog": [
+        {
+            "id": "B-01",
+            "name": "AI Voice Receptionist",
+            "priority": "high",
+            "notes": "Twilio + Gemini + Brain integration"
+        },
+        {
+            "id": "B-02",
+            "name": "Social Media Share buttons",
+            "priority": "low",
+            "notes": "Share inspection reports / marketing"
+        },
+        {
+            "id": "B-03",
+            "name": "Mast Tang re-mining",
+            "priority": "medium",
+            "notes": "Only 5 sources found — needs deeper research"
+        },
+        {
+            "id": "B-04",
+            "name": "gemini-3-flash model fix",
+            "priority": "low",
+            "notes": "Returns 404 — SDK version or naming issue"
+        }
+    ],
     "sprints": {
         "sprint-02": {
             "name": "Sprint 02: Push Week",
             "goal": "Ship carried tasks, onboard beta users, deploy launch pages",
             "start": "2026-02-25",
             "end": "2026-03-01",
+            "locked": false,
+            "sprintStart": [],
             "tasks": [
                 {
                     "id": "S02-01",
                     "name": "End-to-End System Test",
-                    "status": "backlog",
+                    "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Carried from S01 — dummy job through full lifecycle",
-                    "carried": true
+                    "notes": "Dummy job through full lifecycle"
                 },
                 {
                     "id": "S02-02",
                     "name": "Navigation overhaul + mobile polish",
-                    "status": "backlog",
+                    "status": "sprint-start",
                     "priority": "medium",
-                    "notes": "Carried from S01 — ~60% done",
-                    "carried": true
+                    "notes": "~60% done from S01"
                 },
                 {
                     "id": "S02-03",
                     "name": "Brain: wire consumers to Brain engine",
-                    "status": "backlog",
+                    "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Carried from S01 — migrate existing pages to use Brain"
+                    "notes": "Migrate existing pages to use Brain"
                 },
                 {
                     "id": "S02-04",
                     "name": "Deploy RMP Launch Pages to Vercel",
-                    "status": "backlog",
+                    "status": "sprint-start",
                     "priority": "high",
                     "notes": "Pricing, Founding 50, Quiz — currently local only"
                 },
                 {
                     "id": "S02-05",
                     "name": "Beta user follow-up calls",
-                    "status": "backlog",
+                    "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Alex, Jake, Anto, Dave — check-in and get them using the app"
+                    "notes": "Alex, Jake, Anto, Dave — check-in"
                 },
                 {
                     "id": "S02-06",
                     "name": "Field Conditions UX audit",
-                    "status": "backlog",
+                    "status": "sprint-start",
                     "priority": "medium",
-                    "notes": "Contrast, tap targets, glove-friendly. Priority: inspection flow"
+                    "notes": "Contrast, tap targets, glove-friendly"
                 }
             ]
         },
@@ -58,6 +84,21 @@
             "goal": "Build RigMate's full business system",
             "start": "2026-02-14",
             "end": "2026-02-24",
+            "locked": true,
+            "sprintStart": [
+                "S01-01",
+                "S01-02",
+                "S01-03",
+                "S01-04",
+                "S01-05",
+                "S01-06",
+                "S01-07",
+                "S01-08",
+                "S01-09",
+                "S01-10",
+                "S01-11",
+                "S01-12"
+            ],
             "tasks": [
                 {
                     "id": "S01-01",
@@ -106,7 +147,7 @@
                     "name": "Brain: Rig architecture model",
                     "status": "done",
                     "priority": "high",
-                    "notes": "~75% — architecture, DeepKeel, libraries, schemas",
+                    "notes": "~75% complete",
                     "date": "Feb 24"
                 },
                 {
@@ -119,9 +160,9 @@
                 {
                     "id": "S01-09",
                     "name": "AI Voice Receptionist",
-                    "status": "backlog",
+                    "status": "missed",
                     "priority": "high",
-                    "notes": "Blocked on Brain — carried to future sprint"
+                    "notes": "Blocked on Brain — returned to backlog"
                 },
                 {
                     "id": "S01-10",
@@ -133,15 +174,14 @@
                 {
                     "id": "S01-11",
                     "name": "Navigation overhaul + polish",
-                    "status": "done",
+                    "status": "missed",
                     "priority": "medium",
-                    "notes": "~60% — carried to S02",
-                    "date": "Feb 24"
+                    "notes": "~60% — carried to S02"
                 },
                 {
                     "id": "S01-12",
                     "name": "End-to-End System Test",
-                    "status": "backlog",
+                    "status": "missed",
                     "priority": "high",
                     "notes": "Never started — carried to S02"
                 }
@@ -152,6 +192,19 @@
             "goal": "Get deployment-stable, first beta rigger",
             "start": "2026-02-09",
             "end": "2026-02-14",
+            "locked": true,
+            "sprintStart": [
+                "S00-01",
+                "S00-02",
+                "S00-03",
+                "S00-04",
+                "S00-05",
+                "S00-06",
+                "S00-07",
+                "S00-08",
+                "S00-09",
+                "S00-10"
+            ],
             "tasks": [
                 {
                     "id": "S00-01",

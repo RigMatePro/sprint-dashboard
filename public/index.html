@@ -24,6 +24,7 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --purple: #8b5cf6;
+            --missed-bg: rgba(239, 68, 68, 0.06);
         }
 
         * {
@@ -47,7 +48,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 32px;
+            padding: 14px 24px;
             border-bottom: 1px solid var(--border);
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(12px);
@@ -62,12 +63,12 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
         }
 
         .header h1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             letter-spacing: -0.02em;
         }
@@ -79,35 +80,31 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .sprint-selector {
-            padding: 6px 12px;
+            padding: 5px 10px;
             background: var(--bg-card);
             color: var(--text-primary);
             border: 1px solid var(--border);
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             font-family: inherit;
             cursor: pointer;
         }
 
-        .sprint-selector:hover {
-            border-color: var(--border-accent);
-        }
-
         .last-updated {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-muted);
         }
 
-        /* ─── Sprint Meta Bar ─── */
+        /* ─── Sprint Meta ─── */
         .sprint-meta {
             display: flex;
             align-items: center;
-            gap: 24px;
-            padding: 14px 32px;
+            gap: 20px;
+            padding: 10px 24px;
             border-bottom: 1px solid var(--border);
             background: var(--bg-primary);
             flex-shrink: 0;
@@ -116,11 +113,11 @@
         .meta-item {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }
 
         .meta-label {
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -128,7 +125,7 @@
         }
 
         .meta-value {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
@@ -141,12 +138,12 @@
             flex: 1;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .progress-bar {
             flex: 1;
-            height: 6px;
+            height: 5px;
             background: rgba(148, 163, 184, 0.1);
             border-radius: 3px;
             overflow: hidden;
@@ -160,7 +157,7 @@
         }
 
         .progress-text {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--accent);
             white-space: nowrap;
@@ -169,9 +166,9 @@
         /* ─── Stats ─── */
         .stats-bar {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            padding: 12px 32px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            padding: 10px 24px;
             border-bottom: 1px solid var(--border);
             flex-shrink: 0;
         }
@@ -179,20 +176,19 @@
         .stat-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 14px;
+            border-radius: 6px;
+            padding: 8px 10px;
             backdrop-filter: blur(8px);
             transition: all 0.25s ease;
         }
 
         .stat-card:hover {
             border-color: var(--border-accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .stat-value {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: -0.03em;
         }
@@ -213,19 +209,129 @@
             color: var(--danger);
         }
 
+        .stat-value.slate {
+            color: var(--text-secondary);
+        }
+
         .stat-label {
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 500;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            margin-top: 2px;
+            margin-top: 1px;
+        }
+
+        /* ─── Main Layout ─── */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        /* ─── Backlog Drawer ─── */
+        .backlog-drawer {
+            width: 260px;
+            min-width: 260px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            background: rgba(15, 23, 42, 0.6);
+            transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease;
+            overflow: hidden;
+        }
+
+        .backlog-drawer.collapsed {
+            width: 0;
+            min-width: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .backlog-header {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .backlog-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .backlog-count {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1px 7px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .backlog-accent {
+            height: 2px;
+            width: 100%;
+            background: var(--purple);
+        }
+
+        .backlog-cards {
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .backlog-cards::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .backlog-cards::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .backlog-toggle {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 200;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: none;
+            border-radius: 0 6px 6px 0;
+            padding: 8px 5px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+            display: none;
+        }
+
+        .backlog-toggle:hover {
+            color: var(--accent);
+            border-color: var(--border-accent);
+        }
+
+        .backlog-drawer.collapsed~.backlog-toggle {
+            display: block;
         }
 
         /* ─── Board ─── */
         .sprint-board {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 0;
             flex: 1;
             overflow: hidden;
@@ -246,16 +352,17 @@
         }
 
         .column-header {
-            padding: 12px 16px;
+            padding: 10px 12px;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--bg-primary);
+            flex-shrink: 0;
         }
 
         .column-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -266,8 +373,8 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1px 8px;
-            font-size: 11px;
+            padding: 1px 7px;
+            font-size: 10px;
             font-weight: 600;
             color: var(--text-muted);
         }
@@ -277,46 +384,46 @@
             width: 100%;
         }
 
-        .col-backlog .column-accent {
-            background: #475569;
+        .col-sprint-start .column-accent {
+            background: var(--accent);
         }
 
         .col-in-progress .column-accent {
-            background: var(--accent);
+            background: var(--warning);
         }
 
         .col-done .column-accent {
             background: var(--success);
         }
 
+        .col-missed .column-accent {
+            background: var(--danger);
+        }
+
         .column-cards {
-            padding: 10px;
+            padding: 8px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             overflow-y: auto;
             flex: 1;
         }
 
         .column-cards::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .column-cards::-webkit-scrollbar-track {
-            background: transparent;
+            width: 3px;
         }
 
         .column-cards::-webkit-scrollbar-thumb {
             background: var(--border);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         /* ─── Task Cards ─── */
         .task-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 7px;
+            padding: 10px;
             cursor: grab;
             transition: all 0.2s ease;
             position: relative;
@@ -324,8 +431,8 @@
 
         .task-card:hover {
             border-color: var(--border-accent);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-1px);
         }
 
         .task-card.dragging {
@@ -337,12 +444,12 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            gap: 8px;
-            margin-bottom: 6px;
+            gap: 6px;
+            margin-bottom: 4px;
         }
 
         .card-task-name {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text-primary);
             line-height: 1.3;
@@ -350,35 +457,36 @@
         }
 
         .card-id {
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 600;
             color: var(--text-muted);
             background: rgba(100, 116, 139, 0.12);
             border: 1px solid rgba(100, 116, 139, 0.2);
-            border-radius: 4px;
-            padding: 1px 5px;
+            border-radius: 3px;
+            padding: 1px 4px;
             white-space: nowrap;
             flex-shrink: 0;
         }
 
         .card-notes {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-muted);
             line-height: 1.4;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .card-footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
         .priority-badge {
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 700;
-            padding: 2px 7px;
+            padding: 1px 6px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -409,20 +517,40 @@
         }
 
         .card-date {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text-muted);
         }
 
-        .carried-badge {
-            font-size: 9px;
+        .added-badge {
+            font-size: 8px;
             font-weight: 600;
-            color: var(--warning);
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 4px;
-            padding: 1px 5px;
+            color: var(--accent);
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 3px;
+            padding: 1px 4px;
         }
 
+        /* ─── Ghost Cards ─── */
+        .task-card.ghost {
+            opacity: 0.25;
+            border-style: dashed;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .task-card.ghost:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: var(--border);
+        }
+
+        /* ─── Missed Cards ─── */
+        .col-missed .task-card {
+            border-left: 2px solid var(--danger);
+        }
+
+        /* ─── Drag & Drop ─── */
         .board-column.drag-over {
             background: var(--accent-glow);
         }
@@ -431,14 +559,17 @@
             background: rgba(14, 165, 233, 0.05);
         }
 
+        .backlog-drawer.drag-over {
+            background: rgba(139, 92, 246, 0.08);
+        }
+
         .empty-state {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 30px 16px;
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: 11px;
         }
 
         /* ─── Footer ─── */
@@ -450,12 +581,12 @@
             background: rgba(15, 23, 42, 0.97);
             backdrop-filter: blur(12px);
             border-top: 1px solid var(--border);
-            padding: 8px 32px;
-            font-size: 11px;
+            padding: 6px 24px;
+            font-size: 10px;
             color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
             z-index: 50;
         }
 
@@ -464,24 +595,51 @@
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            font-size: 9px;
+            font-size: 8px;
         }
 
         .history-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .history-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: var(--success);
         }
 
         .history-dot.partial {
             background: var(--warning);
+        }
+
+        .lock-badge {
+            font-size: 8px;
+            color: var(--accent);
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 3px;
+            padding: 1px 4px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .btn-collapse {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 4px;
+            padding: 2px 6px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.2s;
+        }
+
+        .btn-collapse:hover {
+            color: var(--accent);
+            border-color: var(--border-accent);
         }
     </style>
 </head>
@@ -505,47 +663,56 @@
 
     <section class="sprint-meta" id="sprintMeta"></section>
     <section class="stats-bar" id="statsBar"></section>
-    <main class="sprint-board" id="sprintBoard"></main>
+
+    <div class="main-layout">
+        <aside class="backlog-drawer" id="backlogDrawer">
+            <div class="backlog-accent"></div>
+            <div class="backlog-header">
+                <span class="backlog-title">📋 Project Backlog</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                    <span class="backlog-count" id="backlogCount">0</span>
+                    <button class="btn-collapse" onclick="toggleBacklog()" title="Collapse backlog">◀</button>
+                </div>
+            </div>
+            <div class="backlog-cards" id="backlogCards" ondragover="onBacklogDragOver(event)"
+                ondragleave="onBacklogDragLeave(event)" ondrop="onBacklogDrop(event)"></div>
+        </aside>
+
+        <button class="backlog-toggle" id="backlogToggle" onclick="toggleBacklog()" title="Open backlog">▶</button>
+
+        <main class="sprint-board" id="sprintBoard"></main>
+    </div>
+
     <footer class="sprint-history" id="sprintHistory"></footer>
 
     <script>
-        let SPRINTS = {};
-        let activeSprint = '';
+        let SPRINTS = {}, BACKLOG = [], activeSprint = '';
 
-        // ────────────────────────────────────────
-        // Load data from sprint-data.json
-        // ────────────────────────────────────────
         async function loadData() {
             try {
                 const res = await fetch('sprint-data.json?t=' + Date.now());
                 const data = await res.json();
                 SPRINTS = data.sprints;
+                BACKLOG = data.backlog || [];
                 activeSprint = data.activeSprint;
                 document.getElementById('lastUpdated').textContent =
                     'Updated ' + new Date().toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
                 render();
-            } catch (err) {
-                console.error('Failed to load sprint data:', err);
-            }
+            } catch (err) { console.error('Failed to load:', err); }
         }
 
-        // ────────────────────────────────────────
-        // Render
-        // ────────────────────────────────────────
         function render() {
             const sprint = SPRINTS[activeSprint];
             if (!sprint) return;
 
             // Selector
             const sel = document.getElementById('sprintSelector');
-            sel.innerHTML = Object.entries(SPRINTS).map(([key, s]) =>
-                `<option value="${key}" ${key === activeSprint ? 'selected' : ''}>${s.name}</option>`
+            sel.innerHTML = Object.entries(SPRINTS).map(([k, s]) =>
+                `<option value="${k}" ${k === activeSprint ? 'selected' : ''}>${s.name}</option>`
             ).join('');
 
             // Meta
-            const start = new Date(sprint.start);
-            const end = new Date(sprint.end);
-            const now = new Date();
+            const start = new Date(sprint.start), end = new Date(sprint.end), now = new Date();
             const totalDays = Math.ceil((end - start) / 86400000);
             const elapsed = Math.max(0, Math.min(Math.ceil((now - start) / 86400000), totalDays));
             const done = sprint.tasks.filter(t => t.status === 'done').length;
@@ -559,7 +726,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Goal</span>
-                    <span class="meta-value" style="font-size:12px;font-weight:400;color:var(--text-secondary);max-width:300px">${sprint.goal}</span>
+                    <span class="meta-value" style="font-size:11px;font-weight:400;color:var(--text-secondary);max-width:280px">${sprint.goal}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Day</span>
@@ -568,61 +735,97 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
                     <span class="progress-text">${done}/${total} (${pct}%)</span>
-                </div>
-            `;
+                </div>`;
 
             // Stats
-            const backlog = sprint.tasks.filter(t => t.status === 'backlog').length;
+            const originalIds = sprint.sprintStart || [];
+            const originalCount = originalIds.length;
+            const addedCount = sprint.tasks.filter(t => !originalIds.includes(t.id)).length;
             const inProg = sprint.tasks.filter(t => t.status === 'in-progress').length;
-            const carried = sprint.tasks.filter(t => t.carried).length;
+            const missed = sprint.tasks.filter(t => t.status === 'missed').length;
 
             document.getElementById('statsBar').innerHTML = `
-                <div class="stat-card"><div class="stat-value blue">${total}</div><div class="stat-label">Total Tasks</div></div>
+                <div class="stat-card"><div class="stat-value blue">${originalCount}</div><div class="stat-label">Original Scope</div></div>
+                <div class="stat-card"><div class="stat-value slate">${addedCount}</div><div class="stat-label">Added Mid-Sprint</div></div>
                 <div class="stat-card"><div class="stat-value amber">${inProg}</div><div class="stat-label">In Progress</div></div>
                 <div class="stat-card"><div class="stat-value green">${done}</div><div class="stat-label">Done</div></div>
-                <div class="stat-card"><div class="stat-value red">${carried}</div><div class="stat-label">Carried Forward</div></div>
-            `;
+                <div class="stat-card"><div class="stat-value red">${missed}</div><div class="stat-label">Missed</div></div>`;
 
-            // Board
-            const columns = [
-                { id: 'backlog', label: 'Backlog', cssClass: 'col-backlog' },
+            // Backlog
+            document.getElementById('backlogCount').textContent = BACKLOG.length;
+            document.getElementById('backlogCards').innerHTML = BACKLOG.length === 0
+                ? '<div class="empty-state">Backlog empty</div>'
+                : BACKLOG.map(t => renderCard(t, true)).join('');
+
+            // Board columns
+            const cols = [
+                { id: 'sprint-start', label: 'Sprint Start', cssClass: 'col-sprint-start' },
                 { id: 'in-progress', label: 'In Progress', cssClass: 'col-in-progress' },
                 { id: 'done', label: 'Done', cssClass: 'col-done' },
+                { id: 'missed', label: 'Missed', cssClass: 'col-missed' },
             ];
 
-            document.getElementById('sprintBoard').innerHTML = columns.map(col => {
-                const tasks = sprint.tasks.filter(t => t.status === col.id);
+            document.getElementById('sprintBoard').innerHTML = cols.map(col => {
+                let cards = '';
+                if (col.id === 'sprint-start') {
+                    // Ghost cards for tasks that have moved out + real cards still here
+                    const ghostIds = originalIds.filter(id => {
+                        const t = sprint.tasks.find(tk => tk.id === id);
+                        return t && t.status !== 'sprint-start';
+                    });
+                    const stillHere = sprint.tasks.filter(t => t.status === 'sprint-start');
+                    const ghostCards = ghostIds.map(id => {
+                        const t = sprint.tasks.find(tk => tk.id === id);
+                        return t ? renderCard(t, false, true) : '';
+                    }).join('');
+                    const realCards = stillHere.map(t => renderCard(t)).join('');
+                    cards = ghostCards + realCards;
+                    if (!cards) cards = '<div class="empty-state">No tasks</div>';
+                } else {
+                    const tasks = sprint.tasks.filter(t => t.status === col.id);
+                    const isAdded = (t) => !originalIds.includes(t.id);
+                    cards = tasks.length === 0 ? '<div class="empty-state">No tasks</div>'
+                        : tasks.map(t => renderCard(t, false, false, isAdded(t))).join('');
+                }
+
+                const count = col.id === 'sprint-start'
+                    ? sprint.tasks.filter(t => t.status === 'sprint-start').length
+                    : sprint.tasks.filter(t => t.status === col.id).length;
+
+                const lockBadge = col.id === 'sprint-start' && sprint.locked ? '<span class="lock-badge">🔒 Locked</span>' : '';
+
                 return `
                     <div class="board-column ${col.cssClass}" data-status="${col.id}"
                          ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
                         <div class="column-accent"></div>
                         <div class="column-header">
-                            <span class="column-title">${col.label}</span>
-                            <span class="column-count">${tasks.length}</span>
+                            <span class="column-title">${col.label}${lockBadge}</span>
+                            <span class="column-count">${count}</span>
                         </div>
-                        <div class="column-cards">
-                            ${tasks.length === 0 ? '<div class="empty-state">No tasks</div>' :
-                        tasks.map(renderCard).join('')}
-                        </div>
+                        <div class="column-cards">${cards}</div>
                     </div>`;
             }).join('');
 
-            // History footer
+            // History
             document.getElementById('sprintHistory').innerHTML = `
                 <span class="sprint-history-label">Previous Sprints</span>
                 ${Object.entries(SPRINTS).filter(([k]) => k !== activeSprint).map(([k, s]) => {
                 const d = s.tasks.filter(t => t.status === 'done').length;
+                const m = s.tasks.filter(t => t.status === 'missed').length;
                 const tot = s.tasks.length;
                 return `<div class="history-item">
-                        <div class="history-dot ${d === tot ? '' : 'partial'}"></div>
-                        <span>${s.name} — ${d}/${tot}</span>
+                        <div class="history-dot ${m > 0 ? 'partial' : ''}"></div>
+                        <span>${s.name} — ${d}/${tot}${m > 0 ? ` (${m} missed)` : ''}</span>
                     </div>`;
             }).join('')}`;
         }
 
-        function renderCard(task) {
+        function renderCard(task, isBacklog = false, isGhost = false, isAdded = false) {
+            const ghostClass = isGhost ? ' ghost' : '';
+            const draggable = isGhost ? 'false' : 'true';
+            const source = isBacklog ? 'backlog' : 'sprint';
             return `
-                <div class="task-card" draggable="true" data-id="${task.id}"
+                <div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
                      ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">
                     <div class="card-top">
                         <span class="card-task-name">${task.name}</span>
@@ -631,51 +834,80 @@
                     ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
                     <div class="card-footer">
                         <span class="priority-badge priority-${task.priority}">${task.priority}</span>
-                        ${task.carried ? '<span class="carried-badge">Carried</span>' : ''}
+                        ${isAdded ? '<span class="added-badge">➕ Added</span>' : ''}
                         ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
                     </div>
                 </div>`;
         }
 
-        // ────────────────────────────────────────
-        // Drag & Drop
-        // ────────────────────────────────────────
-        let draggedId = null;
+        // ─── Drag & Drop ─── 
+        let draggedId = null, dragSource = null;
 
         function onDragStart(e) {
             draggedId = e.currentTarget.dataset.id;
+            dragSource = e.currentTarget.dataset.source;
             e.currentTarget.classList.add('dragging');
             e.dataTransfer.effectAllowed = 'move';
         }
         function onDragEnd(e) {
             e.currentTarget.classList.remove('dragging');
-            document.querySelectorAll('.board-column').forEach(c => c.classList.remove('drag-over'));
+            document.querySelectorAll('.board-column, .backlog-drawer').forEach(c => c.classList.remove('drag-over'));
         }
         function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
         function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+        function onBacklogDragOver(e) { e.preventDefault(); document.getElementById('backlogDrawer').classList.add('drag-over'); }
+        function onBacklogDragLeave(e) { document.getElementById('backlogDrawer').classList.remove('drag-over'); }
 
         function onDrop(e) {
             e.preventDefault();
             e.currentTarget.classList.remove('drag-over');
-            const newStatus = e.currentTarget.dataset.status;
+            const newStatus = e.currentTarget.closest('.board-column')?.dataset.status;
             if (!draggedId || !newStatus) return;
+
             const sprint = SPRINTS[activeSprint];
-            const task = sprint.tasks.find(t => t.id === draggedId);
-            if (task) {
-                task.status = newStatus;
-                if (newStatus === 'done' && !task.date)
-                    task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
-                render();
+
+            if (dragSource === 'backlog') {
+                // Move from backlog to sprint
+                const idx = BACKLOG.findIndex(t => t.id === draggedId);
+                if (idx !== -1) {
+                    const task = BACKLOG.splice(idx, 1)[0];
+                    task.status = newStatus;
+                    sprint.tasks.push(task);
+                }
+            } else {
+                const task = sprint.tasks.find(t => t.id === draggedId);
+                if (task) {
+                    task.status = newStatus;
+                    if (newStatus === 'done' && !task.date)
+                        task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+                }
             }
-            draggedId = null;
+            draggedId = null; dragSource = null;
+            render();
         }
 
-        // Touch drag support
+        function onBacklogDrop(e) {
+            e.preventDefault();
+            document.getElementById('backlogDrawer').classList.remove('drag-over');
+            if (!draggedId || dragSource !== 'sprint') return;
+
+            const sprint = SPRINTS[activeSprint];
+            const idx = sprint.tasks.findIndex(t => t.id === draggedId);
+            if (idx !== -1) {
+                const task = sprint.tasks.splice(idx, 1)[0];
+                delete task.status; delete task.date;
+                BACKLOG.push(task);
+            }
+            draggedId = null; dragSource = null;
+            render();
+        }
+
+        // Touch support
         let touchDragEl = null, touchClone = null;
         document.addEventListener('touchstart', e => {
-            const card = e.target.closest('.task-card');
+            const card = e.target.closest('.task-card:not(.ghost)');
             if (!card) return;
-            touchDragEl = card; draggedId = card.dataset.id;
+            touchDragEl = card; draggedId = card.dataset.id; dragSource = card.dataset.source;
         }, { passive: true });
 
         document.addEventListener('touchmove', e => {
@@ -687,12 +919,8 @@
                 document.body.appendChild(touchClone);
                 touchDragEl.style.opacity = '0.3';
             }
-            touchClone.style.left = (t.clientX - 60) + 'px';
-            touchClone.style.top = (t.clientY - 20) + 'px';
-            document.querySelectorAll('.board-column').forEach(col => {
-                const r = col.getBoundingClientRect();
-                col.classList.toggle('drag-over', t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom);
-            });
+            touchClone.style.left = (t.clientX - 50) + 'px';
+            touchClone.style.top = (t.clientY - 15) + 'px';
         }, { passive: false });
 
         document.addEventListener('touchend', e => {
@@ -701,24 +929,30 @@
             touchDragEl.style.opacity = '';
             const t = e.changedTouches[0];
             document.querySelectorAll('.board-column').forEach(col => {
-                col.classList.remove('drag-over');
                 const r = col.getBoundingClientRect();
                 if (t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom) {
                     const sprint = SPRINTS[activeSprint];
-                    const task = sprint.tasks.find(tk => tk.id === draggedId);
-                    if (task) {
-                        task.status = col.dataset.status;
-                        if (task.status === 'done' && !task.date)
-                            task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+                    if (dragSource === 'backlog') {
+                        const idx = BACKLOG.findIndex(tk => tk.id === draggedId);
+                        if (idx !== -1) { const task = BACKLOG.splice(idx, 1)[0]; task.status = col.dataset.status; sprint.tasks.push(task); }
+                    } else {
+                        const task = sprint.tasks.find(tk => tk.id === draggedId);
+                        if (task) { task.status = col.dataset.status; if (task.status === 'done' && !task.date) task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' }); }
                     }
                 }
             });
-            touchDragEl = null; draggedId = null; render();
+            touchDragEl = null; draggedId = null; dragSource = null; render();
         });
+
+        function toggleBacklog() {
+            const d = document.getElementById('backlogDrawer');
+            const t = document.getElementById('backlogToggle');
+            d.classList.toggle('collapsed');
+            t.style.display = d.classList.contains('collapsed') ? 'block' : 'none';
+        }
 
         function switchSprint(id) { activeSprint = id; render(); }
 
-        // Init
         loadData();
     </script>
 </body>
