@@ -490,10 +490,11 @@
                 {
                     "id": "S02-15",
                     "name": "Generate Supabase types + remove as any",
-                    "status": "added",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "AUDIT #5: supabaseClient exports as any — zero type safety across 24 services. 1-2hrs."
+                    "date": "Feb 26",
+                    "notes": "AUDIT #5: Generated database.types.ts (30 tables). Dual-export: supabase (any) + supabaseTyped. Feb 26."
                 },
                 {
                     "id": "S02-16",
@@ -506,10 +507,11 @@
                 {
                     "id": "S02-17",
                     "name": "GitHub Actions CI — build + type check",
-                    "status": "added",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "AUDIT #13: No CI gates. tsc + build on push to dev / PR to main. 30min."
+                    "date": "Feb 26",
+                    "notes": "AUDIT #13: CI pipeline: tsc + vite build on push to dev/main, PRs to main. Feb 26."
                 },
                 {
                     "id": "S02-18",
