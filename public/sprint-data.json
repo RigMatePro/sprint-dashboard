@@ -33,33 +33,136 @@
         {
             "id": "B-02",
             "name": "Social Media Share buttons",
-            "priority": "low",
-            "notes": "Share inspection reports / marketing"
+            "priority": "high",
+            "notes": "One-click Instagram post from inspection photos + AI social copy",
+            "detail": "Phase 1 MVP: AI transforms technical findings into social media copy. Share inspection observations + photos to Instagram.\n\nPhases:\n1. Single-share to Instagram with AI caption\n2. Buffer integration for scheduling\n3. Multi-platform (Facebook, LinkedIn)"
         },
         {
             "id": "B-03",
-            "name": "Mast Tang re-mining",
-            "priority": "medium",
-            "notes": "Only 5 sources found — needs deeper research",
-            "detail": "The mast tang schema only has 5 sources in the v3 normalised library. Most other components have 8-12. Need to research:\n• Sparcraft tang designs\n• Selden tang bolting patterns\n• Corrosion patterns specific to tangs vs chainplates\n• Pintle/gudgeon tang variants"
+            "name": "Field Conditions UX audit",
+            "priority": "high",
+            "notes": "Sunlight contrast, glove-sized tap targets, offline mode, one-handed use",
+            "detail": "Optimise for real rigger working conditions:\n• Bright sunlight — high contrast mode, increased text weight\n• Thick gloves — all tap targets min 60-72px, no precision gestures\n• Offline/patchy signal — queue writes locally, sync on reconnect\n• Wind, rain, wet screen — large buttons, voice input primary, no swipe gestures\n\nPriority area: inspection capture flow (FindingForm, observation entry, photo capture)",
+            "subtasks": [
+                {
+                    "name": "Audit contrast ratios",
+                    "done": false
+                },
+                {
+                    "name": "Increase tap target sizes",
+                    "done": false
+                },
+                {
+                    "name": "Offline queue mechanism",
+                    "done": false
+                },
+                {
+                    "name": "Remove precision gestures from inspection flow",
+                    "done": false
+                }
+            ]
         },
         {
             "id": "B-04",
+            "name": "DeepKeel Knowledge Portal",
+            "priority": "high",
+            "notes": "3-tier: AI chat, customer glossary, searchable reference",
+            "detail": "3-tier knowledge access:\n1. Rigger AI chat against normalised library (conversational lookup)\n2. Customer glossary: clickable laySummary terms in reports (tap 'crevice corrosion' → layman explanation)\n3. Searchable reference glossary in customer portal\n\nArchitecture ready: 12 libraries, 123 entries, laySummary field on LibraryEntry. Needs: AI chat UI, laySummary population, report link renderer."
+        },
+        {
+            "id": "B-05",
+            "name": "RMP Launch Pages deploy",
+            "priority": "high",
+            "notes": "Pricing, Founding 50, Rigger Quiz — local only, needs Vercel deploy",
+            "detail": "3 static pages ready locally:\n• Pricing comparison (3 tiers)\n• Founding 50 scarcity offer\n• Interactive Rigger Efficiency Scorecard quiz (12 questions, 6 dimensions, radar chart)\n\nNeed to deploy to Vercel and link from admin section."
+        },
+        {
+            "id": "B-06",
+            "name": "Beta User Onboarding Automation",
+            "priority": "medium",
+            "notes": "Script to automate tenant/profile/auth creation for new users"
+        },
+        {
+            "id": "B-07",
+            "name": "Prospect outreach tooling",
+            "priority": "high",
+            "notes": "Calendar integration, call logging, follow-up scheduling",
+            "detail": "Target: 3-5 prospect calls/day. Needs operational workflow with:\n• Calendar integration for scheduling calls\n• Call logging and outcome tracking\n• Status tracking tied to prospect dashboard\n• Follow-up scheduling with reminders"
+        },
+        {
+            "id": "B-08",
+            "name": "Curate starter templates (58 → ~8)",
+            "priority": "high",
+            "notes": "Blocked on Anthony writing real observations"
+        },
+        {
+            "id": "B-09",
+            "name": "Custom domain setup",
+            "priority": "medium",
+            "notes": "Vercel config task"
+        },
+        {
+            "id": "B-10",
+            "name": "Bluetooth Headset Interaction",
+            "priority": "high",
+            "notes": "Trigger dictation via BT headset play/pause button",
+            "detail": "Allow riggers to trigger recording using Bluetooth headset buttons. PoC created (bluetooth-poc.html) using Media Session API with audible kickstart hack.\n\nParked due to weak cellular signal preventing field testing. Needs real-world testing in wind/rain."
+        },
+        {
+            "id": "B-11",
+            "name": "Stitch UI/UX brand profile",
+            "priority": "high",
+            "notes": "Design screens in Stitch → transfer CSS/HTML design system"
+        },
+        {
+            "id": "B-12",
+            "name": "Job Pipeline Board",
+            "priority": "medium",
+            "notes": "Kanban for active jobs — Quote → Sent → Confirmed → In Progress → Invoiced → Paid",
+            "detail": "Admin view of all active jobs inside RigMate. Same drag-to-update pattern as prospect dashboard but wired to jobs/quotes/invoices tables in Supabase."
+        },
+        {
+            "id": "B-13",
+            "name": "Prospect Dashboard — New Market Expansion",
+            "priority": "low",
+            "notes": "Replicate UK dashboard per new target market (US, DE, FR, ES)"
+        },
+        {
+            "id": "B-14",
+            "name": "Mast Tang re-mining",
+            "priority": "medium",
+            "notes": "Only 5 sources found — needs deeper research on Sparcraft/Selden"
+        },
+        {
+            "id": "B-15",
             "name": "gemini-3-flash model fix",
             "priority": "low",
             "notes": "Returns 404 — SDK version or naming issue"
         },
         {
-            "id": "B-05",
-            "name": "Job Pipeline Board",
-            "priority": "medium",
-            "notes": "Kanban for active jobs — like prospect dashboard but for job lifecycle"
+            "id": "B-16",
+            "name": "Rigging QA Digitisation",
+            "priority": "low",
+            "notes": "Digitise swaging QA procedures, batch traceability, gauge checks",
+            "detail": "Supplier-agnostic QA framework for rigging processes. Phase 1: Swaging QA (calibration, die selection, go/no-go gauge, material batch, operator qualification). Phase 2: Supplier integration (Petersen, WireTeknink, Sta-Lok).\n\nStrategic value: competitive differentiator, insurance surveyor trust, supplier relationships."
         },
         {
-            "id": "B-06",
-            "name": "Prospect Dashboard — New Market Expansion",
+            "id": "B-17",
+            "name": "ISO Certification Alignment",
             "priority": "low",
-            "notes": "Add filters for market segments, geographic regions"
+            "notes": "ISO 9001/45001 — build practical tools that produce ISO-compliant evidence"
+        },
+        {
+            "id": "B-18",
+            "name": "Prospect Dashboard bug fix",
+            "priority": "critical",
+            "notes": "Apps Script write-back broken — SYNC_SECRET → SECRET fixed, getSheetByName tab reference"
+        },
+        {
+            "id": "B-19",
+            "name": "Email-to-CRM intake",
+            "priority": "low",
+            "notes": "Forward customer email → auto-create customer, boat, job"
         }
     ],
     "sprints": {
@@ -78,7 +181,7 @@
                     "priority": "high",
                     "notes": "Dummy job through full lifecycle",
                     "progress": 0,
-                    "detail": "Create a test customer, boat, inspection, job, quote, and invoice — walk through the entire flow end-to-end to verify nothing is broken.\n\nTest path:\n1. Create customer + boat\n2. Start inspection → dictate findings → complete\n3. Generate PDF report\n4. Create job from inspection\n5. Generate quote → send to portal\n6. Customer approves via portal\n7. Complete job → generate invoice",
+                    "detail": "Create a test customer, boat, inspection, job, quote, and invoice — walk through the entire flow end-to-end.\n\nTest path:\n1. Create customer + boat\n2. Start inspection → dictate findings → complete\n3. Generate PDF report\n4. Create job from inspection\n5. Generate quote → send to portal\n6. Customer approves via portal\n7. Complete job → generate invoice",
                     "subtasks": [
                         {
                             "name": "Create test customer + boat",
