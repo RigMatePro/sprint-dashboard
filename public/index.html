@@ -819,6 +819,27 @@
             border-color: var(--border-accent);
         }
 
+        .btn-copy {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: var(--accent);
+            border-radius: 4px;
+            padding: 2px 8px;
+            cursor: pointer;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            margin-left: auto;
+            margin-right: 8px;
+        }
+
+        .btn-copy:hover {
+            background: rgba(14, 165, 233, 0.2);
+            color: #fff;
+        }
+
         /* ─── Detail Modal ─── */
         .modal-overlay {
             position: fixed;
@@ -1120,11 +1141,12 @@
                     ? sprint.tasks.filter(t => t.status === 'sprint-start').length
                     : sprint.tasks.filter(t => t.status === col.id).length;
                 const lock = col.id === 'sprint-start' && sprint.locked ? '<span class="lock-badge">🔒 Locked</span>' : '';
+                const copyBtn = col.id === 'sprint-start' ? '<button class="btn-copy" onclick="copySprintData()" title="Copy JSON configuration to clipboard">📋 Copy JSON</button>' : '';
 
                 return `<div class="board-column ${col.css}" data-status="${col.id}"
                     ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
                     <div class="column-accent"></div>
-                    <div class="column-header"><span class="column-title">${col.label}${lock}</span><span class="column-count">${count}</span></div>
+                    <div class="column-header"><span class="column-title">${col.label}${lock}</span>${copyBtn}<span class="column-count">${count}</span></div>
                     <div class="column-cards">${cards}</div></div>`;
             }).join('');
 
@@ -1249,28 +1271,135 @@
         function onBacklogDragOver(e) { e.preventDefault(); document.getElementById('backlogDrawer').classList.add('drag-over'); }
         function onBacklogDragLeave(e) { document.getElementById('backlogDrawer').classList.remove('drag-over'); }
 
+        function copySprintData() {
+            // Re-sort the sprintStart array inside the payload to match current visual DOM order
+            const sprint = SPRINTS[activeSprint];
+            const sprintStartCol = document.querySelector('.col-sprint-start .column-cards');
+            if (sprintStartCol && sprint.sprintStart) {
+                const domOrderIds = [...sprintStartCol.querySelectorAll('.task-card:not(.ghost)')].map(c => c.dataset.id);
+                sprint.sprintStart = domOrderIds;
+            }
+
+            const ds = { activeSprint, backlog: BACKLOG, sprints: SPRINTS };
+            navigator.clipboard.writeText(JSON.stringify(ds, null, 4)).then(() => {
+                const btn = document.querySelector('.btn-copy');
+                const origText = btn.innerHTML;
+                btn.innerHTML = '✅ Copied!';
+                setTimeout(() => btn.innerHTML = origText, 2000);
+            }).catch(err => alert('Failed to copy. ' + err));
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.task-card:not(.dragging):not(.ghost)')];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
         function onDrop(e) {
             e.preventDefault(); e.currentTarget.classList.remove('drag-over');
-            const newStatus = e.currentTarget.closest('.board-column')?.dataset.status;
+            const column = e.currentTarget.closest('.board-column');
+            const newStatus = column?.dataset.status;
             if (!draggedId || !newStatus) return;
+
             const sprint = SPRINTS[activeSprint];
+            let taskData = null;
+
             if (dragSource === 'backlog') {
                 const idx = BACKLOG.findIndex(t => t.id === draggedId);
-                if (idx !== -1) { const task = BACKLOG.splice(idx, 1)[0]; task.status = newStatus; sprint.tasks.push(task); }
+                if (idx !== -1) taskData = BACKLOG.splice(idx, 1)[0];
             } else {
-                const task = sprint.tasks.find(t => t.id === draggedId);
-                if (task) { task.status = newStatus; if (newStatus === 'done' && !task.date) task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' }); }
+                const idx = sprint.tasks.findIndex(t => t.id === draggedId);
+                if (idx !== -1) taskData = sprint.tasks.splice(idx, 1)[0];
             }
+
+            if (!taskData) return;
+
+            taskData.status = newStatus;
+            if (newStatus === 'done' && !taskData.date) {
+                taskData.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+            } else if (newStatus !== 'done') {
+                delete taskData.date;
+            }
+
+            const cardsContainer = column.querySelector('.column-cards');
+            const afterElement = getDragAfterElement(cardsContainer, e.clientY);
+
+            if (afterElement) {
+                const afterId = afterElement.dataset.id;
+                const insertIdx = sprint.tasks.findIndex(t => t.id === afterId);
+                if (insertIdx !== -1) {
+                    sprint.tasks.splice(insertIdx, 0, taskData);
+                } else {
+                    sprint.tasks.push(taskData);
+                }
+            } else {
+                sprint.tasks.push(taskData);
+            }
+
+            // Sync visual order with sprintStart to preserve sorting when copying JSON
+            const statusSprintStart = sprint.tasks.filter(t => t.status === 'sprint-start').map(t => t.id);
+            if (sprint.sprintStart) {
+                sprint.sprintStart = sprint.sprintStart.sort((a, b) => {
+                    const valA = statusSprintStart.indexOf(a);
+                    const valB = statusSprintStart.indexOf(b);
+                    return (valA === -1 ? 999 : valA) - (valB === -1 ? 999 : valB);
+                });
+            }
+
             draggedId = null; dragSource = null; render();
         }
 
         function onBacklogDrop(e) {
-            e.preventDefault(); document.getElementById('backlogDrawer').classList.remove('drag-over');
-            if (!draggedId || dragSource !== 'sprint') return;
+            e.preventDefault();
+            const drawer = document.getElementById('backlogDrawer');
+            drawer.classList.remove('drag-over');
+
+            if (!draggedId) return;
+
             const sprint = SPRINTS[activeSprint];
-            const idx = sprint.tasks.findIndex(t => t.id === draggedId);
-            if (idx !== -1) { const task = sprint.tasks.splice(idx, 1)[0]; delete task.status; delete task.date; BACKLOG.push(task); }
-            draggedId = null; dragSource = null; render();
+            let taskData = null;
+
+            if (dragSource === 'sprint') {
+                const idx = sprint.tasks.findIndex(t => t.id === draggedId);
+                if (idx !== -1) {
+                    taskData = sprint.tasks.splice(idx, 1)[0];
+                    delete taskData.status;
+                    delete taskData.date;
+                }
+            } else if (dragSource === 'backlog') {
+                const idx = BACKLOG.findIndex(t => t.id === draggedId);
+                if (idx !== -1) {
+                    taskData = BACKLOG.splice(idx, 1)[0];
+                }
+            }
+
+            if (!taskData) return;
+
+            const cardsContainer = drawer.querySelector('.backlog-cards');
+            const afterElement = getDragAfterElement(cardsContainer, e.clientY);
+
+            if (afterElement) {
+                const afterId = afterElement.dataset.id;
+                const insertIdx = BACKLOG.findIndex(t => t.id === afterId);
+                if (insertIdx !== -1) {
+                    BACKLOG.splice(insertIdx, 0, taskData);
+                } else {
+                    BACKLOG.push(taskData);
+                }
+            } else {
+                BACKLOG.push(taskData);
+            }
+
+            draggedId = null;
+            dragSource = null;
+            render();
         }
 
         // Touch
@@ -1294,16 +1423,36 @@
             if (touchClone) { touchClone.remove(); touchClone = null; }
             touchDragEl.style.opacity = '';
             const t = e.changedTouches[0];
-            document.querySelectorAll('.board-column').forEach(col => {
+            document.querySelectorAll('.board-column, .backlog-drawer').forEach(col => {
                 const r = col.getBoundingClientRect();
                 if (t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom) {
                     const sprint = SPRINTS[activeSprint];
-                    if (dragSource === 'backlog') {
-                        const idx = BACKLOG.findIndex(tk => tk.id === draggedId);
-                        if (idx !== -1) { const task = BACKLOG.splice(idx, 1)[0]; task.status = col.dataset.status; sprint.tasks.push(task); }
-                    } else {
-                        const task = sprint.tasks.find(tk => tk.id === draggedId);
-                        if (task) { task.status = col.dataset.status; if (task.status === 'done' && !task.date) task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' }); }
+                    const dropTarget = col.classList.contains('backlog-drawer') ? 'backlog' : col.dataset.status;
+
+                    if (dropTarget === 'backlog' && dragSource === 'sprint') {
+                        const idx = sprint.tasks.findIndex(tk => tk.id === draggedId);
+                        if (idx !== -1) {
+                            const task = sprint.tasks.splice(idx, 1)[0];
+                            delete task.status; delete task.date;
+                            BACKLOG.push(task);
+                        }
+                    } else if (dropTarget !== 'backlog') {
+                        if (dragSource === 'backlog') {
+                            const idx = BACKLOG.findIndex(tk => tk.id === draggedId);
+                            if (idx !== -1) {
+                                const task = BACKLOG.splice(idx, 1)[0];
+                                task.status = dropTarget;
+                                sprint.tasks.push(task);
+                            }
+                        } else {
+                            const task = sprint.tasks.find(tk => tk.id === draggedId);
+                            if (task) {
+                                task.status = dropTarget;
+                                if (task.status === 'done' && !task.date) {
+                                    task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+                                }
+                            }
+                        }
                     }
                 }
             });

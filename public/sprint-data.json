@@ -2,6 +2,28 @@
     "activeSprint": "sprint-02",
     "backlog": [
         {
+            "id": "B-09",
+            "name": "Custom domain setup",
+            "priority": "medium",
+            "notes": "Vercel config task",
+            "type": "ops"
+        },
+        {
+            "id": "B-07",
+            "name": "Prospect outreach tooling",
+            "priority": "high",
+            "notes": "Calendar integration, call logging, follow-up scheduling",
+            "detail": "Target: 3-5 prospect calls/day. Needs operational workflow with:\n• Calendar integration for scheduling calls\n• Call logging and outcome tracking\n• Status tracking tied to prospect dashboard\n• Follow-up scheduling with reminders",
+            "type": "business"
+        },
+        {
+            "id": "B-06",
+            "name": "Beta User Onboarding Automation",
+            "priority": "medium",
+            "notes": "Script to automate tenant/profile/auth creation for new users",
+            "type": "code"
+        },
+        {
             "id": "B-01",
             "name": "AI Voice Receptionist",
             "priority": "high",
@@ -28,14 +50,16 @@
                     "name": "SMS notification to rigger",
                     "done": false
                 }
-            ]
+            ],
+            "type": "code"
         },
         {
             "id": "B-02",
             "name": "Social Media Share buttons",
             "priority": "high",
             "notes": "One-click Instagram post from inspection photos + AI social copy",
-            "detail": "Phase 1 MVP: AI transforms technical findings into social media copy. Share inspection observations + photos to Instagram.\n\nPhases:\n1. Single-share to Instagram with AI caption\n2. Buffer integration for scheduling\n3. Multi-platform (Facebook, LinkedIn)"
+            "detail": "Phase 1 MVP: AI transforms technical findings into social media copy. Share inspection observations + photos to Instagram.\n\nPhases:\n1. Single-share to Instagram with AI caption\n2. Buffer integration for scheduling\n3. Multi-platform (Facebook, LinkedIn)",
+            "type": "code"
         },
         {
             "id": "B-03",
@@ -60,109 +84,74 @@
                     "name": "Remove precision gestures from inspection flow",
                     "done": false
                 }
-            ]
+            ],
+            "type": "strategy"
         },
         {
             "id": "B-04",
             "name": "DeepKeel Knowledge Portal",
             "priority": "high",
             "notes": "3-tier: AI chat, customer glossary, searchable reference",
-            "detail": "3-tier knowledge access:\n1. Rigger AI chat against normalised library (conversational lookup)\n2. Customer glossary: clickable laySummary terms in reports (tap 'crevice corrosion' → layman explanation)\n3. Searchable reference glossary in customer portal\n\nArchitecture ready: 12 libraries, 123 entries, laySummary field on LibraryEntry. Needs: AI chat UI, laySummary population, report link renderer."
-        },
-        {
-            "id": "B-05",
-            "name": "RMP Launch Pages deploy",
-            "priority": "high",
-            "notes": "Pricing, Founding 50, Rigger Quiz — local only, needs Vercel deploy",
-            "detail": "3 static pages ready locally:\n• Pricing comparison (3 tiers)\n• Founding 50 scarcity offer\n• Interactive Rigger Efficiency Scorecard quiz (12 questions, 6 dimensions, radar chart)\n\nNeed to deploy to Vercel and link from admin section."
-        },
-        {
-            "id": "B-06",
-            "name": "Beta User Onboarding Automation",
-            "priority": "medium",
-            "notes": "Script to automate tenant/profile/auth creation for new users"
-        },
-        {
-            "id": "B-07",
-            "name": "Prospect outreach tooling",
-            "priority": "high",
-            "notes": "Calendar integration, call logging, follow-up scheduling",
-            "detail": "Target: 3-5 prospect calls/day. Needs operational workflow with:\n• Calendar integration for scheduling calls\n• Call logging and outcome tracking\n• Status tracking tied to prospect dashboard\n• Follow-up scheduling with reminders"
+            "detail": "3-tier knowledge access:\n1. Rigger AI chat against normalised library (conversational lookup)\n2. Customer glossary: clickable laySummary terms in reports (tap 'crevice corrosion' → layman explanation)\n3. Searchable reference glossary in customer portal\n\nArchitecture ready: 12 libraries, 123 entries, laySummary field on LibraryEntry. Needs: AI chat UI, laySummary population, report link renderer.",
+            "type": "code"
         },
         {
             "id": "B-08",
             "name": "Curate starter templates (58 → ~8)",
             "priority": "high",
-            "notes": "Blocked on Anthony writing real observations"
-        },
-        {
-            "id": "B-09",
-            "name": "Custom domain setup",
-            "priority": "medium",
-            "notes": "Vercel config task"
+            "notes": "Blocked on Anthony writing real observations",
+            "type": "business"
         },
         {
             "id": "B-10",
             "name": "Bluetooth Headset Interaction",
             "priority": "high",
             "notes": "Trigger dictation via BT headset play/pause button",
-            "detail": "Allow riggers to trigger recording using Bluetooth headset buttons. PoC created (bluetooth-poc.html) using Media Session API with audible kickstart hack.\n\nParked due to weak cellular signal preventing field testing. Needs real-world testing in wind/rain."
+            "detail": "Allow riggers to trigger recording using Bluetooth headset buttons. PoC created (bluetooth-poc.html) using Media Session API with audible kickstart hack.\n\nParked due to weak cellular signal preventing field testing. Needs real-world testing in wind/rain.",
+            "type": "code"
         },
         {
             "id": "B-11",
             "name": "Stitch UI/UX brand profile",
             "priority": "high",
-            "notes": "Design screens in Stitch → transfer CSS/HTML design system"
-        },
-        {
-            "id": "B-12",
-            "name": "Job Pipeline Board",
-            "priority": "medium",
-            "notes": "Kanban for active jobs — Quote → Sent → Confirmed → In Progress → Invoiced → Paid",
-            "detail": "Admin view of all active jobs inside RigMate. Same drag-to-update pattern as prospect dashboard but wired to jobs/quotes/invoices tables in Supabase."
+            "notes": "Design screens in Stitch → transfer CSS/HTML design system",
+            "type": "strategy"
         },
         {
             "id": "B-13",
             "name": "Prospect Dashboard — New Market Expansion",
             "priority": "low",
-            "notes": "Replicate UK dashboard per new target market (US, DE, FR, ES)"
+            "notes": "Replicate UK dashboard per new target market (US, DE, FR, ES)",
+            "type": "ops"
         },
         {
             "id": "B-14",
             "name": "Mast Tang re-mining",
             "priority": "medium",
-            "notes": "Only 5 sources found — needs deeper research on Sparcraft/Selden"
+            "notes": "Only 5 sources found — needs deeper research on Sparcraft/Selden",
+            "type": "ops"
         },
         {
-            "id": "B-15",
-            "name": "gemini-3-flash model fix",
+            "id": "B-19",
+            "name": "Email-to-CRM intake",
             "priority": "low",
-            "notes": "Returns 404 — SDK version or naming issue"
+            "notes": "Forward customer email → auto-create customer, boat, job",
+            "type": "code"
         },
         {
             "id": "B-16",
             "name": "Rigging QA Digitisation",
             "priority": "low",
             "notes": "Digitise swaging QA procedures, batch traceability, gauge checks",
-            "detail": "Supplier-agnostic QA framework for rigging processes. Phase 1: Swaging QA (calibration, die selection, go/no-go gauge, material batch, operator qualification). Phase 2: Supplier integration (Petersen, WireTeknink, Sta-Lok).\n\nStrategic value: competitive differentiator, insurance surveyor trust, supplier relationships."
+            "detail": "Supplier-agnostic QA framework for rigging processes. Phase 1: Swaging QA (calibration, die selection, go/no-go gauge, material batch, operator qualification). Phase 2: Supplier integration (Petersen, WireTeknink, Sta-Lok).\n\nStrategic value: competitive differentiator, insurance surveyor trust, supplier relationships.",
+            "type": "strategy"
         },
         {
             "id": "B-17",
             "name": "ISO Certification Alignment",
             "priority": "low",
-            "notes": "ISO 9001/45001 — build practical tools that produce ISO-compliant evidence"
-        },
-        {
-            "id": "B-18",
-            "name": "Prospect Dashboard bug fix",
-            "priority": "critical",
-            "notes": "Apps Script write-back broken — SYNC_SECRET → SECRET fixed, getSheetByName tab reference"
-        },
-        {
-            "id": "B-19",
-            "name": "Email-to-CRM intake",
-            "priority": "low",
-            "notes": "Forward customer email → auto-create customer, boat, job"
+            "notes": "ISO 9001/45001 — build practical tools that produce ISO-compliant evidence",
+            "type": "strategy"
         }
     ],
     "sprints": {
@@ -175,17 +164,46 @@
             "sprintStart": [
                 "S02-01",
                 "S02-02",
+                "B-12",
                 "S02-03",
-                "S02-04",
-                "S02-05",
-                "S02-06",
                 "S02-07",
+                "S02-04",
                 "S02-08",
+                "B-05",
                 "S02-09",
                 "S02-10",
-                "S02-11"
+                "S02-05",
+                "S02-06"
             ],
             "tasks": [
+                {
+                    "id": "S02-11",
+                    "name": "Prospect Dashboard bug fix",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "Apps Script write-back — SYNC_SECRET + tab reference",
+                    "date": "Feb 25",
+                    "detail": "Fix the two known bugs in the prospect dashboard write-back:\n\n1. SYNC_SECRET variable not defined — renamed to SECRET but Apps Script still references old name\n2. getSheetByName tab reference wrong — looking for wrong sheet tab name\n\nVerify: make an edit on dashboard → confirm it persists in Google Sheet."
+                },
+                {
+                    "id": "B-15",
+                    "name": "gemini-3-flash model fix",
+                    "priority": "low",
+                    "notes": "Reverted to gemini-2.5-flash across 8 files",
+                    "type": "code",
+                    "status": "done",
+                    "date": "Feb 23"
+                },
+                {
+                    "id": "B-18",
+                    "name": "Prospect Dashboard bug fix",
+                    "priority": "critical",
+                    "notes": "Apps Script write-back verified working — end-to-end test passed",
+                    "type": "code",
+                    "status": "done",
+                    "date": "Feb 25"
+                },
                 {
                     "id": "S02-01",
                     "name": "E2E: run complete lifecycle test",
@@ -237,6 +255,15 @@
                     "detail": "After running the E2E test, decide what's v1-essential vs deferrable:\n\n• Customer + Boat — essential\n• Inspection + Dictation + PDF — essential\n• Job creation — essential\n• Invoice — essential\n• Quoting — essential or do riggers just do the work and invoice?\n• Customer Portal — nice-to-have or essential?\n• Scheduling — nice-to-have or essential?\n\nOutput: a clear v1 feature list that gets deployed Monday."
                 },
                 {
+                    "id": "B-12",
+                    "name": "Job Pipeline Board",
+                    "priority": "medium",
+                    "notes": "Kanban for active jobs — Quote → Sent → Confirmed → In Progress → Invoiced → Paid",
+                    "detail": "Admin view of all active jobs inside RigMate. Same drag-to-update pattern as prospect dashboard but wired to jobs/quotes/invoices tables in Supabase.",
+                    "type": "code",
+                    "status": "sprint-start"
+                },
+                {
                     "id": "S02-03",
                     "name": "Nav: complete routing + mobile menu",
                     "status": "sprint-start",
@@ -245,36 +272,6 @@
                     "notes": "Finish the 40% remaining — structure and routes",
                     "progress": 0,
                     "detail": "Complete the navigation restructure started in S01. The ERP needs clean, logical routing that a rigger can follow on mobile.\n\n• Finalise route structure\n• Mobile hamburger menu\n• Consistent back/breadcrumb navigation\n• Remove dead routes and orphaned pages"
-                },
-                {
-                    "id": "S02-04",
-                    "name": "Nav: responsive polish + transitions",
-                    "status": "sprint-start",
-                    "priority": "medium",
-                    "type": "code",
-                    "notes": "Mobile UX refinements — the feel of the app",
-                    "progress": 0,
-                    "detail": "Once routing is solid, polish the mobile experience:\n\n• Page transition animations\n• Loading states between views\n• Touch-friendly spacing\n• Consistent header/footer across all views"
-                },
-                {
-                    "id": "S02-05",
-                    "name": "Brain: build inspection system prompt",
-                    "status": "sprint-start",
-                    "priority": "high",
-                    "type": "code",
-                    "notes": "Construct context-aware prompt from Brain identity + schemas",
-                    "progress": 0,
-                    "detail": "Build the system prompt that will power inspection dictation. Pull from:\n\n• Brain identity (RigMate persona, tone, expertise)\n• Relevant schemas (standing rigging, swage terminals, tangs)\n• Normalised libraries (materials, corrosion types, manufacturers)\n\nThe prompt should make the AI understand rigging context — know what crevice corrosion is, distinguish Sparcraft from Selden, use correct technical terminology."
-                },
-                {
-                    "id": "S02-06",
-                    "name": "Brain: wire into dictation + report gen",
-                    "status": "sprint-start",
-                    "priority": "high",
-                    "type": "code",
-                    "notes": "Integrate Brain prompt into live inspection flow",
-                    "progress": 0,
-                    "detail": "Wire the constructed Brain prompt into the actual inspection code:\n\n• InspectionView dictation → use Brain system prompt for transcription context\n• InspectionSummary → use Brain for report generation\n• Test with real dictation recording\n• Compare output quality: before Brain vs after Brain"
                 },
                 {
                     "id": "S02-07",
@@ -287,6 +284,16 @@
                     "detail": "This task is populated by the findings from S02-01. Cannot be planned in advance — the bugs will reveal themselves during testing.\n\nExpect issues in:\n• Data flow between modules\n• Edge cases in PDF generation\n• Mobile layout breaks\n• Missing validation or error handling"
                 },
                 {
+                    "id": "S02-04",
+                    "name": "Nav: responsive polish + transitions",
+                    "status": "sprint-start",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "Mobile UX refinements — the feel of the app",
+                    "progress": 0,
+                    "detail": "Once routing is solid, polish the mobile experience:\n\n• Page transition animations\n• Loading states between views\n• Touch-friendly spacing\n• Consistent header/footer across all views"
+                },
+                {
                     "id": "S02-08",
                     "name": "Outreach: research + strategy plan",
                     "status": "sprint-start",
@@ -295,6 +302,15 @@
                     "notes": "Facebook business page, ad strategy, funnel architecture",
                     "progress": 0,
                     "detail": "Research and plan the revised acquisition strategy:\n\n• How to set up Facebook business page for RigMate\n• Ad formats: post vs story vs reel — what works for B2B trades?\n• Targeting options: sailing, rigging, marine industry worldwide\n• Budget: what does £5-10/day get in reach?\n• Funnel architecture: ad → landing page → quiz → email\n• What Anthony needs to do vs what can be automated\n\nOutput: a clear implementation plan with timeline."
+                },
+                {
+                    "id": "B-05",
+                    "name": "RMP Launch Pages deploy",
+                    "priority": "high",
+                    "notes": "Pricing, Founding 50, Rigger Quiz — local only, needs Vercel deploy",
+                    "detail": "3 static pages ready locally:\n• Pricing comparison (3 tiers)\n• Founding 50 scarcity offer\n• Interactive Rigger Efficiency Scorecard quiz (12 questions, 6 dimensions, radar chart)\n\nNeed to deploy to Vercel and link from admin section.",
+                    "type": "ops",
+                    "status": "sprint-start"
                 },
                 {
                     "id": "S02-09",
@@ -317,14 +333,24 @@
                     "detail": "Complete the outreach funnel:\n\n• Deploy Rigger Efficiency Scorecard quiz to Vercel\n• Set up automated email: new sign-up → quiz invitation\n• Quiz results stored in Supabase for segmentation\n• Consider: what data do we capture? Business name, location, team size, job volume\n\nGoal: self-qualifying funnel that identifies motivated riggers."
                 },
                 {
-                    "id": "S02-11",
-                    "name": "Prospect Dashboard bug fix",
+                    "id": "S02-05",
+                    "name": "Brain: build inspection system prompt",
                     "status": "sprint-start",
-                    "priority": "medium",
+                    "priority": "high",
                     "type": "code",
-                    "notes": "Apps Script write-back — SYNC_SECRET + tab reference",
+                    "notes": "Construct context-aware prompt from Brain identity + schemas",
                     "progress": 0,
-                    "detail": "Fix the two known bugs in the prospect dashboard write-back:\n\n1. SYNC_SECRET variable not defined — renamed to SECRET but Apps Script still references old name\n2. getSheetByName tab reference wrong — looking for wrong sheet tab name\n\nVerify: make an edit on dashboard → confirm it persists in Google Sheet."
+                    "detail": "Build the system prompt that will power inspection dictation. Pull from:\n\n• Brain identity (RigMate persona, tone, expertise)\n• Relevant schemas (standing rigging, swage terminals, tangs)\n• Normalised libraries (materials, corrosion types, manufacturers)\n\nThe prompt should make the AI understand rigging context — know what crevice corrosion is, distinguish Sparcraft from Selden, use correct technical terminology."
+                },
+                {
+                    "id": "S02-06",
+                    "name": "Brain: wire into dictation + report gen",
+                    "status": "sprint-start",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "Integrate Brain prompt into live inspection flow",
+                    "progress": 0,
+                    "detail": "Wire the constructed Brain prompt into the actual inspection code:\n\n• InspectionView dictation → use Brain system prompt for transcription context\n• InspectionSummary → use Brain for report generation\n• Test with real dictation recording\n• Compare output quality: before Brain vs after Brain"
                 }
             ]
         },
@@ -354,42 +380,48 @@
                     "name": "Shared UI Components",
                     "status": "done",
                     "priority": "critical",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-02",
                     "name": "CRM: Customer list + boat profiles",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-03",
                     "name": "Job Management",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-04",
                     "name": "Quoting Module",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-05",
                     "name": "Running Invoice Module",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-06",
                     "name": "Customer Portal MVP",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-07",
@@ -398,42 +430,48 @@
                     "priority": "high",
                     "notes": "~75% complete — architecture, DeepKeel engine, 12 normalised libraries, 23 staging schemas",
                     "date": "Feb 24",
-                    "progress": 75
+                    "progress": 75,
+                    "type": "strategy"
                 },
                 {
                     "id": "S01-08",
                     "name": "Scheduling Module",
                     "status": "done",
                     "priority": "medium",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "code"
                 },
                 {
                     "id": "S01-09",
                     "name": "AI Voice Receptionist",
                     "status": "missed",
                     "priority": "high",
-                    "notes": "Blocked on Brain — returned to backlog"
+                    "notes": "Blocked on Brain — returned to backlog",
+                    "type": "code"
                 },
                 {
                     "id": "S01-10",
                     "name": "Business Dashboard",
                     "status": "done",
                     "priority": "medium",
-                    "date": "Feb 14"
+                    "date": "Feb 14",
+                    "type": "business"
                 },
                 {
                     "id": "S01-11",
                     "name": "Navigation overhaul + polish",
                     "status": "missed",
                     "priority": "medium",
-                    "notes": "~60% — carried to S02"
+                    "notes": "~60% — carried to S02",
+                    "type": "code"
                 },
                 {
                     "id": "S01-12",
                     "name": "End-to-End System Test",
                     "status": "missed",
                     "priority": "high",
-                    "notes": "Never started — carried to S02"
+                    "notes": "Never started — carried to S02",
+                    "type": "code"
                 }
             ]
         },
@@ -461,70 +499,80 @@
                     "name": "Fix PDF bugs",
                     "status": "done",
                     "priority": "critical",
-                    "date": "Feb 9"
+                    "date": "Feb 9",
+                    "type": "code"
                 },
                 {
                     "id": "S00-02",
                     "name": "Deploy to Vercel",
                     "status": "done",
                     "priority": "critical",
-                    "date": "Feb 9"
+                    "date": "Feb 9",
+                    "type": "ops"
                 },
                 {
                     "id": "S00-03",
                     "name": "Dictation timer",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 9"
+                    "date": "Feb 9",
+                    "type": "code"
                 },
                 {
                     "id": "S00-04",
                     "name": "E2E mobile test",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 9"
+                    "date": "Feb 9",
+                    "type": "code"
                 },
                 {
                     "id": "S00-05",
                     "name": "Dev branch workflow",
                     "status": "done",
                     "priority": "medium",
-                    "date": "Feb 10"
+                    "date": "Feb 10",
+                    "type": "ops"
                 },
                 {
                     "id": "S00-06",
                     "name": "Auth: OTP magic link",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 12"
+                    "date": "Feb 12",
+                    "type": "code"
                 },
                 {
                     "id": "S00-07",
                     "name": "Beta tester registration",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 12"
+                    "date": "Feb 12",
+                    "type": "code"
                 },
                 {
                     "id": "S00-08",
                     "name": "Prospect research",
                     "status": "done",
                     "priority": "medium",
-                    "date": "Feb 12"
+                    "date": "Feb 12",
+                    "type": "strategy"
                 },
                 {
                     "id": "S00-09",
                     "name": "Harden dictation",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 10"
+                    "date": "Feb 10",
+                    "type": "code"
                 },
                 {
                     "id": "S00-10",
                     "name": "Harden PDF gen",
                     "status": "done",
                     "priority": "high",
-                    "date": "Feb 10"
+                    "date": "Feb 10",
+                    "type": "code"
                 }
             ]
         }
