@@ -140,6 +140,9 @@
             flex: 1;
             padding-right: 20px;
             border-right: 1px solid var(--border);
+            flex-direction: row;
+            align-items: baseline;
+            gap: 8px;
         }
 
         .meta-block.sprint-goal {
@@ -147,6 +150,9 @@
             padding-left: 20px;
             padding-right: 20px;
             border-right: 1px solid var(--border);
+            flex-direction: row;
+            align-items: baseline;
+            gap: 8px;
         }
 
         .meta-block.day-counter {
@@ -175,10 +181,11 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--text-muted);
+            white-space: nowrap;
         }
 
         .meta-value-big {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: -0.02em;
@@ -186,7 +193,7 @@
         }
 
         .meta-value-goal {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             color: var(--text-primary);
             line-height: 1.3;
