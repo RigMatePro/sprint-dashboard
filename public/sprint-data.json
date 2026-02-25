@@ -425,39 +425,39 @@
                 {
                     "id": "S02-12",
                     "name": "🔴 FIX: RLS policies — drop qual:true, enforce tenant isolation",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "critical",
                     "type": "code",
-                    "notes": "AUDIT #6: Any auth user can access ALL data. Drop open policies, enforce tenant-scoped.",
-                    "progress": 0,
-                    "detail": "CRITICAL SECURITY: Production RLS has qual:true on customers, boats, tenants, tenant_users, profiles. PostgreSQL OR-logic means broad policies override tenant-scoped ones. 4-6hrs.",
+                    "notes": "AUDIT #6: Dropped 20 overly-broad policies. Added tenant_id to inspections/observations. Feb 25.",
+                    "date": "Feb 25",
+                    "detail": "Applied 4 Supabase migrations: (1) DROP 15 broad policies on customers/boats/tenants/tenant_users/profiles, (2) add tenant_id to inspections+observations with backfill+RLS, (3) fix quotes/invoices DEFAULT, (4) cleanup 5 remaining stale policies.",
                     "subtasks": [
                         {
                             "name": "Audit all qual:true policies",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Write DROP + CREATE migration",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Test on dev database",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Apply to production",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Verify with cross-tenant query test",
-                            "done": false
+                            "done": true
                         }
                     ]
                 },
                 {
                     "id": "S02-13",
                     "name": "🔴 FIX: Move Gemini API key to Edge Function proxy",
-                    "status": "sprint-start",
+                    "status": "added",
                     "priority": "critical",
                     "type": "code",
                     "notes": "AUDIT #7: VITE_GEMINI_API_KEY in 10 client call sites. Create gemini-proxy Edge Function.",
@@ -480,15 +480,16 @@
                 {
                     "id": "S02-14",
                     "name": "FIX: quotes/invoices tenant_id default",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "critical",
                     "type": "code",
-                    "notes": "AUDIT #6b: tenant_id defaults to auth.uid() — stores user UUID not tenant UUID. 1hr."
+                    "date": "Feb 25",
+                    "notes": "AUDIT #6b: Fixed DEFAULT to get_tenant_id_for_auth_user(). Feb 25."
                 },
                 {
                     "id": "S02-15",
                     "name": "Generate Supabase types + remove as any",
-                    "status": "sprint-start",
+                    "status": "added",
                     "priority": "high",
                     "type": "code",
                     "notes": "AUDIT #5: supabaseClient exports as any — zero type safety across 24 services. 1-2hrs."
@@ -496,7 +497,7 @@
                 {
                     "id": "S02-16",
                     "name": "Privacy Policy + Terms + ICO registration",
-                    "status": "sprint-start",
+                    "status": "added",
                     "priority": "high",
                     "type": "ops",
                     "notes": "AUDIT GDPR: Legal requirement before payment. Termly/iubenda. ICO £40/yr. 2-3hrs."
@@ -504,7 +505,7 @@
                 {
                     "id": "S02-17",
                     "name": "GitHub Actions CI — build + type check",
-                    "status": "sprint-start",
+                    "status": "added",
                     "priority": "high",
                     "type": "code",
                     "notes": "AUDIT #13: No CI gates. tsc + build on push to dev / PR to main. 30min."
@@ -512,7 +513,7 @@
                 {
                     "id": "S02-18",
                     "name": "Smoke tests — RLS + service layer (Vitest)",
-                    "status": "sprint-start",
+                    "status": "added",
                     "priority": "high",
                     "type": "code",
                     "notes": "AUDIT #10: Zero tests. 5 smoke tests: client init, tenant, CRUD, atomic ops, RLS. 2hrs."
