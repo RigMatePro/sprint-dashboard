@@ -5,7 +5,30 @@
             "id": "B-01",
             "name": "AI Voice Receptionist",
             "priority": "high",
-            "notes": "Twilio + Gemini + Brain integration"
+            "notes": "Twilio + Gemini + Brain integration",
+            "detail": "Inbound call handling for riggers. Customer calls → Twilio → Gemini transcribes → Brain processes intent → routes to rigger or takes message.\n\nDiscussion notes:\n• Use Twilio Programmable Voice for inbound\n• Gemini for real-time transcription\n• Brain engine classifies: urgent (mast down), booking request, quote enquiry, general\n• SMS notification to rigger with summary\n• Could become outbound too — appointment reminders",
+            "subtasks": [
+                {
+                    "name": "Twilio account setup",
+                    "done": false
+                },
+                {
+                    "name": "Inbound webhook endpoint",
+                    "done": false
+                },
+                {
+                    "name": "Gemini streaming transcription",
+                    "done": false
+                },
+                {
+                    "name": "Intent classification via Brain",
+                    "done": false
+                },
+                {
+                    "name": "SMS notification to rigger",
+                    "done": false
+                }
+            ]
         },
         {
             "id": "B-02",
@@ -17,13 +40,26 @@
             "id": "B-03",
             "name": "Mast Tang re-mining",
             "priority": "medium",
-            "notes": "Only 5 sources found — needs deeper research"
+            "notes": "Only 5 sources found — needs deeper research",
+            "detail": "The mast tang schema only has 5 sources in the v3 normalised library. Most other components have 8-12. Need to research:\n• Sparcraft tang designs\n• Selden tang bolting patterns\n• Corrosion patterns specific to tangs vs chainplates\n• Pintle/gudgeon tang variants"
         },
         {
             "id": "B-04",
             "name": "gemini-3-flash model fix",
             "priority": "low",
             "notes": "Returns 404 — SDK version or naming issue"
+        },
+        {
+            "id": "B-05",
+            "name": "Job Pipeline Board",
+            "priority": "medium",
+            "notes": "Kanban for active jobs — like prospect dashboard but for job lifecycle"
+        },
+        {
+            "id": "B-06",
+            "name": "Prospect Dashboard — New Market Expansion",
+            "priority": "low",
+            "notes": "Add filters for market segments, geographic regions"
         }
     ],
     "sprints": {
@@ -40,42 +76,72 @@
                     "name": "End-to-End System Test",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Dummy job through full lifecycle"
+                    "notes": "Dummy job through full lifecycle",
+                    "progress": 0,
+                    "detail": "Create a test customer, boat, inspection, job, quote, and invoice — walk through the entire flow end-to-end to verify nothing is broken.\n\nTest path:\n1. Create customer + boat\n2. Start inspection → dictate findings → complete\n3. Generate PDF report\n4. Create job from inspection\n5. Generate quote → send to portal\n6. Customer approves via portal\n7. Complete job → generate invoice",
+                    "subtasks": [
+                        {
+                            "name": "Create test customer + boat",
+                            "done": false
+                        },
+                        {
+                            "name": "Run inspection flow",
+                            "done": false
+                        },
+                        {
+                            "name": "Generate PDF",
+                            "done": false
+                        },
+                        {
+                            "name": "Job → Quote → Portal",
+                            "done": false
+                        },
+                        {
+                            "name": "Invoice generation",
+                            "done": false
+                        }
+                    ]
                 },
                 {
                     "id": "S02-02",
                     "name": "Navigation overhaul + mobile polish",
                     "status": "sprint-start",
                     "priority": "medium",
-                    "notes": "~60% done from S01"
+                    "notes": "~60% done from S01",
+                    "progress": 60
                 },
                 {
                     "id": "S02-03",
                     "name": "Brain: wire consumers to Brain engine",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Migrate existing pages to use Brain"
+                    "notes": "Migrate existing pages to use Brain",
+                    "progress": 0,
+                    "detail": "The Brain engine (identity, schemas, adapters, router) is built but nothing consumes it yet. Need to:\n• Wire InspectionView dictation to use Brain system prompt\n• Wire InspectionSummary to use Brain for report generation\n• Wire FindingForm to use Brain for observation parsing\n• Update DeepKeel dashboard to query Brain schemas"
                 },
                 {
                     "id": "S02-04",
                     "name": "Deploy RMP Launch Pages to Vercel",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Pricing, Founding 50, Quiz — currently local only"
+                    "notes": "Pricing, Founding 50, Quiz — currently local only",
+                    "progress": 0
                 },
                 {
                     "id": "S02-05",
                     "name": "Beta user follow-up calls",
                     "status": "sprint-start",
                     "priority": "high",
-                    "notes": "Alex, Jake, Anto, Dave — check-in"
+                    "notes": "Alex, Jake, Anto, Dave — check-in",
+                    "detail": "Analytics show very low engagement. Only Anthony active.\n\n• Alex — Has account, not logged in recently\n• Jake — Registered, minimal usage\n• Anto — Registered, no app usage\n• Dave — Onboarding flagged complete on prospect dashboard\n\nGoal: Call each, understand barriers, get them to try one inspection"
                 },
                 {
                     "id": "S02-06",
                     "name": "Field Conditions UX audit",
                     "status": "sprint-start",
                     "priority": "medium",
-                    "notes": "Contrast, tap targets, glove-friendly"
+                    "notes": "Contrast, tap targets, glove-friendly",
+                    "progress": 0
                 }
             ]
         },
@@ -147,8 +213,9 @@
                     "name": "Brain: Rig architecture model",
                     "status": "done",
                     "priority": "high",
-                    "notes": "~75% complete",
-                    "date": "Feb 24"
+                    "notes": "~75% complete — architecture, DeepKeel engine, 12 normalised libraries, 23 staging schemas",
+                    "date": "Feb 24",
+                    "progress": 75
                 },
                 {
                     "id": "S01-08",

@@ -24,7 +24,6 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --purple: #8b5cf6;
-            --missed-bg: rgba(239, 68, 68, 0.06);
         }
 
         * {
@@ -48,7 +47,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 24px;
+            padding: 12px 24px;
             border-bottom: 1px solid var(--border);
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(12px);
@@ -59,22 +58,37 @@
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
+        .logo-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
         }
 
         .header h1 {
             font-size: 16px;
             font-weight: 700;
             letter-spacing: -0.02em;
+            color: white;
         }
 
-        .header h1 span {
+        .header h1 .pro {
             color: var(--accent);
+        }
+
+        .header h1 .dash-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .version-badge {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 8px;
+            opacity: 0.5;
         }
 
         .header-right {
@@ -222,7 +236,7 @@
             margin-top: 1px;
         }
 
-        /* ─── Main Layout ─── */
+        /* ─── Main ─── */
         .main-layout {
             display: flex;
             flex: 1;
@@ -232,25 +246,24 @@
 
         /* ─── Backlog Drawer ─── */
         .backlog-drawer {
-            width: 260px;
-            min-width: 260px;
+            width: 240px;
+            min-width: 240px;
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             background: rgba(15, 23, 42, 0.6);
-            transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease;
+            transition: width 0.3s ease, min-width 0.3s ease, padding 0.3s ease;
             overflow: hidden;
         }
 
         .backlog-drawer.collapsed {
             width: 0;
             min-width: 0;
-            opacity: 0;
-            pointer-events: none;
+            padding: 0;
         }
 
         .backlog-header {
-            padding: 10px 14px;
+            padding: 10px 12px;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -260,7 +273,7 @@
         }
 
         .backlog-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -271,7 +284,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1px 7px;
+            padding: 1px 6px;
             font-size: 10px;
             font-weight: 600;
             color: var(--text-muted);
@@ -281,6 +294,7 @@
             height: 2px;
             width: 100%;
             background: var(--purple);
+            flex-shrink: 0;
         }
 
         .backlog-cards {
@@ -309,12 +323,12 @@
             z-index: 200;
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-left: none;
+            border-left: 2px solid var(--purple);
             border-radius: 0 6px 6px 0;
-            padding: 8px 5px;
+            padding: 12px 6px;
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.2s;
             display: none;
         }
@@ -322,10 +336,6 @@
         .backlog-toggle:hover {
             color: var(--accent);
             border-color: var(--border-accent);
-        }
-
-        .backlog-drawer.collapsed~.backlog-toggle {
-            display: block;
         }
 
         /* ─── Board ─── */
@@ -382,6 +392,7 @@
         .column-accent {
             height: 2px;
             width: 100%;
+            flex-shrink: 0;
         }
 
         .col-sprint-start .column-accent {
@@ -440,6 +451,10 @@
             transform: rotate(2deg);
         }
 
+        .task-card.clickable {
+            cursor: pointer;
+        }
+
         .card-top {
             display: flex;
             align-items: flex-start;
@@ -473,6 +488,11 @@
             color: var(--text-muted);
             line-height: 1.4;
             margin-bottom: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
         .card-footer {
@@ -524,25 +544,47 @@
         .added-badge {
             font-size: 8px;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--accent-light);
             background: rgba(14, 165, 233, 0.1);
             border: 1px solid rgba(14, 165, 233, 0.2);
             border-radius: 3px;
             padding: 1px 4px;
         }
 
+        /* ─── Progress Bar on Card ─── */
+        .card-progress {
+            width: 100%;
+            height: 3px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 2px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .card-progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .card-progress-fill.low {
+            background: var(--danger);
+        }
+
+        .card-progress-fill.mid {
+            background: var(--warning);
+        }
+
+        .card-progress-fill.high {
+            background: var(--success);
+        }
+
         /* ─── Ghost Cards ─── */
         .task-card.ghost {
-            opacity: 0.25;
+            opacity: 0.22;
             border-style: dashed;
             cursor: default;
             pointer-events: none;
-        }
-
-        .task-card.ghost:hover {
-            transform: none;
-            box-shadow: none;
-            border-color: var(--border);
         }
 
         /* ─── Missed Cards ─── */
@@ -553,10 +595,6 @@
         /* ─── Drag & Drop ─── */
         .board-column.drag-over {
             background: var(--accent-glow);
-        }
-
-        .board-column.drag-over .column-header {
-            background: rgba(14, 165, 233, 0.05);
         }
 
         .backlog-drawer.drag-over {
@@ -572,47 +610,80 @@
             font-size: 11px;
         }
 
-        /* ─── Footer ─── */
-        .sprint-history {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+        /* ─── Sprint Footer ─── */
+        .sprint-footer {
+            border-top: 1px solid var(--border);
+            padding: 10px 24px;
             background: rgba(15, 23, 42, 0.97);
             backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border);
-            padding: 6px 24px;
-            font-size: 10px;
-            color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
+            flex-shrink: 0;
             z-index: 50;
         }
 
-        .sprint-history-label {
+        .footer-label {
+            font-size: 9px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            font-size: 8px;
+            white-space: nowrap;
         }
 
-        .history-item {
+        .sprint-buttons {
             display: flex;
-            align-items: center;
-            gap: 5px;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
-        .history-dot {
-            width: 5px;
-            height: 5px;
+        .sprint-btn {
+            padding: 5px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .sprint-btn:hover {
+            border-color: var(--border-accent);
+            color: var(--text-primary);
+            background: rgba(14, 165, 233, 0.08);
+        }
+
+        .sprint-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(14, 165, 233, 0.1);
+            font-weight: 600;
+        }
+
+        .sprint-btn .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .dot-green {
             background: var(--success);
         }
 
-        .history-dot.partial {
+        .dot-amber {
             background: var(--warning);
+        }
+
+        .dot-blue {
+            background: var(--accent);
         }
 
         .lock-badge {
@@ -641,19 +712,167 @@
             color: var(--accent);
             border-color: var(--border-accent);
         }
+
+        /* ─── Detail Modal ─── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            width: 520px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 16px 20px;
+        }
+
+        .modal-section {
+            margin-bottom: 14px;
+        }
+
+        .modal-section-title {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .modal-section-content {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .modal-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .modal-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .modal-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .modal-progress-text {
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .subtask-list {
+            list-style: none;
+        }
+
+        .subtask-item {
+            font-size: 11px;
+            color: var(--text-secondary);
+            padding: 3px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .subtask-check {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .subtask-check.done {
+            color: var(--success);
+        }
+
+        .modal-notes {
+            white-space: pre-wrap;
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
     </style>
 </head>
 
 <body>
     <header class="header">
         <div class="header-left">
-            <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="18" cy="18" r="17" stroke="#0ea5e9" stroke-width="2" fill="rgba(14,165,233,0.1)" />
-                <path d="M18 6 L18 30 M18 6 L10 18 Q14 14 18 16 M18 6 L26 18 Q22 14 18 16 M8 28 L28 28" stroke="#0ea5e9"
-                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                <path d="M18 8 L26 18 Q22 15 18 16 Z" fill="rgba(14,165,233,0.3)" />
-            </svg>
-            <h1><span>RigMate</span> Pro — Sprint Board</h1>
+            <img src="logo.png" alt="RigMate Pro" class="logo-img">
+            <h1>RigMate<span class="pro">Pro</span> <span class="dash-label">— Sprint Board</span> <span
+                    class="version-badge">v3.0</span></h1>
         </div>
         <div class="header-right">
             <span class="last-updated" id="lastUpdated"></span>
@@ -668,22 +887,32 @@
         <aside class="backlog-drawer" id="backlogDrawer">
             <div class="backlog-accent"></div>
             <div class="backlog-header">
-                <span class="backlog-title">📋 Project Backlog</span>
+                <span class="backlog-title">Backlog</span>
                 <div style="display:flex;align-items:center;gap:6px">
                     <span class="backlog-count" id="backlogCount">0</span>
-                    <button class="btn-collapse" onclick="toggleBacklog()" title="Collapse backlog">◀</button>
+                    <button class="btn-collapse" onclick="toggleBacklog()" title="Collapse">◀</button>
                 </div>
             </div>
             <div class="backlog-cards" id="backlogCards" ondragover="onBacklogDragOver(event)"
                 ondragleave="onBacklogDragLeave(event)" ondrop="onBacklogDrop(event)"></div>
         </aside>
-
         <button class="backlog-toggle" id="backlogToggle" onclick="toggleBacklog()" title="Open backlog">▶</button>
-
         <main class="sprint-board" id="sprintBoard"></main>
     </div>
 
-    <footer class="sprint-history" id="sprintHistory"></footer>
+    <footer class="sprint-footer" id="sprintFooter"></footer>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" id="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle"></span>
+                <button class="modal-close"
+                    onclick="document.getElementById('modalOverlay').classList.remove('open')">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
 
     <script>
         let SPRINTS = {}, BACKLOG = [], activeSprint = '';
@@ -692,13 +921,12 @@
             try {
                 const res = await fetch('sprint-data.json?t=' + Date.now());
                 const data = await res.json();
-                SPRINTS = data.sprints;
-                BACKLOG = data.backlog || [];
+                SPRINTS = data.sprints; BACKLOG = data.backlog || [];
                 activeSprint = data.activeSprint;
                 document.getElementById('lastUpdated').textContent =
                     'Updated ' + new Date().toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
                 render();
-            } catch (err) { console.error('Failed to load:', err); }
+            } catch (err) { console.error('Load fail:', err); }
         }
 
         function render() {
@@ -706,10 +934,8 @@
             if (!sprint) return;
 
             // Selector
-            const sel = document.getElementById('sprintSelector');
-            sel.innerHTML = Object.entries(SPRINTS).map(([k, s]) =>
-                `<option value="${k}" ${k === activeSprint ? 'selected' : ''}>${s.name}</option>`
-            ).join('');
+            document.getElementById('sprintSelector').innerHTML = Object.entries(SPRINTS).map(([k, s]) =>
+                `<option value="${k}" ${k === activeSprint ? 'selected' : ''}>${s.name}</option>`).join('');
 
             // Meta
             const start = new Date(sprint.start), end = new Date(sprint.end), now = new Date();
@@ -720,32 +946,20 @@
             const pct = total > 0 ? Math.round((done / total) * 100) : 0;
 
             document.getElementById('sprintMeta').innerHTML = `
-                <div class="meta-item">
-                    <span class="meta-label">Sprint</span>
-                    <span class="meta-value">${sprint.name}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Goal</span>
-                    <span class="meta-value" style="font-size:11px;font-weight:400;color:var(--text-secondary);max-width:280px">${sprint.goal}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Day</span>
-                    <span class="meta-value accent">${elapsed} / ${totalDays}</span>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-                    <span class="progress-text">${done}/${total} (${pct}%)</span>
-                </div>`;
+                <div class="meta-item"><span class="meta-label">Sprint</span><span class="meta-value">${sprint.name}</span></div>
+                <div class="meta-item"><span class="meta-label">Goal</span><span class="meta-value" style="font-size:11px;font-weight:400;color:var(--text-secondary);max-width:280px">${sprint.goal}</span></div>
+                <div class="meta-item"><span class="meta-label">Day</span><span class="meta-value accent">${elapsed} / ${totalDays}</span></div>
+                <div class="progress-bar-container"><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div><span class="progress-text">${done}/${total} (${pct}%)</span></div>`;
 
             // Stats
-            const originalIds = sprint.sprintStart || [];
-            const originalCount = originalIds.length;
-            const addedCount = sprint.tasks.filter(t => !originalIds.includes(t.id)).length;
+            const origIds = sprint.sprintStart || [];
+            const origCount = origIds.length;
+            const addedCount = sprint.tasks.filter(t => !origIds.includes(t.id)).length;
             const inProg = sprint.tasks.filter(t => t.status === 'in-progress').length;
             const missed = sprint.tasks.filter(t => t.status === 'missed').length;
 
             document.getElementById('statsBar').innerHTML = `
-                <div class="stat-card"><div class="stat-value blue">${originalCount}</div><div class="stat-label">Original Scope</div></div>
+                <div class="stat-card"><div class="stat-value blue">${origCount}</div><div class="stat-label">Original Scope</div></div>
                 <div class="stat-card"><div class="stat-value slate">${addedCount}</div><div class="stat-label">Added Mid-Sprint</div></div>
                 <div class="stat-card"><div class="stat-value amber">${inProg}</div><div class="stat-label">In Progress</div></div>
                 <div class="stat-card"><div class="stat-value green">${done}</div><div class="stat-label">Done</div></div>
@@ -755,174 +969,187 @@
             document.getElementById('backlogCount').textContent = BACKLOG.length;
             document.getElementById('backlogCards').innerHTML = BACKLOG.length === 0
                 ? '<div class="empty-state">Backlog empty</div>'
-                : BACKLOG.map(t => renderCard(t, true)).join('');
+                : BACKLOG.map(t => renderCard(t, { isBacklog: true })).join('');
 
-            // Board columns
+            // Board
             const cols = [
-                { id: 'sprint-start', label: 'Sprint Start', cssClass: 'col-sprint-start' },
-                { id: 'in-progress', label: 'In Progress', cssClass: 'col-in-progress' },
-                { id: 'done', label: 'Done', cssClass: 'col-done' },
-                { id: 'missed', label: 'Missed', cssClass: 'col-missed' },
+                { id: 'sprint-start', label: 'Sprint Start', css: 'col-sprint-start' },
+                { id: 'in-progress', label: 'In Progress', css: 'col-in-progress' },
+                { id: 'done', label: 'Done', css: 'col-done' },
+                { id: 'missed', label: 'Missed', css: 'col-missed' },
             ];
 
             document.getElementById('sprintBoard').innerHTML = cols.map(col => {
                 let cards = '';
                 if (col.id === 'sprint-start') {
-                    // Ghost cards for tasks that have moved out + real cards still here
-                    const ghostIds = originalIds.filter(id => {
-                        const t = sprint.tasks.find(tk => tk.id === id);
-                        return t && t.status !== 'sprint-start';
-                    });
+                    const ghostIds = origIds.filter(id => { const t = sprint.tasks.find(tk => tk.id === id); return t && t.status !== 'sprint-start'; });
                     const stillHere = sprint.tasks.filter(t => t.status === 'sprint-start');
-                    const ghostCards = ghostIds.map(id => {
-                        const t = sprint.tasks.find(tk => tk.id === id);
-                        return t ? renderCard(t, false, true) : '';
-                    }).join('');
-                    const realCards = stillHere.map(t => renderCard(t)).join('');
-                    cards = ghostCards + realCards;
-                    if (!cards) cards = '<div class="empty-state">No tasks</div>';
+                    cards = ghostIds.map(id => { const t = sprint.tasks.find(tk => tk.id === id); return t ? renderCard(t, { isGhost: true }) : ''; }).join('')
+                        + stillHere.map(t => renderCard(t)).join('');
                 } else {
                     const tasks = sprint.tasks.filter(t => t.status === col.id);
-                    const isAdded = (t) => !originalIds.includes(t.id);
-                    cards = tasks.length === 0 ? '<div class="empty-state">No tasks</div>'
-                        : tasks.map(t => renderCard(t, false, false, isAdded(t))).join('');
+                    cards = tasks.map(t => renderCard(t, { isAdded: !origIds.includes(t.id) })).join('');
                 }
+                if (!cards) cards = '<div class="empty-state">No tasks</div>';
 
                 const count = col.id === 'sprint-start'
                     ? sprint.tasks.filter(t => t.status === 'sprint-start').length
                     : sprint.tasks.filter(t => t.status === col.id).length;
+                const lock = col.id === 'sprint-start' && sprint.locked ? '<span class="lock-badge">🔒 Locked</span>' : '';
 
-                const lockBadge = col.id === 'sprint-start' && sprint.locked ? '<span class="lock-badge">🔒 Locked</span>' : '';
-
-                return `
-                    <div class="board-column ${col.cssClass}" data-status="${col.id}"
-                         ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-                        <div class="column-accent"></div>
-                        <div class="column-header">
-                            <span class="column-title">${col.label}${lockBadge}</span>
-                            <span class="column-count">${count}</span>
-                        </div>
-                        <div class="column-cards">${cards}</div>
-                    </div>`;
+                return `<div class="board-column ${col.css}" data-status="${col.id}"
+                    ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+                    <div class="column-accent"></div>
+                    <div class="column-header"><span class="column-title">${col.label}${lock}</span><span class="column-count">${count}</span></div>
+                    <div class="column-cards">${cards}</div></div>`;
             }).join('');
 
-            // History
-            document.getElementById('sprintHistory').innerHTML = `
-                <span class="sprint-history-label">Previous Sprints</span>
-                ${Object.entries(SPRINTS).filter(([k]) => k !== activeSprint).map(([k, s]) => {
+            // Sprint footer buttons
+            const footerBtns = Object.entries(SPRINTS).map(([k, s]) => {
                 const d = s.tasks.filter(t => t.status === 'done').length;
                 const m = s.tasks.filter(t => t.status === 'missed').length;
                 const tot = s.tasks.length;
-                return `<div class="history-item">
-                        <div class="history-dot ${m > 0 ? 'partial' : ''}"></div>
-                        <span>${s.name} — ${d}/${tot}${m > 0 ? ` (${m} missed)` : ''}</span>
-                    </div>`;
-            }).join('')}`;
+                const isActive = k === activeSprint;
+                const dotClass = m > 0 ? 'dot-amber' : (d === tot && tot > 0 ? 'dot-green' : 'dot-blue');
+                return `<button class="sprint-btn ${isActive ? 'active' : ''}" onclick="switchSprint('${k}')">
+                    <span class="dot ${dotClass}"></span>${s.name} <span style="opacity:0.5;margin-left:4px">${d}/${tot}</span>
+                </button>`;
+            }).join('');
+
+            document.getElementById('sprintFooter').innerHTML = `
+                <span class="footer-label">Sprints</span>
+                <div class="sprint-buttons">${footerBtns}</div>`;
         }
 
-        function renderCard(task, isBacklog = false, isGhost = false, isAdded = false) {
+        function renderCard(task, opts = {}) {
+            const { isBacklog, isGhost, isAdded } = opts;
             const ghostClass = isGhost ? ' ghost' : '';
             const draggable = isGhost ? 'false' : 'true';
             const source = isBacklog ? 'backlog' : 'sprint';
-            return `
-                <div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
-                     ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">
-                    <div class="card-top">
-                        <span class="card-task-name">${task.name}</span>
-                        <span class="card-id">${task.id}</span>
-                    </div>
-                    ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
-                    <div class="card-footer">
-                        <span class="priority-badge priority-${task.priority}">${task.priority}</span>
-                        ${isAdded ? '<span class="added-badge">➕ Added</span>' : ''}
-                        ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
-                    </div>
-                </div>`;
+            const progress = task.progress || 0;
+            const hasProgress = progress > 0 && !isGhost;
+            const progressClass = progress < 33 ? 'low' : progress < 66 ? 'mid' : 'high';
+
+            return `<div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
+                ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openModal('${task.id}', '${source}')">
+                <div class="card-top">
+                    <span class="card-task-name">${task.name}</span>
+                    <span class="card-id">${task.id}</span>
+                </div>
+                ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
+                <div class="card-footer">
+                    <span class="priority-badge priority-${task.priority}">${task.priority}</span>
+                    ${isAdded ? '<span class="added-badge">➕ Added</span>' : ''}
+                    ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
+                    ${hasProgress ? `<span style="font-size:9px;color:var(--text-muted)">${progress}%</span>` : ''}
+                </div>
+                ${hasProgress ? `<div class="card-progress"><div class="card-progress-fill ${progressClass}" style="width:${progress}%"></div></div>` : ''}
+            </div>`;
         }
 
-        // ─── Drag & Drop ─── 
+        // ─── Modal ───
+        function openModal(taskId, source) {
+            const task = source === 'backlog'
+                ? BACKLOG.find(t => t.id === taskId)
+                : SPRINTS[activeSprint]?.tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            document.getElementById('modalTitle').textContent = task.name;
+
+            const sprint = SPRINTS[activeSprint];
+            const origIds = sprint?.sprintStart || [];
+            const isAdded = !origIds.includes(task.id);
+
+            let body = `<div class="modal-section"><div class="modal-meta">
+                <div class="modal-meta-item"><span class="meta-label">ID</span><span class="meta-value">${task.id}</span></div>
+                <div class="modal-meta-item"><span class="meta-label">Priority</span><span class="meta-value"><span class="priority-badge priority-${task.priority}">${task.priority}</span></span></div>
+                <div class="modal-meta-item"><span class="meta-label">Status</span><span class="meta-value">${task.status || 'backlog'}</span></div>
+                ${task.date ? `<div class="modal-meta-item"><span class="meta-label">Completed</span><span class="meta-value">${task.date}</span></div>` : ''}
+                ${isAdded && source !== 'backlog' ? `<div class="modal-meta-item"><span class="meta-label">Origin</span><span class="meta-value added-badge">Added mid-sprint</span></div>` : ''}
+            </div></div>`;
+
+            if (task.progress) {
+                const pc = task.progress;
+                const cl = pc < 33 ? 'var(--danger)' : pc < 66 ? 'var(--warning)' : 'var(--success)';
+                body += `<div class="modal-section"><div class="modal-section-title">Progress</div>
+                    <div class="modal-progress-bar"><div class="modal-progress-fill" style="width:${pc}%;background:${cl}"></div></div>
+                    <div class="modal-progress-text" style="color:${cl}">${pc}%</div></div>`;
+            }
+
+            if (task.subtasks?.length) {
+                body += `<div class="modal-section"><div class="modal-section-title">Subtasks</div><ul class="subtask-list">`;
+                task.subtasks.forEach(st => {
+                    const icon = st.done ? '✅' : '◻️';
+                    const cls = st.done ? ' done' : '';
+                    body += `<li class="subtask-item"><span class="subtask-check${cls}">${icon}</span> ${st.name}</li>`;
+                });
+                body += '</ul></div>';
+            }
+
+            if (task.notes) {
+                body += `<div class="modal-section"><div class="modal-section-title">Notes</div><div class="modal-notes">${task.notes}</div></div>`;
+            }
+
+            if (task.detail) {
+                body += `<div class="modal-section"><div class="modal-section-title">Detail</div><div class="modal-notes">${task.detail}</div></div>`;
+            }
+
+            document.getElementById('modalBody').innerHTML = body;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) e.target.classList.remove('open'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('open'); });
+
+        // ─── Drag & Drop ───
         let draggedId = null, dragSource = null;
-
-        function onDragStart(e) {
-            draggedId = e.currentTarget.dataset.id;
-            dragSource = e.currentTarget.dataset.source;
-            e.currentTarget.classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-        }
-        function onDragEnd(e) {
-            e.currentTarget.classList.remove('dragging');
-            document.querySelectorAll('.board-column, .backlog-drawer').forEach(c => c.classList.remove('drag-over'));
-        }
+        function onDragStart(e) { draggedId = e.currentTarget.dataset.id; dragSource = e.currentTarget.dataset.source; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+        function onDragEnd(e) { e.currentTarget.classList.remove('dragging'); document.querySelectorAll('.board-column,.backlog-drawer').forEach(c => c.classList.remove('drag-over')); }
         function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
         function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
         function onBacklogDragOver(e) { e.preventDefault(); document.getElementById('backlogDrawer').classList.add('drag-over'); }
         function onBacklogDragLeave(e) { document.getElementById('backlogDrawer').classList.remove('drag-over'); }
 
         function onDrop(e) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('drag-over');
+            e.preventDefault(); e.currentTarget.classList.remove('drag-over');
             const newStatus = e.currentTarget.closest('.board-column')?.dataset.status;
             if (!draggedId || !newStatus) return;
-
             const sprint = SPRINTS[activeSprint];
-
             if (dragSource === 'backlog') {
-                // Move from backlog to sprint
                 const idx = BACKLOG.findIndex(t => t.id === draggedId);
-                if (idx !== -1) {
-                    const task = BACKLOG.splice(idx, 1)[0];
-                    task.status = newStatus;
-                    sprint.tasks.push(task);
-                }
+                if (idx !== -1) { const task = BACKLOG.splice(idx, 1)[0]; task.status = newStatus; sprint.tasks.push(task); }
             } else {
                 const task = sprint.tasks.find(t => t.id === draggedId);
-                if (task) {
-                    task.status = newStatus;
-                    if (newStatus === 'done' && !task.date)
-                        task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
-                }
+                if (task) { task.status = newStatus; if (newStatus === 'done' && !task.date) task.date = new Date().toLocaleDateString('en-GB', { month: 'short', day: 'numeric' }); }
             }
-            draggedId = null; dragSource = null;
-            render();
+            draggedId = null; dragSource = null; render();
         }
 
         function onBacklogDrop(e) {
-            e.preventDefault();
-            document.getElementById('backlogDrawer').classList.remove('drag-over');
+            e.preventDefault(); document.getElementById('backlogDrawer').classList.remove('drag-over');
             if (!draggedId || dragSource !== 'sprint') return;
-
             const sprint = SPRINTS[activeSprint];
             const idx = sprint.tasks.findIndex(t => t.id === draggedId);
-            if (idx !== -1) {
-                const task = sprint.tasks.splice(idx, 1)[0];
-                delete task.status; delete task.date;
-                BACKLOG.push(task);
-            }
-            draggedId = null; dragSource = null;
-            render();
+            if (idx !== -1) { const task = sprint.tasks.splice(idx, 1)[0]; delete task.status; delete task.date; BACKLOG.push(task); }
+            draggedId = null; dragSource = null; render();
         }
 
-        // Touch support
+        // Touch
         let touchDragEl = null, touchClone = null;
         document.addEventListener('touchstart', e => {
             const card = e.target.closest('.task-card:not(.ghost)');
-            if (!card) return;
-            touchDragEl = card; draggedId = card.dataset.id; dragSource = card.dataset.source;
+            if (!card) return; touchDragEl = card; draggedId = card.dataset.id; dragSource = card.dataset.source;
         }, { passive: true });
-
         document.addEventListener('touchmove', e => {
             if (!touchDragEl) return; e.preventDefault();
             const t = e.touches[0];
             if (!touchClone) {
                 touchClone = touchDragEl.cloneNode(true);
                 touchClone.style.cssText = `position:fixed;z-index:9999;pointer-events:none;opacity:0.8;width:${touchDragEl.offsetWidth}px;transform:rotate(2deg)`;
-                document.body.appendChild(touchClone);
-                touchDragEl.style.opacity = '0.3';
+                document.body.appendChild(touchClone); touchDragEl.style.opacity = '0.3';
             }
-            touchClone.style.left = (t.clientX - 50) + 'px';
-            touchClone.style.top = (t.clientY - 15) + 'px';
+            touchClone.style.left = (t.clientX - 50) + 'px'; touchClone.style.top = (t.clientY - 15) + 'px';
         }, { passive: false });
-
         document.addEventListener('touchend', e => {
             if (!touchDragEl) return;
             if (touchClone) { touchClone.remove(); touchClone = null; }
@@ -950,7 +1177,6 @@
             d.classList.toggle('collapsed');
             t.style.display = d.classList.contains('collapsed') ? 'block' : 'none';
         }
-
         function switchSprint(id) { activeSprint = id; render(); }
 
         loadData();
