@@ -6,7 +6,10 @@
             "name": "Custom domain setup",
             "priority": "medium",
             "notes": "Vercel config task",
-            "type": "ops"
+            "type": "ops",
+            "estimate": 0.25,
+            "workType": "mechanical",
+            "gutEstimate": 1
         },
         {
             "id": "B-07",
@@ -14,14 +17,20 @@
             "priority": "high",
             "notes": "Calendar integration, call logging, follow-up scheduling",
             "detail": "Target: 3-5 prospect calls/day. Needs operational workflow with:\n• Calendar integration for scheduling calls\n• Call logging and outcome tracking\n• Status tracking tied to prospect dashboard\n• Follow-up scheduling with reminders",
-            "type": "business"
+            "type": "business",
+            "estimate": 4,
+            "workType": "creative",
+            "gutEstimate": 8
         },
         {
             "id": "B-06",
             "name": "Beta User Onboarding Automation",
             "priority": "medium",
             "notes": "Script to automate tenant/profile/auth creation for new users",
-            "type": "code"
+            "type": "code",
+            "estimate": 0.5,
+            "workType": "mechanical",
+            "gutEstimate": 2
         },
         {
             "id": "B-01",
@@ -51,7 +60,10 @@
                     "done": false
                 }
             ],
-            "type": "code"
+            "type": "code",
+            "estimate": 8,
+            "workType": "creative",
+            "gutEstimate": 16
         },
         {
             "id": "B-02",
@@ -59,7 +71,10 @@
             "priority": "high",
             "notes": "One-click Instagram post from inspection photos + AI social copy",
             "detail": "Phase 1 MVP: AI transforms technical findings into social media copy. Share inspection observations + photos to Instagram.\n\nPhases:\n1. Single-share to Instagram with AI caption\n2. Buffer integration for scheduling\n3. Multi-platform (Facebook, LinkedIn)",
-            "type": "code"
+            "type": "code",
+            "estimate": 3,
+            "workType": "creative",
+            "gutEstimate": 8
         },
         {
             "id": "B-03",
@@ -85,7 +100,10 @@
                     "done": false
                 }
             ],
-            "type": "strategy"
+            "type": "strategy",
+            "estimate": 6,
+            "workType": "creative",
+            "gutEstimate": 16
         },
         {
             "id": "B-04",
@@ -93,14 +111,20 @@
             "priority": "high",
             "notes": "3-tier: AI chat, customer glossary, searchable reference",
             "detail": "3-tier knowledge access:\n1. Rigger AI chat against normalised library (conversational lookup)\n2. Customer glossary: clickable laySummary terms in reports (tap 'crevice corrosion' → layman explanation)\n3. Searchable reference glossary in customer portal\n\nArchitecture ready: 12 libraries, 123 entries, laySummary field on LibraryEntry. Needs: AI chat UI, laySummary population, report link renderer.",
-            "type": "code"
+            "type": "code",
+            "estimate": 5,
+            "workType": "creative",
+            "gutEstimate": 12
         },
         {
             "id": "B-08",
             "name": "Curate starter templates (58 → ~8)",
             "priority": "high",
             "notes": "Blocked on Anthony writing real observations",
-            "type": "business"
+            "type": "business",
+            "estimate": 2,
+            "workType": "creative",
+            "gutEstimate": 4
         },
         {
             "id": "B-10",
@@ -108,35 +132,50 @@
             "priority": "high",
             "notes": "Trigger dictation via BT headset play/pause button",
             "detail": "Allow riggers to trigger recording using Bluetooth headset buttons. PoC created (bluetooth-poc.html) using Media Session API with audible kickstart hack.\n\nParked due to weak cellular signal preventing field testing. Needs real-world testing in wind/rain.",
-            "type": "code"
+            "type": "code",
+            "estimate": 1,
+            "workType": "creative",
+            "gutEstimate": 3
         },
         {
             "id": "B-11",
             "name": "Stitch UI/UX brand profile",
             "priority": "high",
             "notes": "Design screens in Stitch → transfer CSS/HTML design system",
-            "type": "strategy"
+            "type": "strategy",
+            "estimate": 4,
+            "workType": "creative",
+            "gutEstimate": 8
         },
         {
             "id": "B-13",
             "name": "Prospect Dashboard — New Market Expansion",
             "priority": "low",
             "notes": "Replicate UK dashboard per new target market (US, DE, FR, ES)",
-            "type": "ops"
+            "type": "ops",
+            "estimate": 0.5,
+            "workType": "mechanical",
+            "gutEstimate": 2
         },
         {
             "id": "B-14",
             "name": "Mast Tang re-mining",
             "priority": "medium",
             "notes": "Only 5 sources found — needs deeper research on Sparcraft/Selden",
-            "type": "ops"
+            "type": "ops",
+            "estimate": 0.5,
+            "workType": "mechanical",
+            "gutEstimate": 2
         },
         {
             "id": "B-19",
             "name": "Email-to-CRM intake",
             "priority": "low",
             "notes": "Forward customer email → auto-create customer, boat, job",
-            "type": "code"
+            "type": "code",
+            "estimate": 4,
+            "workType": "creative",
+            "gutEstimate": 10
         },
         {
             "id": "B-16",
@@ -144,35 +183,50 @@
             "priority": "low",
             "notes": "Digitise swaging QA procedures, batch traceability, gauge checks",
             "detail": "Supplier-agnostic QA framework for rigging processes. Phase 1: Swaging QA (calibration, die selection, go/no-go gauge, material batch, operator qualification). Phase 2: Supplier integration (Petersen, WireTeknink, Sta-Lok).\n\nStrategic value: competitive differentiator, insurance surveyor trust, supplier relationships.",
-            "type": "strategy"
+            "type": "strategy",
+            "estimate": 10,
+            "workType": "creative",
+            "gutEstimate": 20
         },
         {
             "id": "B-17",
             "name": "ISO Certification Alignment",
             "priority": "low",
             "notes": "ISO 9001/45001 — build practical tools that produce ISO-compliant evidence",
-            "type": "strategy"
+            "type": "strategy",
+            "estimate": 8,
+            "workType": "creative",
+            "gutEstimate": 20
         },
         {
             "id": "B-20",
             "name": "GDPR: Delete My Account + data cascade",
             "priority": "high",
             "notes": "AUDIT: Art.17 right to erasure. Self-service account deletion + cascade all tenant data.",
-            "type": "code"
+            "type": "code",
+            "estimate": 1.5,
+            "workType": "creative",
+            "gutEstimate": 4
         },
         {
             "id": "B-21",
             "name": "GDPR: Data export (JSON/CSV)",
             "priority": "high",
             "notes": "AUDIT: Art.20 data portability. Export all customer, boat, inspection data.",
-            "type": "code"
+            "type": "code",
+            "estimate": 1.5,
+            "workType": "creative",
+            "gutEstimate": 4
         },
         {
             "id": "B-22",
             "name": "Photo storage: audit public vs signed URLs",
             "priority": "high",
             "notes": "AUDIT: Check if observation photos use public or signed URLs. Fix to signed if public.",
-            "type": "code"
+            "type": "code",
+            "estimate": 0.5,
+            "workType": "mechanical",
+            "gutEstimate": 2
         },
         {
             "id": "B-23",
@@ -188,35 +242,50 @@
             "name": "Refactor App.tsx route definitions",
             "priority": "medium",
             "notes": "AUDIT FINDING #2: 577-line monolith. Extract routes + use layout routes.",
-            "type": "code"
+            "type": "code",
+            "estimate": 0.5,
+            "workType": "mechanical",
+            "gutEstimate": 3
         },
         {
             "id": "B-25",
             "name": "Audit logging for data mutations",
             "priority": "medium",
             "notes": "AUDIT: OWASP A09 — no security audit trail. Log data access/modification with actor identity.",
-            "type": "code"
+            "type": "code",
+            "estimate": 3,
+            "workType": "creative",
+            "gutEstimate": 6
         },
         {
             "id": "B-26",
             "name": "Database functions for multi-step operations",
             "priority": "medium",
             "notes": "AUDIT FINDING #3: createInspectionJob etc. should be atomic plpgsql functions.",
-            "type": "code"
+            "type": "code",
+            "estimate": 2,
+            "workType": "creative",
+            "gutEstimate": 6
         },
         {
             "id": "B-27",
             "name": "Move PDF generation server-side",
             "priority": "medium",
             "notes": "AUDIT FINDING #12: 54KB PDFService + base64 photos = mobile memory pressure. Edge Function or Vercel serverless.",
-            "type": "code"
+            "type": "code",
+            "estimate": 4,
+            "workType": "creative",
+            "gutEstimate": 10
         },
         {
             "id": "B-28",
             "name": "Drop findings table (deprecated)",
             "priority": "low",
             "notes": "AUDIT Q8: findings has 0 rows, observations has 37. Anthony confirmed deprecated.",
-            "type": "code"
+            "type": "code",
+            "estimate": 0.1,
+            "workType": "mechanical",
+            "gutEstimate": 0.5
         }
     ],
     "sprints": {
@@ -332,7 +401,10 @@
                     "notes": "Kanban for active jobs — Quote → Sent → Confirmed → In Progress → Invoiced → Paid",
                     "detail": "Admin view of all active jobs inside RigMate. Same drag-to-update pattern as prospect dashboard but wired to jobs/quotes/invoices tables in Supabase.",
                     "type": "code",
-                    "status": "sprint-start"
+                    "status": "sprint-start",
+                    "estimate": 3,
+                    "workType": "creative",
+                    "gutEstimate": 8
                 },
                 {
                     "id": "S02-03",
@@ -360,6 +432,9 @@
                     "type": "code",
                     "notes": "Mobile UX refinements — the feel of the app",
                     "progress": 0,
+                    "estimate": 1.5,
+                    "workType": "creative",
+                    "gutEstimate": 5,
                     "detail": "Once routing is solid, polish the mobile experience:\n\n• Page transition animations\n• Loading states between views\n• Touch-friendly spacing\n• Consistent header/footer across all views"
                 },
                 {
@@ -370,6 +445,9 @@
                     "type": "strategy",
                     "notes": "Facebook business page, ad strategy, funnel architecture",
                     "progress": 0,
+                    "estimate": 2,
+                    "workType": "research",
+                    "gutEstimate": 5,
                     "detail": "Research and plan the revised acquisition strategy:\n\n• How to set up Facebook business page for RigMate\n• Ad formats: post vs story vs reel — what works for B2B trades?\n• Targeting options: sailing, rigging, marine industry worldwide\n• Budget: what does £5-10/day get in reach?\n• Funnel architecture: ad → landing page → quiz → email\n• What Anthony needs to do vs what can be automated\n\nOutput: a clear implementation plan with timeline."
                 },
                 {
@@ -379,7 +457,10 @@
                     "notes": "Pricing, Founding 50, Rigger Quiz — local only, needs Vercel deploy",
                     "detail": "3 static pages ready locally:\n• Pricing comparison (3 tiers)\n• Founding 50 scarcity offer\n• Interactive Rigger Efficiency Scorecard quiz (12 questions, 6 dimensions, radar chart)\n\nNeed to deploy to Vercel and link from admin section.",
                     "type": "ops",
-                    "status": "sprint-start"
+                    "status": "sprint-start",
+                    "estimate": 0.5,
+                    "workType": "mechanical",
+                    "gutEstimate": 2
                 },
                 {
                     "id": "S02-09",
@@ -389,6 +470,9 @@
                     "type": "code",
                     "notes": "Simple sign-up page connected to Supabase",
                     "progress": 0,
+                    "estimate": 2,
+                    "workType": "creative",
+                    "gutEstimate": 5,
                     "detail": "Build a clean landing page for the Facebook funnel:\n\n• Simple value prop — one-liner like the Norwegian app Anthony saw\n• Email + business name capture form\n• Connected to Supabase leads table\n• Thank you page with next steps\n• Mobile-optimised (most Facebook traffic is mobile)\n\nDeploy to Vercel under RigMate domain."
                 },
                 {
@@ -399,6 +483,9 @@
                     "type": "ops",
                     "notes": "Rigger Efficiency Quiz + automated email trigger",
                     "progress": 0,
+                    "estimate": 1,
+                    "workType": "mechanical",
+                    "gutEstimate": 3,
                     "detail": "Complete the outreach funnel:\n\n• Deploy Rigger Efficiency Scorecard quiz to Vercel\n• Set up automated email: new sign-up → quiz invitation\n• Quiz results stored in Supabase for segmentation\n• Consider: what data do we capture? Business name, location, team size, job volume\n\nGoal: self-qualifying funnel that identifies motivated riggers."
                 },
                 {
@@ -409,6 +496,9 @@
                     "type": "code",
                     "notes": "Construct context-aware prompt from Brain identity + schemas",
                     "progress": 0,
+                    "estimate": 2,
+                    "workType": "creative",
+                    "gutEstimate": 5,
                     "detail": "Build the system prompt that will power inspection dictation. Pull from:\n\n• Brain identity (RigMate persona, tone, expertise)\n• Relevant schemas (standing rigging, swage terminals, tangs)\n• Normalised libraries (materials, corrosion types, manufacturers)\n\nThe prompt should make the AI understand rigging context — know what crevice corrosion is, distinguish Sparcraft from Selden, use correct technical terminology."
                 },
                 {
@@ -419,6 +509,9 @@
                     "type": "code",
                     "notes": "Integrate Brain prompt into live inspection flow",
                     "progress": 0,
+                    "estimate": 2,
+                    "workType": "creative",
+                    "gutEstimate": 5,
                     "detail": "Wire the constructed Brain prompt into the actual inspection code:\n\n• InspectionView dictation → use Brain system prompt for transcription context\n• InspectionSummary → use Brain for report generation\n• Test with real dictation recording\n• Compare output quality: before Brain vs after Brain"
                 },
                 {
@@ -501,7 +594,10 @@
                     "status": "added",
                     "priority": "high",
                     "type": "ops",
-                    "notes": "AUDIT GDPR: Legal requirement before payment. Termly/iubenda. ICO £40/yr. 2-3hrs."
+                    "notes": "AUDIT GDPR: Legal requirement before payment. Termly/iubenda. ICO £40/yr.",
+                    "estimate": 1,
+                    "workType": "mechanical",
+                    "gutEstimate": 3
                 },
                 {
                     "id": "S02-17",
@@ -518,7 +614,10 @@
                     "status": "added",
                     "priority": "high",
                     "type": "code",
-                    "notes": "AUDIT #10: Zero tests. 5 smoke tests: client init, tenant, CRUD, atomic ops, RLS. 2hrs."
+                    "notes": "AUDIT #10: Zero tests. 5 smoke tests: client init, tenant, CRUD, atomic ops, RLS.",
+                    "estimate": 1,
+                    "workType": "mechanical",
+                    "gutEstimate": 3
                 }
             ]
         },
