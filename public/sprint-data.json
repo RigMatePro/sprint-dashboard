@@ -26,11 +26,10 @@
             "id": "B-06",
             "name": "Beta User Onboarding Automation",
             "priority": "medium",
-            "notes": "Script to automate tenant/profile/auth creation for new users",
+            "notes": "DONE: scripts/onboard-beta-user.ts with --dry-run safety. Feb 26 PM.",
             "type": "code",
-            "estimate": 0.5,
-            "workType": "mechanical",
-            "gutEstimate": 2
+            "status": "done",
+            "date": "Feb 26"
         },
         {
             "id": "B-01",
@@ -161,11 +160,10 @@
             "id": "B-14",
             "name": "Mast Tang re-mining",
             "priority": "medium",
-            "notes": "Only 5 sources found — needs deeper research on Sparcraft/Selden",
+            "notes": "DONE: 5→13 sources, Sparcraft/Selden, galvanic corrosion. Feb 26 PM.",
             "type": "ops",
-            "estimate": 0.5,
-            "workType": "mechanical",
-            "gutEstimate": 2
+            "status": "done",
+            "date": "Feb 26"
         },
         {
             "id": "B-19",
@@ -222,11 +220,10 @@
             "id": "B-22",
             "name": "Photo storage: audit public vs signed URLs",
             "priority": "high",
-            "notes": "AUDIT: Check if observation photos use public or signed URLs. Fix to signed if public.",
+            "notes": "DONE: Photos are base64 in DB (RLS-protected). 4 getPublicUrl calls for logos only. No changes needed. Feb 26 PM.",
             "type": "code",
-            "estimate": 0.5,
-            "workType": "mechanical",
-            "gutEstimate": 2
+            "status": "done",
+            "date": "Feb 26"
         },
         {
             "id": "B-23",
@@ -241,11 +238,10 @@
             "id": "B-24",
             "name": "Refactor App.tsx route definitions",
             "priority": "medium",
-            "notes": "AUDIT FINDING #2: 577-line monolith. Extract routes + use layout routes.",
+            "notes": "DONE: 577→230 lines. Extracted to AppRoutes.tsx. Feb 26 PM.",
             "type": "code",
-            "estimate": 0.5,
-            "workType": "mechanical",
-            "gutEstimate": 3
+            "status": "done",
+            "date": "Feb 26"
         },
         {
             "id": "B-25",
@@ -398,13 +394,11 @@
                     "id": "B-12",
                     "name": "Job Pipeline Board",
                     "priority": "medium",
-                    "notes": "Kanban for active jobs — Quote → Sent → Confirmed → In Progress → Invoiced → Paid",
-                    "detail": "Admin view of all active jobs inside RigMate. Same drag-to-update pattern as prospect dashboard but wired to jobs/quotes/invoices tables in Supabase.",
+                    "notes": "DONE: 6-stage E2E lifecycle (Lead → Sent → Confirmed → In Progress → Invoiced → Paid) spanning Quotes + Jobs + Invoices. Feb 26 PM.",
+                    "detail": "Full end-to-end job pipeline board. 6 lifecycle stages, type filtering, one-click status progression, pipeline value totals.",
                     "type": "code",
-                    "status": "sprint-start",
-                    "estimate": 3,
-                    "workType": "creative",
-                    "gutEstimate": 8
+                    "status": "done",
+                    "date": "Feb 26"
                 },
                 {
                     "id": "S02-03",
@@ -491,15 +485,11 @@
                 {
                     "id": "S02-05",
                     "name": "Brain: build inspection system prompt",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "Construct context-aware prompt from Brain identity + schemas",
-                    "progress": 0,
-                    "estimate": 2,
-                    "workType": "creative",
-                    "gutEstimate": 5,
-                    "detail": "Build the system prompt that will power inspection dictation. Pull from:\n\n• Brain identity (RigMate persona, tone, expertise)\n• Relevant schemas (standing rigging, swage terminals, tangs)\n• Normalised libraries (materials, corrosion types, manufacturers)\n\nThe prompt should make the AI understand rigging context — know what crevice corrosion is, distinguish Sparcraft from Selden, use correct technical terminology."
+                    "notes": "5-layer prompt with library resolver. Feb 26 PM.",
+                    "date": "Feb 26"
                 },
                 {
                     "id": "S02-06",
@@ -594,10 +584,9 @@
                     "status": "added",
                     "priority": "high",
                     "type": "ops",
-                    "notes": "AUDIT GDPR: Legal requirement before payment. Termly/iubenda. ICO £40/yr.",
-                    "estimate": 1,
-                    "workType": "mechanical",
-                    "gutEstimate": 3
+                    "notes": "DONE: LegalPages.tsx at /legal. GDPR rights, AI disclosure, data sharing, ICO placeholder. Feb 26 PM.",
+                    "status": "done",
+                    "date": "Feb 26"
                 },
                 {
                     "id": "S02-17",
@@ -614,10 +603,9 @@
                     "status": "added",
                     "priority": "high",
                     "type": "code",
-                    "notes": "AUDIT #10: Zero tests. 5 smoke tests: client init, tenant, CRUD, atomic ops, RLS.",
-                    "estimate": 1,
-                    "workType": "mechanical",
-                    "gutEstimate": 3
+                    "notes": "DONE: 10/10 passing (689ms). Vitest + smoke tests for client init, service layer, RLS. Feb 26 PM.",
+                    "status": "done",
+                    "date": "Feb 26"
                 }
             ]
         },
