@@ -569,13 +569,112 @@
         }
 
         .card-meta {
-            flex: 1;
+            flex: 0 0 auto;
+            width: 33%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3px;
-            justify-items: end;
-            align-content: start;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 2px;
             flex-shrink: 0;
+        }
+
+        .meta-cell {
+            font-size: 8px;
+            font-weight: 600;
+            padding: 2px 4px;
+            border-radius: 3px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(100, 116, 139, 0.06);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+            color: var(--text-muted);
+        }
+
+        .meta-cell.id {
+            color: var(--text-secondary);
+            background: rgba(100, 116, 139, 0.12);
+            border-color: rgba(100, 116, 139, 0.2);
+        }
+
+        .meta-cell.priority-critical {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .meta-cell.priority-high {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+
+        .meta-cell.priority-medium {
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--accent);
+            border-color: rgba(14, 165, 233, 0.25);
+        }
+
+        .meta-cell.priority-low {
+            background: rgba(100, 116, 139, 0.15);
+            color: var(--text-secondary);
+            border-color: rgba(100, 116, 139, 0.25);
+        }
+
+        .meta-cell.type-code {
+            background: rgba(14, 165, 233, 0.12);
+            color: #38bdf8;
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .meta-cell.type-strategy {
+            background: rgba(168, 85, 247, 0.12);
+            color: #c084fc;
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+
+        .meta-cell.type-ops {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .meta-cell.type-business {
+            background: rgba(34, 197, 94, 0.12);
+            color: #4ade80;
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .meta-cell.estimate {
+            color: #38bdf8;
+            background: rgba(14, 165, 233, 0.08);
+            border-color: rgba(14, 165, 233, 0.15);
+        }
+
+        .meta-cell.mechanical {
+            color: #fbbf24;
+            background: rgba(245, 158, 11, 0.08);
+            border-color: rgba(245, 158, 11, 0.15);
+        }
+
+        .meta-cell.creative {
+            color: #c084fc;
+            background: rgba(168, 85, 247, 0.08);
+            border-color: rgba(168, 85, 247, 0.15);
+        }
+
+        .meta-cell.research {
+            color: #4ade80;
+            background: rgba(34, 197, 94, 0.08);
+            border-color: rgba(34, 197, 94, 0.15);
+        }
+
+        .meta-cell.date {
+            color: var(--text-muted);
         }
 
         .priority-badge {
@@ -1216,6 +1315,11 @@
             const hasProgress = progress > 0 && !isGhost;
             const progressClass = progress < 33 ? 'low' : progress < 66 ? 'mid' : 'high';
 
+            const typeLabel = task.type === 'code' ? '🔧 Code' : task.type === 'strategy' ? '📊 Strat' : task.type === 'ops' ? '📋 Ops' : '📞 Biz';
+            const estLabel = task.estimate ? `⏱${task.estimate >= 1 ? task.estimate + 'h' : Math.round(task.estimate * 60) + 'm'}` : '—';
+            const wtLabel = task.workType || '—';
+            const dateLabel = task.date || (task.status === 'done' ? '✔' : '—');
+
             return `<div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
                 ondragstart="onDragStart(event)" ondragend="onDragEnd(event)"
                 onmousedown="cardMouseDown(event)" onmouseup="cardMouseUp(event, '${task.id}', '${source}')">
@@ -1225,12 +1329,12 @@
                         ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
                     </div>
                     <div class="card-meta">
-                        <span class="card-id">${task.id}</span>
-                        <span class="priority-badge priority-${task.priority}">${task.priority}</span>
-                        ${task.type ? `<span class="type-tag type-${task.type}">${task.type === 'code' ? '🔧' : task.type === 'strategy' ? '📊' : task.type === 'ops' ? '📋' : '📞'}</span>` : ''}
-                        ${task.estimate ? `<span class="estimate-badge ${task.workType || ''}">⏱${task.estimate >= 1 ? task.estimate + 'h' : Math.round(task.estimate * 60) + 'm'}</span>` : ''}
-                        ${isAdded ? '<span class="added-badge">➕</span>' : ''}
-                        ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
+                        <span class="meta-cell id">${task.id}</span>
+                        <span class="meta-cell priority-${task.priority}">${task.priority}</span>
+                        <span class="meta-cell ${task.type ? 'type-' + task.type : ''}">${task.type ? typeLabel : '—'}</span>
+                        <span class="meta-cell estimate">${estLabel}</span>
+                        <span class="meta-cell ${wtLabel}">${wtLabel}</span>
+                        <span class="meta-cell date">${dateLabel}</span>
                     </div>
                 </div>
                 ${hasProgress ? `<div class="card-progress"><div class="card-progress-fill ${progressClass}" style="width:${progress}%"></div></div>` : ''}
