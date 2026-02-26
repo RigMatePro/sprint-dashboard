@@ -527,6 +527,14 @@
             cursor: pointer;
         }
 
+        .task-card.added {
+            border-color: rgba(168, 85, 247, 0.35);
+        }
+
+        .task-card.added:hover {
+            border-color: rgba(168, 85, 247, 0.55);
+        }
+
         .card-layout {
             display: flex;
             gap: 8px;
@@ -1320,7 +1328,9 @@
             const wtLabel = task.workType || '—';
             const dateLabel = task.date || (task.status === 'done' ? '✔' : '—');
 
-            return `<div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
+            const addedClass = isAdded ? ' added' : '';
+
+            return `<div class="task-card${ghostClass}${addedClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
                 ondragstart="onDragStart(event)" ondragend="onDragEnd(event)"
                 onmousedown="cardMouseDown(event)" onmouseup="cardMouseUp(event, '${task.id}', '${source}')">
                 <div class="card-layout">
