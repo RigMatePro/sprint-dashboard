@@ -527,20 +527,24 @@
             cursor: pointer;
         }
 
-        .card-top {
+        .card-layout {
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 6px;
-            margin-bottom: 4px;
+            gap: 8px;
+        }
+
+        .card-content {
+            flex: 2;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
         .card-task-name {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-primary);
             line-height: 1.3;
-            flex: 1;
         }
 
         .card-id {
@@ -552,27 +556,25 @@
             border-radius: 3px;
             padding: 1px 4px;
             white-space: nowrap;
-            flex-shrink: 0;
         }
 
         .card-notes {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text-muted);
-            line-height: 1.4;
-            margin-bottom: 6px;
+            line-height: 1.3;
             overflow: hidden;
-            text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
 
-        .card-footer {
+        .card-meta {
+            flex: 1;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+            flex-shrink: 0;
         }
 
         .priority-badge {
@@ -1209,18 +1211,19 @@
             return `<div class="task-card${ghostClass}" draggable="${draggable}" data-id="${task.id}" data-source="${source}"
                 ondragstart="onDragStart(event)" ondragend="onDragEnd(event)"
                 onmousedown="cardMouseDown(event)" onmouseup="cardMouseUp(event, '${task.id}', '${source}')">
-                <div class="card-top">
-                    <span class="card-task-name">${task.name}</span>
-                    <span class="card-id">${task.id}</span>
-                </div>
-                ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
-                <div class="card-footer">
-                    <span class="priority-badge priority-${task.priority}">${task.priority}</span>
-                    ${task.type ? `<span class="type-tag type-${task.type}">${task.type === 'code' ? '🔧 Code' : task.type === 'strategy' ? '📊 Strategy' : task.type === 'ops' ? '📋 Ops' : '📞 Business'}</span>` : ''}
-                    ${isAdded ? '<span class="added-badge">➕ Added</span>' : ''}
-                    ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
-                    ${hasProgress ? `<span style="font-size:9px;color:var(--text-muted)">${progress}%</span>` : ''}
-                    ${task.estimate ? `<span class="estimate-badge ${task.workType || ''}">⏱ ${task.estimate >= 1 ? task.estimate + 'h' : Math.round(task.estimate * 60) + 'm'}</span>` : ''}
+                <div class="card-layout">
+                    <div class="card-content">
+                        <span class="card-task-name">${task.name}</span>
+                        ${task.notes ? `<div class="card-notes">${task.notes}</div>` : ''}
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-id">${task.id}</span>
+                        <span class="priority-badge priority-${task.priority}">${task.priority}</span>
+                        ${task.type ? `<span class="type-tag type-${task.type}">${task.type === 'code' ? '🔧' : task.type === 'strategy' ? '📊' : task.type === 'ops' ? '📋' : '📞'}</span>` : ''}
+                        ${task.estimate ? `<span class="estimate-badge ${task.workType || ''}">⏱${task.estimate >= 1 ? task.estimate + 'h' : Math.round(task.estimate * 60) + 'm'}</span>` : ''}
+                        ${isAdded ? '<span class="added-badge">➕</span>' : ''}
+                        ${task.date ? `<span class="card-date">${task.date}</span>` : ''}
+                    </div>
                 </div>
                 ${hasProgress ? `<div class="card-progress"><div class="card-progress-fill ${progressClass}" style="width:${progress}%"></div></div>` : ''}
             </div>`;
