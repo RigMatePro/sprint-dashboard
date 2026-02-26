@@ -178,8 +178,10 @@
             "id": "B-23",
             "name": "Lazy-load Brain schemas (dynamic import)",
             "priority": "medium",
-            "notes": "AUDIT FINDING #4: ~260KB schemas in bundle. Use Vite dynamic import() to code-split.",
-            "type": "code"
+            "notes": "DONE: DeepKeelDashboard React.lazy() — 89kB split from main bundle.",
+            "type": "code",
+            "status": "done",
+            "date": "Feb 26"
         },
         {
             "id": "B-24",
@@ -277,52 +279,51 @@
                 {
                     "id": "S02-01",
                     "name": "E2E: run complete lifecycle test",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "critical",
                     "type": "code",
-                    "notes": "Customer → boat → inspection → PDF → job → invoice",
-                    "progress": 0,
-                    "detail": "Walk through the entire RigMate lifecycle as a rigger would. Create real test data, not dummy placeholders.\n\n1. Create customer (real name, contact)\n2. Add boat (real vessel details)\n3. Start inspection → dictate findings → complete\n4. Generate PDF report\n5. Create job from inspection\n6. Generate quote\n7. Complete job → generate invoice\n\nDocument every friction point, bug, and missing feature encountered.",
+                    "notes": "Customer → boat → inspection → PDF → job → invoice. 80+ findings logged.",
+                    "date": "Feb 26",
+                    "progress": 100,
                     "subtasks": [
                         {
                             "name": "Create test customer + boat",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Run inspection + dictation",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Generate PDF report",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Create job from inspection",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Generate quote",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Complete job + invoice",
-                            "done": false
+                            "done": true
                         },
                         {
                             "name": "Document all issues found",
-                            "done": false
+                            "done": true
                         }
                     ]
                 },
                 {
                     "id": "S02-02",
                     "name": "Define ERP v1 scope boundaries",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "critical",
                     "type": "strategy",
-                    "notes": "Based on E2E findings — what stays, what's deferred",
-                    "progress": 0,
-                    "detail": "After running the E2E test, decide what's v1-essential vs deferrable:\n\n• Customer + Boat — essential\n• Inspection + Dictation + PDF — essential\n• Job creation — essential\n• Invoice — essential\n• Quoting — essential or do riggers just do the work and invoice?\n• Customer Portal — nice-to-have or essential?\n• Scheduling — nice-to-have or essential?\n\nOutput: a clear v1 feature list that gets deployed Monday."
+                    "notes": "Scoped T1-T16, calendar-mapped from E2E findings.",
+                    "date": "Feb 26"
                 },
                 {
                     "id": "B-12",
@@ -336,22 +337,20 @@
                 {
                     "id": "S02-03",
                     "name": "Nav: complete routing + mobile menu",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "Finish the 40% remaining — structure and routes",
-                    "progress": 0,
-                    "detail": "Complete the navigation restructure started in S01. The ERP needs clean, logical routing that a rigger can follow on mobile.\n\n• Finalise route structure\n• Mobile hamburger menu\n• Consistent back/breadcrumb navigation\n• Remove dead routes and orphaned pages"
+                    "notes": "Routes verified clean. Home button added. Dashboard renamed to Business Dashboard.",
+                    "date": "Feb 26"
                 },
                 {
                     "id": "S02-07",
                     "name": "E2E Bug fixes",
-                    "status": "sprint-start",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "Fix issues surfaced by system test — dependent on S02-01",
-                    "progress": 0,
-                    "detail": "This task is populated by the findings from S02-01. Cannot be planned in advance — the bugs will reveal themselves during testing.\n\nExpect issues in:\n• Data flow between modules\n• Edge cases in PDF generation\n• Mobile layout breaks\n• Missing validation or error handling"
+                    "notes": "T8 Home+Dashboard, T11 Boat→Yacht, T12 Address field, T13 Yacht detail, T9-10 Quote/Invoice polish.",
+                    "date": "Feb 26"
                 },
                 {
                     "id": "S02-04",
