@@ -602,6 +602,15 @@
                     "type": "code",
                     "notes": "DONE: scripts/onboard-beta-user.ts with --dry-run safety. Feb 26 PM.",
                     "date": "Feb 26"
+                },
+                {
+                    "id": "S02-19",
+                    "name": "Crawler protection — robots.txt + noindex on all deployments",
+                    "status": "done",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "DONE: robots.txt (Disallow /) + meta noindex on all 5 Vercel projects: Sprint Board, Prospect Dashboard, RigMatePro, RMP Launch Pages, TNT Voice Notes. Feb 27.",
+                    "date": "Feb 27"
                 }
             ]
         },
