@@ -1248,7 +1248,7 @@
             // Meta
             const start = new Date(sprint.start), end = new Date(sprint.end), now = new Date();
             const totalDays = Math.ceil((end - start) / 86400000) + 1; // +1 for inclusive end date
-            const elapsed = Math.max(1, Math.min(Math.ceil((now - start) / 86400000) + 1, totalDays)); // +1: day 1 is start day
+            const elapsed = Math.max(1, Math.min(Math.floor((now - start) / 86400000) + 1, totalDays)); // floor+1: start day = day 1
             const done = sprint.tasks.filter(t => t.status === 'done').length;
             const total = sprint.tasks.length;
             const pct = total > 0 ? Math.round((done / total) * 100) : 0;
