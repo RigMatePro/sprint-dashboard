@@ -1257,11 +1257,12 @@
                 <div class="stat-card"><div class="stat-value green">${done}</div><div class="stat-label">Done</div></div>
                 <div class="stat-card"><div class="stat-value red">${missed}</div><div class="stat-label">Missed</div></div>`;
 
-            // Backlog
-            document.getElementById('backlogCount').textContent = BACKLOG.length;
-            document.getElementById('backlogCards').innerHTML = BACKLOG.length === 0
+            // Backlog (filter out any items accidentally left with done status)
+            const activeBacklog = BACKLOG.filter(t => t.status !== 'done');
+            document.getElementById('backlogCount').textContent = activeBacklog.length;
+            document.getElementById('backlogCards').innerHTML = activeBacklog.length === 0
                 ? '<div class="empty-state">Backlog empty</div>'
-                : BACKLOG.map(t => renderCard(t, { isBacklog: true })).join('');
+                : activeBacklog.map(t => renderCard(t, { isBacklog: true })).join('');
 
             // Board
             const cols = [
