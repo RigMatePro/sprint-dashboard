@@ -169,26 +169,6 @@
             "gutEstimate": 20
         },
         {
-            "id": "B-20",
-            "name": "GDPR: Delete My Account + data cascade",
-            "priority": "high",
-            "notes": "AUDIT: Art.17 right to erasure. Self-service account deletion + cascade all tenant data.",
-            "type": "code",
-            "estimate": 1.5,
-            "workType": "creative",
-            "gutEstimate": 4
-        },
-        {
-            "id": "B-21",
-            "name": "GDPR: Data export (JSON/CSV)",
-            "priority": "high",
-            "notes": "AUDIT: Art.20 data portability. Export all customer, boat, inspection data.",
-            "type": "code",
-            "estimate": 1.5,
-            "workType": "creative",
-            "gutEstimate": 4
-        },
-        {
             "id": "B-25",
             "name": "Audit logging for data mutations",
             "priority": "medium",
@@ -227,6 +207,17 @@
             "estimate": 3,
             "workType": "creative",
             "gutEstimate": 6
+        },
+        {
+            "id": "B-31",
+            "name": "Capability-based user permissions (admin dashboard)",
+            "priority": "medium",
+            "notes": "VISION: Move beyond fixed roles to configurable per-user capabilities. Admin sets what each team member can/cannot do. E.g. apprentice can add invoice line items but not send invoices, rigger can run inspections but not see financials. Admin dashboard with toggleable permissions per user. Foundation: tenant_users.role + a permissions JSON column or capabilities table. Builds on Phase 1 RBAC (admin/rigger fixed roles). Build when first multi-rigger company onboards.",
+            "detail": "Anthony's vision (Feb 27): 'You've got a team of riggers. The admin should also be able to control the capabilities of the user within the system. For example an apprentice — you want them to do jobs, add line items to invoices, but not send the invoice directly to the customer. There should be an admin dashboard for user settings with those controls.'",
+            "type": "code",
+            "estimate": 8,
+            "workType": "creative",
+            "gutEstimate": 16
         }
     ],
     "sprints": {
@@ -659,6 +650,24 @@
                     "type": "code",
                     "notes": "DONE: Dropped findings table (0 rows), regenerated database.types.ts. Feb 27.",
                     "date": "Feb 27"
+                },
+                {
+                    "id": "B-20",
+                    "name": "GDPR: Delete My Account + data cascade",
+                    "status": "in-progress",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "Art.17 right to erasure. Server-side cascade delete + admin-only guard. Paired with B-21.",
+                    "progress": 10
+                },
+                {
+                    "id": "B-21",
+                    "name": "GDPR: Data export (JSON)",
+                    "status": "in-progress",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "Art.20 data portability. JSON export of all tenant data. Admin-only. Paired with B-20.",
+                    "progress": 10
                 }
             ]
         },
