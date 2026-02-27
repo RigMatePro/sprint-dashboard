@@ -654,20 +654,20 @@
                 {
                     "id": "B-20",
                     "name": "GDPR: Delete My Account + data cascade",
-                    "status": "in-progress",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "Art.17 right to erasure. Server-side cascade delete + admin-only guard. Paired with B-21.",
-                    "progress": 10
+                    "notes": "DONE: delete_tenant_cascade DB function + 3-step confirmation UI. Admin-only via useRole hook. Feb 27.",
+                    "date": "Feb 27"
                 },
                 {
                     "id": "B-21",
                     "name": "GDPR: Data export (JSON)",
-                    "status": "in-progress",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
-                    "notes": "Art.20 data portability. JSON export of all tenant data. Admin-only. Paired with B-20.",
-                    "progress": 10
+                    "notes": "DONE: gdprService.exportAllData() — JSON download of all tenant data. Admin-only. Feb 27.",
+                    "date": "Feb 27"
                 }
             ]
         },
