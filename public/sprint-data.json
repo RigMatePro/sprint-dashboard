@@ -218,6 +218,36 @@
             "estimate": 8,
             "workType": "creative",
             "gutEstimate": 16
+        },
+        {
+            "id": "B-32",
+            "name": "Forgot Password / reset link on login screen",
+            "priority": "high",
+            "notes": "Login screen only has sign-up button, no password reset. Add 'Forgot password?' link that triggers Supabase password recovery email. Critical for beta users.",
+            "type": "code",
+            "estimate": 0.5,
+            "workType": "mechanical",
+            "gutEstimate": 1
+        },
+        {
+            "id": "B-33",
+            "name": "Audit + deprecate orphaned dev deployment",
+            "priority": "low",
+            "notes": "Old scaffolded dev version (rig-mate-o0rcihdbp-...vercel.app) is live but unused. Has scaffolded module ideas worth extracting. Tasks: (1) Extract useful ideas/content, (2) Decide whether to delete or archive, (3) Remove/protect the deployment. Currently auth-protected but publicly accessible by URL.",
+            "type": "ops",
+            "estimate": 1,
+            "workType": "mechanical",
+            "gutEstimate": 2
+        },
+        {
+            "id": "B-34",
+            "name": "Add 'Resolved' severity level to inspection workflow",
+            "priority": "medium",
+            "notes": "Current severities: Advisory (blue), Action Required (amber), Critical (red). Add 'Resolved' (green) for issues fixed on-site during inspection (e.g., replacing missing split pins). This lets the rigger document the finding AND the fix in one step. Anthony's use case: small safety items he always carries spares for and replaces immediately.",
+            "type": "feature",
+            "estimate": 1,
+            "workType": "creative",
+            "gutEstimate": 1
         }
     ],
     "sprints": {
@@ -667,6 +697,33 @@
                     "priority": "high",
                     "type": "code",
                     "notes": "DONE: gdprService.exportAllData() — JSON download of all tenant data. Admin-only. Feb 27.",
+                    "date": "Feb 27"
+                },
+                {
+                    "id": "S02-20",
+                    "name": "Fix dev preview login (password auth + env vars)",
+                    "status": "done",
+                    "priority": "critical",
+                    "type": "code",
+                    "notes": "DONE: Added password login to Auth.tsx, fixed Supabase identity record, discovered missing env vars in Vercel project. Fixed via inline env vars + prebuilt deploy. Feb 27.",
+                    "date": "Feb 27"
+                },
+                {
+                    "id": "S02-21",
+                    "name": "DEV environment badge in header bar",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "DONE: Orange 'DEV' pill next to version number in App.tsx header. Shows on all non-production hostnames. Feb 27.",
+                    "date": "Feb 27"
+                },
+                {
+                    "id": "S02-22",
+                    "name": "WelcomeModal close button",
+                    "status": "done",
+                    "priority": "low",
+                    "type": "code",
+                    "notes": "DONE: Added X close button to top-right of WelcomeModal so users can dismiss without choosing an action. Feb 27.",
                     "date": "Feb 27"
                 }
             ]
