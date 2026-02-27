@@ -559,6 +559,51 @@
                     "type": "code",
                     "notes": "DONE: 10/10 passing (689ms). Vitest + smoke tests for client init, service layer, RLS. Feb 26 PM.",
                     "date": "Feb 26"
+                },
+                {
+                    "id": "B-24",
+                    "name": "Refactor App.tsx route definitions",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "DONE: 577→230 lines. Extracted to AppRoutes.tsx. Feb 26 PM.",
+                    "date": "Feb 26"
+                },
+                {
+                    "id": "B-22",
+                    "name": "Photo storage: audit public vs signed URLs",
+                    "status": "done",
+                    "priority": "high",
+                    "type": "code",
+                    "notes": "DONE: Photos are base64 in DB (RLS-protected). 4 getPublicUrl calls for logos only. No changes needed. Feb 26 PM.",
+                    "date": "Feb 26"
+                },
+                {
+                    "id": "B-23",
+                    "name": "Lazy-load Brain schemas (dynamic import)",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "DONE: DeepKeelDashboard React.lazy() — 89kB split from main bundle. Feb 26.",
+                    "date": "Feb 26"
+                },
+                {
+                    "id": "B-14",
+                    "name": "Mast Tang re-mining",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "ops",
+                    "notes": "DONE: 5→13 sources, Sparcraft/Selden, galvanic corrosion. Feb 26 PM.",
+                    "date": "Feb 26"
+                },
+                {
+                    "id": "B-06",
+                    "name": "Beta User Onboarding Automation",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "DONE: scripts/onboard-beta-user.ts with --dry-run safety. Feb 26 PM.",
+                    "date": "Feb 26"
                 }
             ]
         },
