@@ -403,13 +403,11 @@
                     "id": "B-05",
                     "name": "RMP Launch Pages deploy",
                     "priority": "high",
-                    "notes": "Pricing, Founding 50, Rigger Quiz — local only, needs Vercel deploy",
-                    "detail": "3 static pages ready locally:\n• Pricing comparison (3 tiers)\n• Founding 50 scarcity offer\n• Interactive Rigger Efficiency Scorecard quiz (12 questions, 6 dimensions, radar chart)\n\nNeed to deploy to Vercel and link from admin section.",
+                    "notes": "DONE: Deployed to rmp-launch-pages.vercel.app. Pricing, Founding 50, Quiz, Results Preview. Feb 27.",
+                    "detail": "5 static pages deployed:\n• Pricing comparison (3 tiers)\n• Founding 50 scarcity offer\n• Interactive Rigger Efficiency Scorecard quiz (12 questions, 6 dimensions, radar chart)\n• Results preview\n\nLive at rmp-launch-pages.vercel.app",
                     "type": "ops",
-                    "status": "sprint-start",
-                    "estimate": 0.5,
-                    "workType": "mechanical",
-                    "gutEstimate": 2
+                    "status": "done",
+                    "date": "Feb 27"
                 },
                 {
                     "id": "S02-09",
