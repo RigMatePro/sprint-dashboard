@@ -23,15 +23,6 @@
             "gutEstimate": 8
         },
         {
-            "id": "B-06",
-            "name": "Beta User Onboarding Automation",
-            "priority": "medium",
-            "notes": "DONE: scripts/onboard-beta-user.ts with --dry-run safety. Feb 26 PM.",
-            "type": "code",
-            "status": "done",
-            "date": "Feb 26"
-        },
-        {
             "id": "B-01",
             "name": "AI Voice Receptionist",
             "priority": "high",
@@ -157,15 +148,6 @@
             "gutEstimate": 2
         },
         {
-            "id": "B-14",
-            "name": "Mast Tang re-mining",
-            "priority": "medium",
-            "notes": "DONE: 5→13 sources, Sparcraft/Selden, galvanic corrosion. Feb 26 PM.",
-            "type": "ops",
-            "status": "done",
-            "date": "Feb 26"
-        },
-        {
             "id": "B-19",
             "name": "Email-to-CRM intake",
             "priority": "low",
@@ -215,33 +197,6 @@
             "estimate": 1.5,
             "workType": "creative",
             "gutEstimate": 4
-        },
-        {
-            "id": "B-22",
-            "name": "Photo storage: audit public vs signed URLs",
-            "priority": "high",
-            "notes": "DONE: Photos are base64 in DB (RLS-protected). 4 getPublicUrl calls for logos only. No changes needed. Feb 26 PM.",
-            "type": "code",
-            "status": "done",
-            "date": "Feb 26"
-        },
-        {
-            "id": "B-23",
-            "name": "Lazy-load Brain schemas (dynamic import)",
-            "priority": "medium",
-            "notes": "DONE: DeepKeelDashboard React.lazy() — 89kB split from main bundle.",
-            "type": "code",
-            "status": "done",
-            "date": "Feb 26"
-        },
-        {
-            "id": "B-24",
-            "name": "Refactor App.tsx route definitions",
-            "priority": "medium",
-            "notes": "DONE: 577→230 lines. Extracted to AppRoutes.tsx. Feb 26 PM.",
-            "type": "code",
-            "status": "done",
-            "date": "Feb 26"
         },
         {
             "id": "B-25",
