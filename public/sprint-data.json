@@ -470,13 +470,13 @@
                     "status": "in-progress",
                     "priority": "high",
                     "type": "code",
-                    "notes": "Dictation wired + PDF type cleanup done. Testing pending — workflow: .agent/workflows/brain-test.md",
+                    "notes": "Dictation + report gen wired. All 3 AI sections use Brain. Testing pending — workflow: .agent/workflows/brain-test.md",
                     "date": "Feb 27",
-                    "progress": 50,
+                    "progress": 75,
                     "estimate": 2,
                     "workType": "creative",
                     "gutEstimate": 5,
-                    "detail": "Wire the Brain prompt into the live inspection flow and verify AI output quality.\n\n✅ Dictation wiring complete (geminiVoiceService + FindingForm)\n✅ PDF type errors fixed (38 errors, @ts-nocheck removed)\n⏳ Test with real dictation — workflow: .agent/workflows/brain-test.md\n⏳ Wire Brain into report generation (Phase 2, now unblocked)",
+                    "detail": "Wire the Brain prompt into the live inspection flow and verify AI output quality.\n\n✅ Dictation wiring complete (geminiVoiceService + FindingForm)\n✅ PDF type errors fixed (38 errors, @ts-nocheck removed)\n✅ Report generation wired (InspectionSummary + InspectionView)\n⏳ Test with real dictation — workflow: .agent/workflows/brain-test.md",
                     "subtasks": [
                         {
                             "name": "Wire Brain into dictation (geminiVoiceService)",
@@ -495,11 +495,11 @@
                             "done": true
                         },
                         {
-                            "name": "Test dictation with Brain (brain-test workflow)",
-                            "done": false
+                            "name": "Wire Brain into report generation",
+                            "done": true
                         },
                         {
-                            "name": "Wire Brain into report generation",
+                            "name": "Test dictation with Brain (brain-test workflow)",
                             "done": false
                         }
                     ]
