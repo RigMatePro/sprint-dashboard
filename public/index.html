@@ -1276,8 +1276,8 @@
                 if (col.id === 'sprint-start') {
                     const ghostIds = origIds.filter(id => { const t = sprint.tasks.find(tk => tk.id === id); return t && t.status !== 'sprint-start'; });
                     const stillHere = sprint.tasks.filter(t => t.status === 'sprint-start');
-                    cards = ghostIds.map(id => { const t = sprint.tasks.find(tk => tk.id === id); return t ? renderCard(t, { isGhost: true }) : ''; }).join('')
-                        + stillHere.map(t => renderCard(t)).join('');
+                    cards = stillHere.map(t => renderCard(t)).join('')
+                        + ghostIds.map(id => { const t = sprint.tasks.find(tk => tk.id === id); return t ? renderCard(t, { isGhost: true }) : ''; }).join('');
                 } else {
                     const tasks = sprint.tasks.filter(t => t.status === col.id);
                     cards = tasks.map(t => renderCard(t, { isAdded: !origIds.includes(t.id) })).join('');

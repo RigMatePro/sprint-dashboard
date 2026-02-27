@@ -581,11 +581,10 @@
                 {
                     "id": "S02-16",
                     "name": "Privacy Policy + Terms + ICO registration",
-                    "status": "added",
+                    "status": "done",
                     "priority": "high",
                     "type": "ops",
                     "notes": "DONE: LegalPages.tsx at /legal. GDPR rights, AI disclosure, data sharing, ICO placeholder. Feb 26 PM.",
-                    "status": "done",
                     "date": "Feb 26"
                 },
                 {
@@ -600,11 +599,10 @@
                 {
                     "id": "S02-18",
                     "name": "Smoke tests — RLS + service layer (Vitest)",
-                    "status": "added",
+                    "status": "done",
                     "priority": "high",
                     "type": "code",
                     "notes": "DONE: 10/10 passing (689ms). Vitest + smoke tests for client init, service layer, RLS. Feb 26 PM.",
-                    "status": "done",
                     "date": "Feb 26"
                 }
             ]
