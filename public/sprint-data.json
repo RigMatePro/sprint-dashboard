@@ -237,6 +237,26 @@
             "estimate": 0.1,
             "workType": "mechanical",
             "gutEstimate": 0.5
+        },
+        {
+            "id": "B-29",
+            "name": "Vessel data completeness pre-flight check",
+            "priority": "medium",
+            "notes": "Prompt rigger at inspection start if vessel data (model, mast maker, dimensions) is incomplete. Better data = better Brain output + more accurate parts lists.",
+            "type": "code",
+            "estimate": 1,
+            "workType": "creative",
+            "gutEstimate": 2
+        },
+        {
+            "id": "B-30",
+            "name": "Report style selection (owner vs insurance vs technical)",
+            "priority": "medium",
+            "notes": "Adjust Brain adapter/identity for different report audiences. Owner = layman terms, insurance = BS EN 13017 references + forensic language, technical = full engineering detail.",
+            "type": "code",
+            "estimate": 3,
+            "workType": "creative",
+            "gutEstimate": 6
         }
     ],
     "sprints": {
