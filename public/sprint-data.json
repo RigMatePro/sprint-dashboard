@@ -229,16 +229,6 @@
             "gutEstimate": 0.5
         },
         {
-            "id": "B-29",
-            "name": "Vessel data completeness pre-flight check",
-            "priority": "medium",
-            "notes": "Prompt rigger at inspection start if vessel data (model, mast maker, dimensions) is incomplete. Better data = better Brain output + more accurate parts lists.",
-            "type": "code",
-            "estimate": 1,
-            "workType": "creative",
-            "gutEstimate": 2
-        },
-        {
             "id": "B-30",
             "name": "Report style selection (owner vs insurance vs technical)",
             "priority": "medium",
@@ -661,6 +651,15 @@
                     "estimate": 4,
                     "workType": "creative",
                     "gutEstimate": 8
+                },
+                {
+                    "id": "B-29",
+                    "name": "Vessel data completeness pre-flight check",
+                    "status": "done",
+                    "priority": "medium",
+                    "type": "code",
+                    "notes": "DONE: Non-blocking info banner on observation screen when 2+ of 4 Brain fields missing. Sky-blue accent, dismissible, links to Yacht Details. Feb 27.",
+                    "date": "Feb 27"
                 }
             ]
         },
