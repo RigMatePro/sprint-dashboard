@@ -128,16 +128,6 @@
             "gutEstimate": 3
         },
         {
-            "id": "B-11",
-            "name": "Stitch UI/UX brand profile",
-            "priority": "high",
-            "notes": "Design screens in Stitch → transfer CSS/HTML design system",
-            "type": "strategy",
-            "estimate": 4,
-            "workType": "creative",
-            "gutEstimate": 8
-        },
-        {
             "id": "B-13",
             "name": "Prospect Dashboard — New Market Expansion",
             "priority": "low",
@@ -658,6 +648,19 @@
                     "type": "code",
                     "notes": "DONE: robots.txt (Disallow /) + meta noindex on all 5 Vercel projects: Sprint Board, Prospect Dashboard, RigMatePro, RMP Launch Pages, TNT Voice Notes. Feb 27.",
                     "date": "Feb 27"
+                },
+                {
+                    "id": "B-11",
+                    "name": "Stitch UI/UX brand profile",
+                    "status": "in-progress",
+                    "priority": "high",
+                    "type": "strategy",
+                    "notes": "Design screens in Stitch → transfer CSS/HTML design system. Comprehensive Stitch prompt crafted.",
+                    "date": "Feb 27",
+                    "progress": 10,
+                    "estimate": 4,
+                    "workType": "creative",
+                    "gutEstimate": 8
                 }
             ]
         },
