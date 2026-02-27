@@ -1075,6 +1075,36 @@
             line-height: 1.5;
         }
 
+        .modal-meta-grid {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .modal-meta-grid .meta-cell {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .modal-added-badge {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            background: rgba(167, 139, 250, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .modal-status-line {
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
         .modal-meta {
             display: flex;
             gap: 12px;
@@ -1365,17 +1395,22 @@
             const origIds = sprint?.sprintStart || [];
             const isAdded = !origIds.includes(task.id);
 
-            let body = `<div class="modal-section"><div class="modal-meta">
-                <div class="modal-meta-item"><span class="meta-label">ID</span><span class="meta-value">${task.id}</span></div>
-                <div class="modal-meta-item"><span class="meta-label">Priority</span><span class="meta-value"><span class="priority-badge priority-${task.priority}">${task.priority}</span></span></div>
-                ${task.type ? `<div class="modal-meta-item"><span class="meta-label">Type</span><span class="meta-value"><span class="type-tag type-${task.type}">${task.type === 'code' ? '🔧 Code' : task.type === 'strategy' ? '📊 Strategy' : task.type === 'ops' ? '📋 Ops' : '📞 Business'}</span></span></div>` : ''}
-                <div class="modal-meta-item"><span class="meta-label">Status</span><span class="meta-value">${task.status || 'backlog'}</span></div>
-                ${task.date ? `<div class="modal-meta-item"><span class="meta-label">Completed</span><span class="meta-value">${task.date}</span></div>` : ''}
-                ${isAdded && source !== 'backlog' ? `<div class="modal-meta-item"><span class="meta-label">Origin</span><span class="meta-value added-badge">Added mid-sprint</span></div>` : ''}
-                ${task.estimate ? `<div class="modal-meta-item"><span class="meta-label">Estimate (R16)</span><span class="meta-value" style="color:#38bdf8;font-weight:600">${task.estimate >= 1 ? task.estimate + ' hrs' : Math.round(task.estimate * 60) + ' min'}</span></div>` : ''}
-                ${task.gutEstimate ? `<div class="modal-meta-item"><span class="meta-label">Gut Estimate</span><span class="meta-value" style="color:var(--text-muted);text-decoration:line-through">${task.gutEstimate} hrs</span></div>` : ''}
-                ${task.workType ? `<div class="modal-meta-item"><span class="meta-label">Work Type</span><span class="meta-value"><span class="estimate-badge ${task.workType}">${task.workType}</span></span></div>` : ''}
-            </div></div>`;
+            const typeLabel = task.type === 'code' ? '🔧 Code' : task.type === 'strategy' ? '📊 Strategy' : task.type === 'ops' ? '📋 Ops' : '📞 Business';
+            const estLabel = task.estimate ? `⏱${task.estimate >= 1 ? task.estimate + 'h' : Math.round(task.estimate * 60) + 'm'}` : '—';
+            const wtLabel = task.workType || '—';
+            const dateLabel = task.date || (task.status === 'done' ? '✔' : '—');
+
+            let body = `<div class="modal-section"><div class="modal-meta-grid">
+                <span class="meta-cell id">${task.id}</span>
+                <span class="meta-cell priority-${task.priority}">${task.priority}</span>
+                <span class="meta-cell ${task.type ? 'type-' + task.type : ''}">${task.type ? typeLabel : '—'}</span>
+                <span class="meta-cell estimate">${estLabel}</span>
+                <span class="meta-cell ${wtLabel}">${wtLabel}</span>
+                <span class="meta-cell date">${dateLabel}</span>
+            </div>
+            ${isAdded && source !== 'backlog' ? '<div class="modal-added-badge">Added mid-sprint</div>' : ''}
+            ${task.status ? `<div class="modal-status-line">Status: <strong>${task.status}</strong></div>` : ''}
+            </div>`;
 
             if (task.progress) {
                 const pc = task.progress;
