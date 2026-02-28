@@ -248,6 +248,17 @@
             "estimate": 1,
             "workType": "creative",
             "gutEstimate": 1
+        },
+        {
+            "id": "B-35",
+            "name": "Supabase Grafana Monitoring Dashboard",
+            "priority": "medium",
+            "notes": "Install Supabase Grafana dashboard for real-time metrics (RAM, CPU, Disk IO, connections, SWAP). Set up monthly capacity review routine. Upgrade trigger: RAM >70% or connections >50 sustained. Current: Micro compute (free on Pro, upgraded Feb 28 after Disk IO exhaustion incident). Next tier: Small (~$15/mo).",
+            "detail": "Incident Feb 28: Nano compute was permanently memory-overcommitted (1.75 GiB committed vs 1.25 GiB available). Testing session drained burst credits → 522 timeouts. Upgraded to Micro (same price on Pro). Grafana provides granular visibility to catch pressure building before it becomes an outage.\n\nSetup steps:\n1. Install Supabase Grafana dashboard (see their installation guide)\n2. Configure alerts for RAM >70%, EBS IO Balance <30%\n3. Monthly review: Memory Committed vs CommitLimit, connection counts, IO trends\n4. Decision framework: Micro → Small when sustained pressure detected",
+            "type": "ops",
+            "estimate": 1,
+            "workType": "mechanical",
+            "gutEstimate": 2
         }
     ],
     "sprints": {
